@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>collection functions | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Bindings",
+            "item": "https://docs.nosqlbench.io/docs/bindings/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Funcref Collections",
+            "item": "https://docs.nosqlbench.io/docs/bindings/funcref-collections/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="docs single">
+  
+  
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row flex-xl-nowrap">
+	  
+<div class="col-lg-5 col-xl-4 docs-sidebar">
+	<nav class="docs-links" aria-label="Main navigation">
+			
+			
+			
+			
+					
+					
+					
+							<h3>Introduction</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/introduction/">NoSQLBench</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/core-concepts/">Core Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/showcase/">Showcase</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/community/">Community</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/principles/">Design Principles</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Getting Started</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/00-get-nosqlbench/">00 Install</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/01-example-commands/">01 Commands</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/02-example-results/">02 Results</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/03-reading-metrics/">03 Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/04-next-steps/">Next Steps</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Workloads 101</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/00-designing-workloads/">00 Designing Workloads</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/01-op-templates/">01 Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/">02 YAML Organization</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/03-data-bindings/">03 Data Bindings</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/04-op-params/">04 Op Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/05-op-tags/">05 Op Tags</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/06-op-blocks/">06 Op Blocks</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/07-more-op-templates/">07 More Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/08-multi-docs/">08 Multi-Docs</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/09-template-params/">09 Template Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/10-stmt-naming/">10 Op Naming</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/11-named-scenarios/">11 Named Scenarios</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/99-yaml-diagnostics/">YAML Diagnostics</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Reference</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/command-line/">CLI Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/cli-scripting/">CLI Scripting</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/parameter-types/">Parameter Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-activity-parameters/">Core Activity Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-op-params/">Core Op Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/timing-terms/">Timing Terms Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/standard-metrics/">Standard Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/advanced-metrics/">Advanced Metrics Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/grafana-metrics/">Built-In Grafana Dashboard</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/workloads-intro/">Built-In Workloads</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Scenario Scripting</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-intro/">Scripting Intro</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-parameters/">Scripting Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-environment/">Scripting Environment</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-extensions/">Scripting Extensions</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Advanced Topics</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/random-data/">Randomness, Determinism, Variation</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/vantage-points/">Vantage Points</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/multiple-clients/">Multiple Clients</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Drivers</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/driver-types-intro/">Driver Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cockroachdb/">cockroachdb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cql/">cql driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqld3/">cqld3 driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqlverify/">cqlverify driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/diag/">diag driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/dsegraph/">dsegraph driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/http/">http driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jms/">jms driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jmx/">jmx driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/kafkaproducer/">kafkaproducer driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/mongodb/">mongodb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/pulsar/">pulsar driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/ssl/">cql driver ssl</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/stdout/">stdout driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpclient/">tcpclient driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpserver/">tcpserver driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/webdriver/">webdriver driver</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Binding Functions</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-concepts/">Binding Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-functions/">Binding Functions Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-datetime/">datetime functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-general/">general functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-premade/">pre-made functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-conversion/">conversion functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-distributions/">distribution functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-state/">state functions</a></li>
+							                           
+									<li><a class="docs-link active" href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/">collection functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-diagnostics/">diagnostic functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-experimental/">Experimental functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-functional/">flow functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-nulls/">null functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-objects/">Object functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-statistics/">Statistics functions</a></li>
+							
+					</ul>
+					
+					
+			
+	</nav>
+</div>
+
+	  
+  
+  <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+  	<div class="page-links">
+  			<h3>On this page</h3>
+  			<nav id="TableOfContents">
+  					<ul>
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#sized-or-pair-wise-functions">Sized or Pair-wise functions</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#stepped-or-hashed-or-same">Stepped or Hashed or Same</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#overview-of-functions">Overview of functions</a></li>
+  							
+  									<ul>
+  											
+  											<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#list-functions">List Functions**</a></li>
+  											
+  											<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#set-functions">Set Functions</a></li>
+  											
+  											<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#map-functions">Map Functions</a></li>
+  											
+  									</ul>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#hashedlinetostringlist">HashedLineToStringList</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#hashedlinetostringset">HashedLineToStringSet</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#hashedlinetostringstringmap">HashedLineToStringStringMap</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#hashedrangetolonglist">HashedRangeToLongList</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#list">List</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listfunctions">ListFunctions</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listhashed">ListHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listmapper">ListMapper</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listsized">ListSized</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listsizedhashed">ListSizedHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#listsizedstepped">ListSizedStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#liststepped">ListStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#map">Map</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#mapfunctions">MapFunctions</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#maphashed">MapHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#mapsized">MapSized</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#mapsizedhashed">MapSizedHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#mapsizedstepped">MapSizedStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#mapstepped">MapStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#set">Set</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#setfunctions">SetFunctions</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#sethashed">SetHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#setsized">SetSized</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#setsizedhashed">SetSizedHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#setsizedstepped">SetSizedStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#setstepped">SetStepped</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#stringlist">StringList</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#stringmap">StringMap</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#stringmapclob">StringMapClob</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/#stringset">StringSet</a></li>
+  							
+  							
+  					</ul>
+  			</nav>
+  	</div>
+  </nav>
+  
+
+      <main class="docs-content col-lg-11 col-xl-9">
+        <h1>collection functions</h1>
+        
+        <p>Collection functions allow you to construct Java Lists, Maps or Sets. These functions often take the
+form of a higher-order function, where the inner function definitions are called to determine the
+size of the collection, the individual values to be added, etc.</p>
+<p>For each type of collection, there exists multiple forms which allow you to control how the provided
+function arguments are used to set the values into the collection.</p>
+<h2 id="sized-or-pair-wise-functions">Sized or Pair-wise functions<a class="zola-anchor" href="#sized-or-pair-wise-functions" aria-label="Anchor link for: sized-or-pair-wise-functions">🔗</a></h2>
+<p>Any function in this category with <code>Sized</code> occuring in its name must be initialized with a sizing
+function as an argument. For example, <code>ListSized(Mod(5),NumberNameToString())</code> will create a list
+which is sized by the first function -- a list between 0 and 4 elements in this case. With an input
+value of <code>3L</code>, the resulting List will contain 3 elements. With an input of <code>7L</code>, it will contain 2
+elements.</p>
+<p>Alternately, when a function does <em>not</em> contain <code>Sized</code> in its name, the arguments provided are used
+as pair-wise mapping functions to the elements in the resulting collection.</p>
+<p>Simply put, a Sized function will always require a sizing function as the first argument.</p>
+<h2 id="stepped-or-hashed-or-same">Stepped or Hashed or Same<a class="zola-anchor" href="#stepped-or-hashed-or-same" aria-label="Anchor link for: stepped-or-hashed-or-same">🔗</a></h2>
+<p>Any function in this category which contains <code>Stepped</code> in its name will automatically increment the
+input value used for each element in the collection. For example
+<code>ListStepped(NumberNameToString(),NumberNameToString())</code> will always creat a two-element List, but
+the inputs to the provided functions will be i+0, i+1, where i is the input value to the ListStepped
+function.</p>
+<p>Alternately, any function in this category which contains <code>Hashed</code> in its name will automatically
+hash the input value used for each element. This is useful when you want to create values within a
+collection that vary significantly with respect of their common seed value. For example,
+<code>ListHashed(NumberNameToString(),NumberNameToString(),NumberNameToString())</code> will always provide a
+three element List with values that are not obviously related to each other. For each additional
+element added to the collection, the previous input is hashed, so there is a relationship, but it
+will not be obvious nor discernable for most testing purposes.</p>
+<p>If neither <code>Stepped</code> nor <code>Hashed</code> occurs in the function name, then every element function gets the
+exact value given to the main function.</p>
+<h2 id="overview-of-functions">Overview of functions<a class="zola-anchor" href="#overview-of-functions" aria-label="Anchor link for: overview-of-functions">🔗</a></h2>
+<p>All of the useful collection binding functions follow the same basic patterns above.</p>
+<h3 id="list-functions">List Functions**<a class="zola-anchor" href="#list-functions" aria-label="Anchor link for: list-functions">🔗</a></h3>
+<table><thead><tr><th></th><th>Same Input</th><th>Stepped Input</th><th>Hashed Input</th></tr></thead><tbody>
+<tr><td><strong>Pair-wise</strong></td><td>ListFunctions(...)</td><td>ListStepped(...)</td><td>ListHashed(...)</td></tr>
+<tr><td><strong>Sized</strong></td><td>ListSized(...)</td><td>ListSizedStepped(...)</td><td>ListSizedHashed(...)</td></tr>
+</tbody></table>
+<p>The name <code>ListFunctions(...)</code> was chosen to avoid clashing with the existing <code>List(...)</code> function.</p>
+<h3 id="set-functions">Set Functions<a class="zola-anchor" href="#set-functions" aria-label="Anchor link for: set-functions">🔗</a></h3>
+<p>The values produced by the provided element functions for Sets do not check for duplicate values.
+This means that you must ensure that your element functions yield distinct values to insert into the
+collection as it is being built if you want to have a particular cardinality of values in your
+collection. Overwrites are allowed, although they may not be intended in most cases.</p>
+<table><thead><tr><th></th><th>Same Input</th><th>Stepped Input</th><th>Hashed Input</th></tr></thead><tbody>
+<tr><td><strong>Pair-wise</strong></td><td>SetFunctions(...)</td><td>SetStepped(...)</td><td>SetHashed(...)</td></tr>
+<tr><td><strong>Sized</strong></td><td>SetSized(...)</td><td>SetSizedStepped(...)</td><td>SetSizedHashed(...)</td></tr>
+</tbody></table>
+<p>The name <code>SetFunctions(...)</code> was chosen to avoid clashing with the existing <code>Set(...)</code> function.</p>
+<h3 id="map-functions">Map Functions<a class="zola-anchor" href="#map-functions" aria-label="Anchor link for: map-functions">🔗</a></h3>
+<p>The values produced by the provided element functions for Maps do not check for duplicate values.
+This means that you must ensure that your element functions yield distinct keys to insert into the
+collection as it is being built if you want to have a particular cardinality of values in your
+collection. Overwrites are allowed, although they may not be intended in most cases.</p>
+<table><thead><tr><th></th><th>Same Input</th><th>Stepped Input</th><th>Hashed Input</th></tr></thead><tbody>
+<tr><td><strong>Pair-wise</strong></td><td>MapFunctions(...)</td><td>MapStepped(...)</td><td>MapHashed(...)</td></tr>
+<tr><td><strong>Sized</strong></td><td>MapSized(...)</td><td>MapSizedStepped(...)</td><td>MapSizedHashed(...)</td></tr>
+</tbody></table>
+<p>The name <code>MapFunctions(...)</code> was chosen to avoid clashing with the existing <code>Map(...)</code> function.</p>
+<p>For the key and value functions provided to a Map function, they are taken as even-odd pairs (
+starting at zero). For sized functions, the last defined key function will be used for elements past
+the size of the <em>key</em> functions provided. The same is true for the value functions. For example, a
+call to <code>MapSized(3,f(...),g(...),h(...))</code> will use <code>f(...)</code> and <code>g(...)</code> for the first key and
+value, but from that point forward will use <code>h(...)</code> for all keys and <code>g(...)</code> for all values.</p>
+<h2 id="hashedlinetostringlist">HashedLineToStringList<a class="zola-anchor" href="#hashedlinetostringlist" aria-label="Anchor link for: hashedlinetostringlist">🔗</a></h2>
+<p>Creates a List&lt;String&gt; from a list of words in a file.</p>
+<ul>
+<li>long -&gt; HashedLineToStringList(String: filename, int: minSize, int: maxSize) -&gt; List</li>
+</ul>
+<h2 id="hashedlinetostringset">HashedLineToStringSet<a class="zola-anchor" href="#hashedlinetostringset" aria-label="Anchor link for: hashedlinetostringset">🔗</a></h2>
+<p>Return a pseudo-randomly created Set from the values in the specified file.</p>
+<ul>
+<li>long -&gt; HashedLineToStringSet(String: filename, int: minSize, int: maxSize) -&gt; Set&lt;String&gt;
+<ul>
+<li><em>example:</em> <code>HashedLineToStringSet('data/variable_words.txt',2,10)</code></li>
+<li><em>Create a set of words sized between 2 and 10 elements</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="hashedlinetostringstringmap">HashedLineToStringStringMap<a class="zola-anchor" href="#hashedlinetostringstringmap" aria-label="Anchor link for: hashedlinetostringstringmap">🔗</a></h2>
+<p>Create a String-String map from the specified file, ranging in size from 0 to the specified maximum.</p>
+<ul>
+<li>long -&gt; HashedLineToStringStringMap(String: paramFile, int: maxSize) -&gt; Map&lt;String,String&gt;</li>
+</ul>
+<h2 id="hashedrangetolonglist">HashedRangeToLongList<a class="zola-anchor" href="#hashedrangetolonglist" aria-label="Anchor link for: hashedrangetolonglist">🔗</a></h2>
+<p>Create a list of longs.</p>
+<ul>
+<li>long -&gt; HashedRangeToLongList(int: minVal, int: maxVal, int: minSize, int: maxSize) -&gt; List&lt;Long&gt;</li>
+</ul>
+<h2 id="list">List<a class="zola-anchor" href="#list" aria-label="Anchor link for: list">🔗</a></h2>
+<p>Create a {@code List} from a long input based on two functions, the first to determine the list
+size, and the second to populate the list with object values. The input fed to the second function
+is incremented between elements.</p>
+<p>To directly create Lists of Strings from the String version of the same mapping functions, simply
+use {@link StringList} instead.</p>
+<p>This function is not recommended, given that the other List functions are more clear about how they
+construct values. This function may be removed in the next major release, but it will be retained as
+deprecated for now.</p>
+<ul>
+<li>long -&gt; List(Object: sizeFunc, Object: valueFunc) -&gt; List&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>List(HashRange(3,7),Add(15L))</code></li>
+<li><em>create a list between 3 and 7 elements of Long values</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="listfunctions">ListFunctions<a class="zola-anchor" href="#listfunctions" aria-label="Anchor link for: listfunctions">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Pair-wise' function, the
+size of the resulting collection is determined directly by the number of provided element functions.
+As neither a 'Stepped' nor a 'Hashed' function, the input value used by each element function is the
+same as that provided to the outer function.</p>
+<ul>
+<li>long -&gt; ListFunctions(Object[]...: funcs) -&gt; List&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>ListFunctions(NumberNameToString(),NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a list of object values of each function output. Produces values
+like ['one','one','one']</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="listhashed">ListHashed<a class="zola-anchor" href="#listhashed" aria-label="Anchor link for: listhashed">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Pair-wise' function, the
+size of the resulting collection is determined directly by the number of provided element functions.
+As a 'Hashed' function, the input value is hashed again before being used by each element function.</p>
+<ul>
+<li>long -&gt; ListHashed(Object[]...: funcs) -&gt; List&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>ListHashed(ToString(), WeightedStrings('text:1'))</code></li>
+<li><em>Create a hash list of object values of each function output. ListHashed
+output ['2945182322382062539','text']</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="listmapper">ListMapper<a class="zola-anchor" href="#listmapper" aria-label="Anchor link for: listmapper">🔗</a></h2>
+<p>This is an example of a mapping function that can create a list of objects from another internal
+mapping function. The input value for each function is incremented by one from the initial input
+value this this overall function.</p>
+<ul>
+<li>long -&gt; ListMapper(int: size, String: genSpec) -&gt; List&lt;?&gt;
+<ul>
+<li><em>example:</em> <code>ListMapper(5,NumberNameToString())</code></li>
+<li><em>creates a list of number names</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="listsized">ListSized<a class="zola-anchor" href="#listsized" aria-label="Anchor link for: listsized">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting list. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As neither
+a 'Stepped' nor a 'Hashed' function, the input value used by each element function is the same as
+that provided to the outer function.</p>
+<ul>
+<li>
+<p>long -&gt; ListSized(Object: sizeFunc, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>ListSized(FixedValue(5), NumberNameToString(),NumberNameToString(), WeightedStrings('text:1'))</code></li>
+<li><em>Create a sized list of object values of each function output. List size function will
+recursively call the last function tillend of the list size functions</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; ListSized(int: size, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="listsizedhashed">ListSizedHashed<a class="zola-anchor" href="#listsizedhashed" aria-label="Anchor link for: listsizedhashed">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting list. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As a 'Hashed'
+function, the input value is hashed again before being used by each element function.</p>
+<ul>
+<li>
+<p>long -&gt; ListSizedHashed(Object: sizeFunc, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>ListSizedHashed(FixedValue(5),long-&gt;ToString(),long-&gt;WeightedStrings('text:1'),long-&gt;ToString())</code></li>
+<li><em>Create a sized hash list of object values of each function output. List size function will
+recursively call the last function tillend of the list size functions</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; ListSizedHashed(int: size, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="listsizedstepped">ListSizedStepped<a class="zola-anchor" href="#listsizedstepped" aria-label="Anchor link for: listsizedstepped">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting list. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As a '
+Stepped' function, the input value is incremented before being used by each element function.</p>
+<ul>
+<li>
+<p>long -&gt; ListSizedStepped(Object: sizeFunc, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>ListFunctions(NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a list of ['one','one']</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; ListSizedStepped(int: size, Object[]...: funcs) -&gt; List&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="liststepped">ListStepped<a class="zola-anchor" href="#liststepped" aria-label="Anchor link for: liststepped">🔗</a></h2>
+<p>Create a List from a long input based on a set of provided functions. As a 'Pair-wise' function, the
+size of the resulting collection is determined directly by the number of provided element functions.
+As a 'Stepped' function, the input value is incremented before being used by each element function.</p>
+<ul>
+<li>long -&gt; ListStepped(Object[]...: funcs) -&gt; List&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>ListStepped(NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a list of ['one','two']</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="map">Map<a class="zola-anchor" href="#map" aria-label="Anchor link for: map">🔗</a></h2>
+<p>Create a {@code Map} from a long input based on three functions, the first to determine the map
+size, and the second to populate the map with key objects, and the third to populate the map with
+value objects. The long input fed to the second and third functions is incremented between entries.
+To directly create Maps with key and value Strings using the same mapping functions, simply use
+{@link StringMap} instead.</p>
+<ul>
+<li>
+<p>long -&gt; Map(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;: keyFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt; Map&lt;Object,Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>Map(HashRange(3,7),NumberNameToString(),HashRange(1300,1700))</code></li>
+<li><em>create a map of size 3-7 entries, with a key of type string and a value of type int (Integer
+by autoboxing)</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Map(function.LongFunction&lt;Object&gt;[]...: objfuncs) -&gt; Map&lt;Object,Object&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>Map(NumberNameToString(),HashRange(1300,1700),NumberNameToString(),HashRange(3,7))</code></li>
+<li><em>create a map of size 2, with a specific function for each key and each value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="mapfunctions">MapFunctions<a class="zola-anchor" href="#mapfunctions" aria-label="Anchor link for: mapfunctions">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Pair-wise' function, the size of the
+resulting collection is determined directly by the number of provided element functions. Since this
+is a map, the functions come in pairs, each even numbered function is a key function and each odd
+numbered function is the corresponding value function. As neither a 'Stepped' nor a 'Hashed'
+function, the input value used by each key and value function is the same as that provided to the
+outer function.</p>
+<ul>
+<li>long -&gt; MapFunctions(Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;
+<ul>
+<li><em>example:</em> <code>MapFunctions(NumberNameToString(),NumberNameToString(),ToString(),ToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="maphashed">MapHashed<a class="zola-anchor" href="#maphashed" aria-label="Anchor link for: maphashed">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Pair-wise' function, the size of the
+resulting collection is determined directly by the number of provided element functions. Since this
+is a map, the functions come in pairs, each even numbered function is a key function and each odd
+numbered function is the corresponding value function. As a 'Hashed' function, the input value is
+hashed again before being used by each key and value function.</p>
+<ul>
+<li>long -&gt; MapHashed(Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;
+<ul>
+<li><em>example:</em> <code>MapHashed(NumberNameToString(),NumberNameToString(),ToString(),ToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one','4464361019114304900','
+4464361019114304900'}.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="mapsized">MapSized<a class="zola-anchor" href="#mapsized" aria-label="Anchor link for: mapsized">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Sized' function, the first argument is a
+function which determines the size of the resulting map. Additional functions provided are used to
+generate the elements to add to the collection, as in the pair-wise mode of {@link MapFunctions}. If
+the size is larger than the number of provided functions, the last provided function is used
+repeatedly as needed. (respectively for key functions as well as value functions) As neither a '
+Stepped' nor a 'Hashed' function, the input value used by each key and value function is the same as
+that provided to the outer function.</p>
+<ul>
+<li>
+<p>long -&gt; MapSized(Object: sizeFunc, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>MapSized(1, NumberNameToString(),NumberNameToString(),ToString(),ToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; MapSized(int: size, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+</li>
+</ul>
+<h2 id="mapsizedhashed">MapSizedHashed<a class="zola-anchor" href="#mapsizedhashed" aria-label="Anchor link for: mapsizedhashed">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Sized' function, the first argument is a
+function which determines the size of the resulting map. Additional functions provided are used to
+generate the elements to add to the collection, as in the pair-wise mode of {@link MapFunctions}. If
+the size is larger than the number of provided functions, the last provided function is used
+repeatedly as needed. (respectively for key functions as well as value functions) As a 'Hashed'
+function, the input value is hashed again before being used by each key and value function.</p>
+<ul>
+<li>
+<p>long -&gt; MapSizedHashed(Object: sizeFunc, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>MapSizedHashed(1, NumberNameToString(),NumberNameToString(),ToString(),ToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+<li><em>example:</em> <code>MapSizedHashed(HashRange(3,5), NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; MapSizedHashed(int: size, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+</li>
+</ul>
+<h2 id="mapsizedstepped">MapSizedStepped<a class="zola-anchor" href="#mapsizedstepped" aria-label="Anchor link for: mapsizedstepped">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Sized' function, the first argument is a
+function which determines the size of the resulting map. Additional functions provided are used to
+generate the elements to add to the collection, as in the pair-wise mode of {@link MapFunctions}. If
+the size is larger than the number of provided functions, the last provided function is used
+repeatedly as needed. (respectively for key functions as well as value functions) As a 'Stepped'
+function, the input value is incremented before being used by each key or value function.</p>
+<ul>
+<li>
+<p>long -&gt; MapSizedStepped(Object: sizeFunc, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>MapSizedStepped(1, NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; MapSizedStepped(int: size, Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;</p>
+</li>
+</ul>
+<h2 id="mapstepped">MapStepped<a class="zola-anchor" href="#mapstepped" aria-label="Anchor link for: mapstepped">🔗</a></h2>
+<p>Create a Map from a long input based on a set of provided key and value functions. Any duplicate
+entries produced by the key functions are elided. As a 'Pair-wise' function, the size of the
+resulting collection is determined directly by the number of provided element functions. Since this
+is a map, the functions come in pairs, each even numbered function is a key function and each odd
+numbered function is the corresponding value function. As a 'Stepped' function, the input value is
+incremented before being used by each key or value function.</p>
+<ul>
+<li>long -&gt; MapStepped(Object[]...: funcs) -&gt; Map&lt;Object,Object&gt;
+<ul>
+<li><em>example:</em> <code>MapStepped(NumberNameToString(),NumberNameToString(),ToString(),ToString())</code></li>
+<li><em>Create a map of object values. Produces values like {'one':'one'1:1}.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="set">Set<a class="zola-anchor" href="#set" aria-label="Anchor link for: set">🔗</a></h2>
+<p>Create a {@code Set} from a long input based on two functions, the first to determine the set size,
+and the second to populate the set with object values. The input fed to the second function is
+incremented between elements.</p>
+<p>To create Sets of Strings from the String version of the same mapping functions, simply use {@link
+StringSet} instead.</p>
+<ul>
+<li>
+<p>long -&gt; Set(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>Set(HashRange(3,7),Add(15L))</code></li>
+<li><em>create a set between 3 and 7 elements of Long values</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Set(function.LongToIntFunction: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongToIntFunction: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongFunction&lt;Object&gt;: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongFunction&lt;Object&gt;: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongFunction&lt;Object&gt;: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongUnaryOperator: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongUnaryOperator: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+<li>
+<p>long -&gt; Set(function.LongUnaryOperator: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="setfunctions">SetFunctions<a class="zola-anchor" href="#setfunctions" aria-label="Anchor link for: setfunctions">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. Any duplicate values are
+elided. As a 'Pair-wise' function, the size of the resulting collection is determined directly by
+the number of provided element functions. As neither a 'Stepped' nor a 'Hashed' function, the input
+value used by each element function is the same as that provided to the outer function.</p>
+<ul>
+<li>long -&gt; SetFunctions(Object[]...: funcs) -&gt; Set&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>SetFunctions(NumberNameToString(),NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a list of object values of each function output. Produces values like ['one'], as each
+function produces the same value.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="sethashed">SetHashed<a class="zola-anchor" href="#sethashed" aria-label="Anchor link for: sethashed">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. As a 'Pair-wise' function, the
+size of the resulting collection is determined directly by the number of provided element functions,
+assuming no duplicate values. As a 'Hashed' function, the input value is hashed again before being
+used by each element function.</p>
+<ul>
+<li>long -&gt; SetHashed(Object[]...: funcs) -&gt; Set&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>SetHashed(ToString(), WeightedStrings('text:1'))</code></li>
+<li><em>Create a hash list of object values of each function output,
+like ['2945182322382062539','text']</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="setsized">SetSized<a class="zola-anchor" href="#setsized" aria-label="Anchor link for: setsized">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting set. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As neither
+a 'Stepped' nor a 'Hashed' function, the input value used by each element function is the same as
+that provided to the outer function.</p>
+<ul>
+<li>
+<p>long -&gt; SetSized(Object: sizeFunc, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>SetSized(FixedValue(5), NumberNameToString(), WeightedStrings('text:1'))</code></li>
+<li><em>Create a sized set of object values, like ['one','text'], because 'text' is duplicated 4
+times</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SetSized(int: size, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="setsizedhashed">SetSizedHashed<a class="zola-anchor" href="#setsizedhashed" aria-label="Anchor link for: setsizedhashed">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting set. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As a 'Hashed'
+function, the input value is hashed again before being used by each element function.</p>
+<ul>
+<li>
+<p>long -&gt; SetSizedHashed(Object: sizeFunc, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>SetSizedHashed(FixedValue(5),long-&gt;ToString(),long-&gt;WeightedStrings('text:1'),long-&gt;ToString())</code></li>
+<li><em>Create a sized set of values
+like ['2945182322382062539', 'text', '37945690212757860', '287864597160630738', '3299224200079606887']</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SetSizedHashed(int: size, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="setsizedstepped">SetSizedStepped<a class="zola-anchor" href="#setsizedstepped" aria-label="Anchor link for: setsizedstepped">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. As a 'Sized' function, the
+first argument is a function which determines the size of the resulting set. Additional functions
+provided are used to generate the elements to add to the collection. If the size is larger than the
+number of provided functions, the last provided function is used repeatedly as needed. As a '
+Stepped' function, the input value is incremented before being used by each element function.</p>
+<ul>
+<li>
+<p>long -&gt; SetSizedStepped(Object: sizeFunc, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+<ul>
+<li><em>example:</em> <code>SetSizedStepped(Mod(3),NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a set, like ['three','four']</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SetSizedStepped(int: size, Object[]...: funcs) -&gt; Set&lt;Object&gt;</p>
+</li>
+</ul>
+<h2 id="setstepped">SetStepped<a class="zola-anchor" href="#setstepped" aria-label="Anchor link for: setstepped">🔗</a></h2>
+<p>Create a Set from a long input based on a set of provided functions. As a 'Pair-wise' function, the
+size of the resulting collection is determined directly by the number of provided element functions,
+assuming no duplicate values. As a 'Stepped' function, the input value is incremented before being
+used by each element function.</p>
+<ul>
+<li>long -&gt; SetStepped(Object[]...: funcs) -&gt; Set&lt;Object&gt;
+<ul>
+<li><em>example:</em> <code>SetStepped(NumberNameToString(),NumberNameToString())</code></li>
+<li><em>Create a list of ['one','two']</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="stringlist">StringList<a class="zola-anchor" href="#stringlist" aria-label="Anchor link for: stringlist">🔗</a></h2>
+<p>Create a {@code List} from a long value, based on two functions, the first to determine the list
+size, and the second to populate the list with String values. The input fed to the second function
+is incremented between elements. Regardless of the object type provided by the second function,
+{@link Object#toString()} is used to get the value to add to the list.</p>
+<p>To create Lists of any type of object simply use {@link List} with an specific value mapping
+function.</p>
+<ul>
+<li>long -&gt; StringList(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc)
+-&gt; List&lt;String&gt;
+<ul>
+<li><em>example:</em> <code>StringList(HashRange(3,7),Add(15L))</code></li>
+<li><em>create a list between 3 and 7 elements of String representations of Long values</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="stringmap">StringMap<a class="zola-anchor" href="#stringmap" aria-label="Anchor link for: stringmap">🔗</a></h2>
+<p>Create a {@code Map} from a long input based on three functions, the first to determine the map
+size, and the second to populate the map with key objects, and the third to populate the map with
+value objects. The long input fed to the second and third functions is incremented between entries.
+Regardless of the object type provided by the second and third functions, {@link Object#toString()}
+is used to determine the key and value to add to the map. To create Maps of any key and value types,
+simply use {@link Map} with an specific key and value mapping functions.</p>
+<ul>
+<li>
+<p>long -&gt; StringMap(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;: keyFunc,
+function.LongFunction&lt;Object&gt;: valueFunc) -&gt; Map&lt;String,String&gt;</p>
+<ul>
+<li><em>example:</em> <code>StringMap(HashRange(3,7),NumberNameToString(),HashRange(1300,1700))</code></li>
+<li><em>create a map of size 3-7 entries, with a key of type string and a value of type int (Integer
+by autoboxing)</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; StringMap(function.LongFunction&lt;Object&gt;[]...: objfuncs) -&gt; Map&lt;String,String&gt;</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>StringMap(NumberNameToString(),HashRange(1300,1700),NumberNameToString(),HashRange(3,7))</code></li>
+<li><em>create a map of size 2, with a specific function for each key and each value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="stringmapclob">StringMapClob<a class="zola-anchor" href="#stringmapclob" aria-label="Anchor link for: stringmapclob">🔗</a></h2>
+<p>Create a {@code Map} from a long input based on three functions, the first to determine the map
+size, and the second to populate the map with key objects, and the third to populate the map with
+value objects. The long input fed to the second and third functions is incremented between entries.
+Regardless of the object type provided by the second and third functions, {@link Object#toString()}
+is used to determine the key and value to add to the map. To create Maps of any key and value types,
+simply use {@link Map} with an specific key and value mapping functions.</p>
+<ul>
+<li>
+<p>long -&gt; StringMapClob(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;:
+keyFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>StringMap(HashRange(3,7),NumberNameToString(),HashRange(1300,1700))</code></li>
+<li><em>create a map of size 3-7 entries, with a key of type string and a value of type int (Integer
+by autoboxing)</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; StringMapClob(function.LongFunction&lt;Object&gt;[]...: objfuncs) -&gt; String</p>
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+example:* <code>StringMapClob(NumberNameToString(),HashRange(1300,1700),NumberNameToString(),HashRange(3,7))</code></li>
+<li><em>create a map of size 2, with a specific function for each key and each value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="stringset">StringSet<a class="zola-anchor" href="#stringset" aria-label="Anchor link for: stringset">🔗</a></h2>
+<p>Create a {@code Set} from a long based on two functions, the first to determine the set size, and
+the second to populate the set with String values. The input fed to the second function is
+incremented between elements. Regardless of the object type provided by the second function, {@link
+Object#toString()} is used to get the value to add to the list. To create Sets of any type of object
+simply use {@link Set} with a specific value mapping function.</p>
+<ul>
+<li>
+<p>long -&gt; StringSet(function.LongToIntFunction: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc)
+-&gt; Set&lt;String&gt;</p>
+<ul>
+<li><em>example:</em> <code>StringSet(HashRange(3,7),Add(15L))</code></li>
+<li><em>create a set between 3 and 7 elements of String representations of Long values</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongToIntFunction: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongToIntFunction: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongFunction&lt;?&gt;: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongFunction&lt;?&gt;: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongFunction&lt;?&gt;: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongUnaryOperator: sizeFunc, function.LongFunction&lt;Object&gt;: valueFunc)
+-&gt; Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongUnaryOperator: sizeFunc, function.LongUnaryOperator: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+<li>
+<p>long -&gt; StringSet(function.LongUnaryOperator: sizeFunc, function.LongToIntFunction: valueFunc) -&gt;
+Set&lt;String&gt;</p>
+</li>
+</ul>
+
+        
+        
+<div class="docs-navigation d-flex justify-content-between">
+  
+  
+  
+  
+  
+  <a href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-state&#x2F;">
+    <div class="card my-1">
+      <div class="card-body py-2">
+        &larr; state functions
+      </div>
+    </div>
+  </a>
+  
+
+  
+  
+  
+  
+  
+    <a class="ms-auto" href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-diagnostics&#x2F;">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          diagnostic functions &rarr;
+        </div>
+      </div>
+    </a>
+  
+</div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

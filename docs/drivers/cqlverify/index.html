@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>cqlverify driver | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/drivers/cqlverify/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Drivers",
+            "item": "https://docs.nosqlbench.io/docs/drivers/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Cqlverify",
+            "item": "https://docs.nosqlbench.io/docs/drivers/cqlverify/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+    
+  
+
+<body class="page single">
+  
+    
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+  
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <article>
+          <div class="page-header">
+            <h1>cqlverify driver</h1>
+          </div>
+          
+          <p>This driver allows you to read values from a database and compare them to
+the generated values that were expected to be written, row-by-row,
+producing a comparative result between the two.</p>
+<p>In practice, this is a wrapper activity type which simply sets the
+defaults on the cql driver. The defaults will assume that all statements
+are reads and that all fields referenced in their bindings should be
+verified. If this is not the desired behavior, then you can control the
+behavior on a per-statement basis by setting the verify and compare
+statement parameters. If these are not set on a given statement, then the
+activity level defaults are taken as <code>verify=*</code>
+and <code>compare=all</code>.</p>
+<p>Going forward, it is suggested that you use the cql driver directly and
+use the statement parameters. The cqlverify activity is not officially
+deprecated, but it offers no specific functionality over the cql activity
+apart from implied defaults, so it will likely be removed in lieu of the
+direct cql verify parameters in the future.</p>
+<p>The verification options include:</p>
+<ol>
+<li>Each row contains the right fields, according to the reference data.</li>
+<li>Each row contains only the fields specified in the reference data.</li>
+<li>Each value of each row, by name, is equal to the referenced data,
+according to the Java equals implementation for the object type
+specified in that field's metadata.</li>
+</ol>
+<p>The data bindings are used to generate the expected values that would be
+used for an upsert. Each row is verified according to these values, and
+any discrepancy is treated as an error that can be counted, logged, etc.</p>
+<h3 id="using-cqlverify">Using cqlverify</h3>
+<p>The cqlverify activity type is built on top of the cql activity type. As
+such, it has all of the same capabilities and options, and then some. See
+the cql activity type documentation for the usual details. This doc page
+only covers how the cqlverify activity extends it.</p>
+<p>The differences between the cql and cqlverify activity types are mostly in
+how how you configure for verifiable data and error handling.</p>
+<h5 id="writing-verifiable-data">Writing verifiable data</h5>
+<p>The cqlverify driver does not retain logged data for verification. Still,
+it is able to compare data as if it had a separate data set to compare to.
+This is possible only because the data generation facilities used by
+NoSQLBench provide realistic and voluminous synthetic data that can be
+recalled from a recipe and accessed dynamically.</p>
+<p>That means, however, that you must avoid using the non-stable data mapping
+functions when writing data. The rule of thumb is to avoid using any data
+mapping functions containing the word &quot;Random&quot;, as these are the ones that
+have historically used internal RNG state. Instead, swap in their
+replacements that start with &quot;Hashed&quot;. There is a hashed equivalent to all
+of the original random functions. The rng-based functions will be
+deprecated in a future release.</p>
+<p>In a typical cql activity, you are allowed to name the bindings however
+you like, so long as the binding names match the anchor names in your
+statement template. Because we need to match reference field data to
+actual row data pair-wise by field name, there is a more strict
+requirement for cqlverify activities. The binding names themselves are now
+required to match the field names that they are expected to be compared
+to.</p>
+<p>The simplest way to do this is to follow this recipe:</p>
+<ol>
+<li>Make the binding names the same as the field names that you use in in
+your write statements.</li>
+<li>When you configure your read statement for the cqlverify activity,
+simply include the same bindings as-is, using the partition and
+clustering fields in the appropriate where clauses.</li>
+</ol>
+<p><em>note</em>: It used to be an error to have bindings names in excess of what
+anchor names would match. Now, it is only an error if an anchor is not
+qualified with a matching binding name. This allows you to simply copy
+your bindings as-is directly from your write statement with no issues.</p>
+<h3 id="configuring-the-verification-reader">Configuring the verification Reader</h3>
+<p>A cqlverify activity is almost exactly like any other cql activity.
+However, you configure a single read statement to access the row data you
+want to verify. The bindings for the read statement should include the
+data mappings that you have for the congruent write statement. That's
+pretty much all you have to do.</p>
+<p>The names of the bindings and the values they produce are considered,
+depending on the <em>compare</em> setting explained below. This means that you
+need to make sure that the bindings that are provided for the statement
+are exactly the same as you expect the row structure, irrespective of
+field order. For some statements which use the same value in more than one
+place, you must name these uniquely as well.</p>
+<p>If more than one statement is active for a cqlverify activity, then an
+error is thrown. This may change in the future, but for now it is a
+requirement.</p>
+<h3 id="handling-verification-errors">Handling Verification Errors</h3>
+<p>The cqlverify activity extends on the error handling stack mechanism that
+is used by the cql activity type, by introducing a new error category:
+<em>unverified</em>. The default configuration for this error category is</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>unverified=stop
+</span></code></pre>
+<p>However, the usual options, including &quot;stop&quot;, &quot;warn&quot;, &quot;retry&quot;, &quot;histogram&quot;
+, &quot;count&quot;, and &quot;ignore&quot; are also allowed.</p>
+<p>Care should be taken to set the other error handling categories to be
+strict enough to avoid false negatives in testing. The verification on a
+row can only be done if the row is actually read first. If you set the
+error handler stack to only count real errors, for example, then you will
+be preempting the read verifier. Therefore, there is a default setting for
+the cqlverify activity for the catch-all error handler parameter <em>errors</em>.</p>
+<p>This means that the default error handling behavior will cause an
+exception to be thrown and the client will exit by default. If you wish
+for something less dramatic, then set it to</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>errors=...,unverified-&gt;count
+</span></code></pre>
+<p>or</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>errors=...,unverified-&gt;warn
+</span></code></pre>
+<h5 id="rows-to-verify">rows to verify</h5>
+<p>Currently, every read operation in a cqlverify activity must have a single
+row in the result set. If there is no row, then the row fails validation.
+The same happens if there is more than one row.</p>
+<p>A future release may allow for paged reads for quicker verification.</p>
+<h3 id="example-activity-definitions">Example activity definitions</h3>
+<p>Write 100K cycles of telemetry data</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... run driver=cql alias=writesome workload=cql-iot tags=group:write cycles=100000 host=...
+</span></code></pre>
+<p>Verify the the same 100K cycles of telemetry data</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... run driver=cqlverify alias=verify workload=cql-iot tags=group:verify cycles=100000 host=...
+</span></code></pre>
+<p>To see how these examples work, consult the telemetry.yaml file in the nb.jar.</p>
+<h3 id="cqlverify-activitytype-parameters">CQLVerify ActivityType Parameters</h3>
+<p>(in addition to those provided by the cql activity type)</p>
+<ul>
+<li><strong>compare</strong> - what to verify. Valid values are &quot;reffields&quot;,
+&quot;rowfields&quot;, &quot;fields&quot;, &quot;values&quot;, or &quot;all&quot;
+(default: all)
+<ul>
+<li>rowfields - Verify that fields in the row, by name, are not in
+excess of what is provided in the reference data.</li>
+<li>reffields - Verify that fields in the row, by name, are present for
+all all of those provided in the reference data.</li>
+<li>fields - A synonym for rowfields AND reffields
+(full set equivalence)</li>
+<li>values - Verify that all the pair-wise fields have equal values,
+according to the type-specific equals method for the data type
+identified in the row metadata by field name.</li>
+<li>all - A synonym for fields AND values</li>
+</ul>
+</li>
+</ul>
+<h3 id="cqlverify-statement-parameters">CQLVerify Statement Parameters</h3>
+<ul>
+<li>
+<p><strong>verify</strong> - an optional modifier of fields to verify for a statement.
+If this parameter is not provided, then it is presumed to be '<em>' by
+default. This is a string which consists of comma-separate values. If
+the value is '</em>', then all the bindings that are visible for the
+statement will be used as expected values. If it is a word that starts
+with '-', like '-field2', then the name after the dash is removed from
+the list of fields to verify. If it is a word that starts with a '
++', like '+field3', or a simple word, then the field is added to the
+list of fields to verify. This parameter is useful if you have a set of
+default bindings and want to specify which subset of them will be used
+just for this statement.</p>
+<p>If any of the added fields is in the form &quot;f-&gt;b&quot;, then it is taken as a
+mapping from the field name <em>f</em> in the schema to a binding <em>b</em>.</p>
+<p>For backwards compatibility <code>verify-fields</code> is also recognized for this
+option.</p>
+</li>
+</ul>
+<h3 id="metrics">Metrics</h3>
+<p>The cqlverify activity type adds some verification-specific metrics:</p>
+<ul>
+<li>alias.verifiedrows - A counter for how many rows passed verification</li>
+<li>alias.unverifiedrows - A counter for how many rows failed verification</li>
+<li>alias.verifiedvalues - A counter for how many field values were verified</li>
+<li>alias.unverifiedvalues - A counter for how many field values were
+unverified</li>
+</ul>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>cql driver | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/drivers/cql/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Drivers",
+            "item": "https://docs.nosqlbench.io/docs/drivers/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Cql",
+            "item": "https://docs.nosqlbench.io/docs/drivers/cql/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+    
+  
+
+<body class="page single">
+  
+    
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+  
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <article>
+          <div class="page-header">
+            <h1>cql driver</h1>
+          </div>
+          
+          <p>This is a driver which allows for the execution of CQL statements. This driver supports both sync and async modes, with
+detailed metrics provided for both.</p>
+<h3 id="example-activity-definitions">Example activity definitions</h3>
+<p>Run a cql activity named 'cql1', with definitions from activities/cqldefs.yaml</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... driver=cql alias=cql1 workload=cqldefs
+</span></code></pre>
+<p>Run a cql activity defined by cqldefs.yaml, but with shortcut naming</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... driver=cql workload=cqldefs
+</span></code></pre>
+<p>Only run statement groups which match a tag regex</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... driver=cql workload=cqldefs tags=group:&#39;ddl.*&#39;
+</span></code></pre>
+<p>Run the matching 'dml' statements, with 100 cycles, from [1000..1100)</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... driver=cql workload=cqldefs tags=group:&#39;dml.*&#39; cycles=1000..1100
+</span></code></pre>
+<p>This last example shows that the cycle range is [inclusive..exclusive),
+to allow for stacking test intervals. This is standard across all
+activity types.</p>
+<h3 id="cql-activitytype-parameters">CQL ActivityType Parameters</h3>
+<ul>
+<li>
+<p><strong>cqldriver</strong> - default: dse - The type of driver to use, either dse, or oss. If you need DSE-specific features, use
+the dse driver. If you are connecting to an OSS Apache Cassandra cluster, you must use the oss driver. The oss driver
+option is only available in NoSQLBench.</p>
+</li>
+<li>
+<p><strong>host</strong> - The host or hosts to use for connection points to
+the cluster. If you specify multiple values here, use commas
+with no spaces.
+Examples:</p>
+<ul>
+<li><code>host=192.168.1.25</code></li>
+<li><code>host=192.168.1.25,testhost42</code></li>
+</ul>
+</li>
+<li>
+<p><strong>workload</strong> - The workload definition which holds the schema and statement defs.
+see workload yaml location for additional details
+(no default, required)</p>
+</li>
+<li>
+<p><strong>port</strong> - The port to connect with</p>
+</li>
+<li>
+<p><strong>cl</strong> - An override to consistency levels for the activity. If
+this option is used, then all consistency levels will be replaced
+by this one for the current activity, and a log line explaining
+the difference with respect to the yaml will be emitted.
+This is not a dynamic parameter. It will only be applied at
+activity start.</p>
+</li>
+<li>
+<p><strong>cbopts</strong> - default: none - this is how you customize the cluster
+settings for the client, including policies, compression, etc. This
+is a string of <em>Java</em>-like method calls just as you would use them
+in the Cluster.Builder fluent API. They are evaluated inline
+with the default Cluster.Builder options not covered below.
+Example: cbopts=&quot;.withCompression(ProtocolOptions.Compression.NONE)&quot;</p>
+</li>
+<li>
+<p><strong>whitelist</strong> default: none - Applies a whitelist policy to the load balancing
+policy in the driver. If used, a WhitelistPolicy(RoundRobinPolicy())
+will be created and added to the cluster builder on startup.
+Examples:</p>
+<ul>
+<li><code>whitelist=127.0.0.1</code></li>
+<li><code>whitelist=127.0.0.1:9042,127.0.0.2:1234</code></li>
+</ul>
+</li>
+<li>
+<p><strong>retrypolicy</strong> default: none - Applies a retry policy in the driver
+The only option supported for this version is <code>retrypolicy=logging</code>,
+which uses the default retry policy, but with logging added.</p>
+</li>
+<li>
+<p><strong>reconnectpolicy</strong> default: none - Applies a reconnection policy in the
+driver Supports
+either <code>reconnectpolicy=exponential(minDelayInMs,maxDelayInMs)</code>
+or <code>reconnectpolicy=constant(delayInMs)</code>. The driver reconnects using
+this policy when the entire cluster becomes unavailable.</p>
+</li>
+<li>
+<p><strong>protocol_version</strong> default: unset, defaults to driver default behavior</p>
+<ul>
+<li>Set the CQL protocol version. Valid values are V1, V2, V3, V4, V5,
+DSE_V1, DSE_V2. Protocol is usually auto-negotiated, however, the
+initial connection may use a lower protocol to ensure connectivity to
+older server versions. If you know you are running on a newer server
+version, you can set this to match.</li>
+</ul>
+</li>
+<li>
+<p><strong>pooling</strong> default: none - Applies the connection pooling options to
+the policy. Examples:</p>
+<ul>
+<li><code>pooling=4:10</code>
+keep between 4 and 10 connections to LOCAL hosts</li>
+<li><code>pooling=4:10,2:5</code>
+keep 4-10 connections to LOCAL hosts and 2-5 to REMOTE</li>
+<li><code>pooling=4:10:2000</code>
+keep between 4-10 connections to LOCAL hosts with
+up to 2000 requests per connection</li>
+<li><code>pooling=5:10:2000,2:4:1000</code> keep between 5-10 connections to
+LOCAL hosts with up to 2000 requests per connection, and 2-4
+connection to REMOTE hosts with up to 1000 requests per connection</li>
+</ul>
+<p>Additionally, you may provide the following options on pooling. Any
+of these that are provided must appear in this order:
+<code>,heartbeat_interval_s:n,idle_timeout_s:n,pool_timeout_ms:n</code>, so a
+full example with all options set would appear as:
+<code>pooling=5:10:2000,2:4:1000,heartbeat_interval_s:30,idle_timeout_s:120,pool_timeout_ms:5</code></p>
+</li>
+<li>
+<p><strong>socketoptions</strong> default: none - Applies any of the valid socket
+options to the client when the session is built. Each of the options
+uses the long form of the name, with either a numeric or boolean
+value. Individual sub-parameters should be separated by a comma, and
+the parameter names and values can be separated by either equals or a
+colon. All of these values may be changed:</p>
+<ul>
+<li>read_timeout_ms</li>
+<li>connect_timeout_ms</li>
+<li>keep_alive</li>
+<li>reuse_address</li>
+<li>so_linger</li>
+<li>tcp_no_delay</li>
+<li>receive_buffer_size</li>
+<li>send_buffer_size</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><code>socketoptions=read_timeout_ms=23423,connect_timeout_ms=4444</code></li>
+<li><code>socketoptions=tcp_no_delay=true</code></li>
+</ul>
+</li>
+<li>
+<p><strong>tokens</strong> default: unset - Only executes statements that fall within
+any of the specified token ranges. Others are counted in metrics
+as skipped-tokens, with a histogram value of the cycle number.
+Examples:</p>
+<ul>
+<li>tokens=1:10000,100000:1000000</li>
+<li>tokens=1:123456</li>
+</ul>
+</li>
+<li>
+<p><strong>maxtries</strong> - default: 10 - how many times an operation may be
+attempted before it is disregarded</p>
+</li>
+<li>
+<p><strong>maxpages</strong> - default: 1 - how many pages can be read from a query which
+is larger than the fetchsize. If more than this number of pages
+is required for such a query, then an UnexpectedPaging excpetion
+is passed to the error handler as explained below.</p>
+</li>
+<li>
+<p><strong>fetchsize</strong> - controls the driver parameter of the same name.
+Suffixed units can be used here, such as &quot;50K&quot;. If this parameter
+is not present, then the driver option is not set.</p>
+</li>
+<li>
+<p><strong>cycles</strong> - standard, however the cql activity type will default
+this to however many statements are included in the current
+activity, after tag filtering, etc.</p>
+</li>
+<li>
+<p><strong>username</strong> - the user to authenticate as. This option requires
+that one of <strong>password</strong> or <strong>passfile</strong> also be defined.</p>
+</li>
+<li>
+<p><strong>password</strong> - the password to authenticate with. This will be
+ignored if passfile is also present.</p>
+</li>
+<li>
+<p><strong>passfile</strong> - the file to read the password from. The first
+line of this file is used as the password.</p>
+</li>
+<li>
+<p><strong>ssl</strong> - specifies the type of the SSL implementation.
+Disabled by default, possible values are <code>jdk</code> and <code>openssl</code>.</p>
+<p><a href="./ssl.md">Additional parameters may need to be provided</a>.</p>
+</li>
+<li>
+<p><strong>jmxreporting</strong> - enable JMX reporting if needed.
+Examples:</p>
+<ul>
+<li><code>jmxreporting=true</code></li>
+<li><code>jmxreporting=false</code> (the default)</li>
+</ul>
+</li>
+<li>
+<p><strong>alias</strong> - this is a standard nosqlbench parameter, however the cql type will use the workload value also as the
+alias value when not specified.</p>
+</li>
+<li>
+<p><strong>errors</strong> - error handler configuration.
+(default errors=stop,retryable-&gt;retry,unverified-&gt;stop)
+Examples:</p>
+<ul>
+<li>errors=stop,WriteTimeoutException=histogram</li>
+<li>errors=count</li>
+<li>errors=warn,retryable=count
+See the separate help on 'cqlerrors' for detailed
+configuration options.</li>
+</ul>
+</li>
+<li>
+<p><strong>defaultidempotence</strong> - sets default idempotence on the
+driver options, but only if it has a value.
+(default unset, valid values: true or false)</p>
+</li>
+<li>
+<p><strong>speculative</strong> - sets the speculative retry policy on the cluster.
+(default unset)
+This can be in one of the following forms:</p>
+<ul>
+<li>pT:E:L - where :L is optional and
+T is a floating point threshold between 0.0 and 100.0 and
+E is an allowed number of concurrent speculative executions and
+L is the maximum latency tracked in the tracker instance
+(L defaults to 15000 when left out)
+Examples:
+<ul>
+<li>p99.8:5:15000ms - 99.8 percentile, 5 executions, 15000ms max tracked</li>
+<li>p98:2:10000ms - 98.0 percentile, 2 executions allowed, 10s max tracked</li>
+</ul>
+</li>
+<li>Tms:E - where :E is optional and
+T is a constant threshold latency and
+E is the allowed number of concurrent speculative retries
+(E default to 5 when left out)
+Examples:
+<ul>
+<li>100ms:5 - constant threshold of 100ms and 5 allowed executions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>seq</strong> - selects the statement sequencer used with statement ratios.
+(default: bucket)
+(options: concat | bucket | interval)
+The concat sequencer repeats each statement in order until the ratio
+is achieved.
+The bucket sequencer uses simple round-robin distribution to plan
+statement ratios, a simple but unbalanced form of interleaving.
+The interval sequencer apportions statements over time and then by
+order of appearance for ties. This has the effect of interleaving
+statements from an activity more evenly, but is less obvious in how
+it works.
+All of the sequencers create deterministic schedules which use an internal
+lookup table for indexing into a list of possible statements.</p>
+</li>
+<li>
+<p><strong>trace</strong> - enables a trace on a subset of operations. This is disabled
+by default.
+Examples:
+<code>trace=modulo:100,filename:trace.log</code>
+The above traces every 100th cycle to a file named trace.log.
+<code>trace=modulo:1000,filename:stdout</code>
+The above traces every 1000th cycle to stdout.
+If the trace log is not specified, then 'tracelog' is assumed.
+If the filename is specified as stdout, then traces are dumped to stdout.</p>
+</li>
+<li>
+<p><strong>sessionid</strong> - names the configuration to be used for this activity. Within a given scenario, any activities that use
+the same name for clusterid will share a session and cluster. default: 'default'</p>
+</li>
+<li>
+<p><strong>drivermetrics</strong> - enable reporting of driver metrics.
+default: false</p>
+</li>
+<li>
+<p><strong>driverprefix</strong> - set the metrics name that will prefix all CQL driver metrics.
+default: 'driver.<em>clusterid</em>.'
+The clusterid specified is included so that separate cluster and session
+contexts can be reported independently for advanced tests.</p>
+</li>
+<li>
+<p><strong>usercodecs</strong> - enable the loading of user codec libraries for more
+details see: com.datastax.codecs.framework.UDTCodecInjector in the
+nosqlbench code base. This is for dynamic codec loading with
+user-provided codecs mapped via the internal UDT APIs. default: false</p>
+</li>
+<li>
+<p><strong>secureconnectbundle</strong> - used to connect to CaaS, accepts a path to the
+secure connect bundle that is downloaded from the CaaS UI. Examples:</p>
+<ul>
+<li><code>secureconnectbundle=/tmp/secure-connect-my_db.zip</code></li>
+<li><code>secureconnectbundle=&quot;/home/automaton/secure-connect-my_db.zip&quot;</code></li>
+</ul>
+<p>Check
+out <a rel="noopener nofollow noreferrer" target="_blank" href="https://docs.astra.datastax.com/docs/test-loading-data-with-nosqlbench">Astra Documentation</a>
+for samples</p>
+</li>
+<li>
+<p><strong>insights</strong> - Set to false to disable the driver from sending insights
+monitoring information</p>
+<ul>
+<li><code>insights=false</code></li>
+</ul>
+</li>
+<li>
+<p><strong>tickduration</strong> - sets the tickDuration (milliseconds) of
+HashedWheelTimer of the java driver. This timer is used to schedule
+speculative requests. Examples:</p>
+<ul>
+<li><code>tickduration=10</code></li>
+<li><code>tickduration=100</code> (driver default value)</li>
+</ul>
+</li>
+<li>
+<p><strong>compression</strong> - sets the transport compression to use for this
+activity. Valid values are 'LZ4' and 'SNAPPY'. Both types are bundled
+with EBDSE.</p>
+</li>
+<li>
+<p><strong>showcql</strong> - logs cql statements as INFO (to see INFO messages in stdout use -v or greater) Note: this is expensive
+and should only be done to troubleshoot workloads. Do not use <code>showcql</code> for your tests.</p>
+</li>
+<li>
+<p><strong>lbp</strong> - configures the load balancing policies for the Java driver. With this parameter, you can
+configure nested load balancing policies in short-hand form.</p>
+<p>The policies available are documented in detail under the help topic <code>cql-loadbalancing</code>. See that
+guide if you need more than the examples below.</p>
+<p>Examples:</p>
+<ul>
+<li><code>lbp=LAP(retry_period=3,scale=10)</code> - Latency aware policy with retry period of 3 seconds.
+(Seconds is the default time unit, unless _ms parameter is used) and scale 10.</li>
+<li><code>lbp=LAP(rp=3,s=10)</code> - Same as above, using the equivalent but terser form.</li>
+<li><code>lbp=LAP(rp_ms=3000,s_ms=10000)</code> - Same as above, with milliseconds instead of
+seconds.</li>
+<li><code>loadbalancing=LAP(s=10),TAP()</code> - Latency aware policy, followed by
+token aware policy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cql-yaml-parameters">CQL YAML Parameters</h3>
+<p>A uniform YAML configuration format was introduced with engineblock 2.0.
+As part of this format, statement parameters were added for the CQL Activity Type.
+These parameters will be consolidated with the above parameters in time, but for
+now <strong>they are limited to a YAML params block</strong>:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>params:
+</span><span>
+</span><span> ratio: 1
+</span><span> # Sets the statement ratio within the operation sequencer
+</span><span> # scheme. Integers only.
+</span><span> # When preparing the operation order (AKA sequencing),
+</span><span> # frequency of the associated statements.
+</span><span>
+</span><span> cl: ONE
+</span><span> # Sets the consistency level, using any of the standard
+</span><span> # identifiers from com.datastax.driver.core.ConsistencyLevel,
+</span><span> # any one of:
+</span><span> # LOCAL_QUORUM, ANY, ONE, TWO, THREE, QUORUM, ALL,
+</span><span> # EACH_QUORUM, SERIAL, LOCAL_SERIAL, LOCAL_ONE
+</span><span>
+</span><span> prepared: true
+</span><span> # By default, all statements are prepared. If you are
+</span><span> # creating schema, set this to false.
+</span><span>
+</span><span> idempotent: false
+</span><span> # For statements that are known to be idempotent, set this
+</span><span> # to true
+</span><span>
+</span><span> instrument: false
+</span><span> # If a statement has instrument set to true, then
+</span><span> # individual Timer metrics will be tracked for
+</span><span> # that statement for both successes and errors,
+</span><span> # using the given statement name.
+</span><span>
+</span><span>verify: *
+</span><span>compare: all
+</span><span># Adds two operators to the operation:
+</span><span># 1) verify that there is a single row result set in the response.
+</span><span># 2) verify some or all of the field values by name and/or value.
+</span><span># If this option is used on any statement, then the activity will
+</span><span># provide verification metrics and exceptions, including details
+</span><span># of verification in the log once the activity is completed.
+</span><span># For full details on this field, see the docs on cqlverify.
+</span><span>
+</span><span>/// Cross-verify all fields and field values between the reference data and
+</span><span>/// the actual data.
+</span><span>all(0x1|0x1&lt;&lt;1|0x1&lt;&lt;2);
+</span><span>
+</span><span>
+</span><span>logresultcsv: true
+</span><span>OR
+</span><span>logresultcsv: myfilename.csv
+</span><span># If a statement has logresultcsv set to true,
+</span><span># then individual operations will be logged to a CSV file.
+</span><span># In this case the CSV file will be named as
+</span><span># &lt;statement-name&gt;--results.csv.
+</span><span># If the value is present and not &quot;true&quot;, then the value will
+</span><span># be used as the name of the file.
+</span><span>#
+</span><span># The format of the file is:
+</span><span># &lt;cycle&gt;,(SUCCESS|FAILURE),&lt;nanos&gt;,&lt;rows-fetched&gt;,(&lt;error-class,NONE)
+</span><span># NOTES:
+</span><span># 1) BE CAREFUL with this setting. A single logged line per
+</span><span>#    result is not useful for high-speed testing as it will
+</span><span>#    impose IO loads on the client to slow it down.
+</span><span># 2) BE CAREFUL with the name. It is best to just pick good
+</span><span>#    names for your statement defs so that everything remains
+</span><span>#    coherent and nothing gets accidentally overwritten.
+</span><span># 3) If logresultcsv is provided at the activity level, it
+</span><span>#    applies to all statements, and the only value values
+</span><span>#    there are true and false.
+</span><span>
+</span><span>start-timers: timername1, timername2, ...
+</span><span>#
+</span><span># If a statement has start-timers value set, then the named
+</span><span># timers are started in the local thread before the
+</span><span># statement is executed
+</span><span>#
+</span><span># Together, with the stop-timers modifier, you can measure
+</span><span># sequences of statements with specific named boundaries.
+</span><span>#
+</span><span># The name of the timer is qualified with the activity alias
+</span><span># just as all other metric names.
+</span><span>#
+</span><span># This is generally only useful when the async= parameter is
+</span><span># NOT used, since the scope of the timer is thread-local. When
+</span><span># async is used, many operations may overlap each other in the
+</span><span># same thread, breaking linearization guarantees which make
+</span><span># thread local scoping helpful for tracking linearized operations.
+</span><span>#
+</span><span># When a timer is started, a timer context is created and stored
+</span><span># under this name in the thread. You must ensure that an
+</span><span># associated stop-timers setting is applied to another statement
+</span><span># in order to trigger the tally of these metrics.
+</span><span>
+</span><span>stop-timers: timername1, timername2, ...
+</span><span>#
+</span><span># If a statement has a stop-timers value set, then after the
+</span><span># statement is finished, whether by error or by successful
+</span><span># completion, the named timers are stopped and the resulting
+</span><span># measurement is added to metrics.
+</span><span>#
+</span><span># If you add stop-timers with names that do not have a matching
+</span><span># start-timers name, or vice-versa then an error is thrown.
+</span></code></pre>
+<h3 id="metrics">Metrics</h3>
+<ul>
+<li>
+<p>alias.result - A timer which tracks the performance of an op result
+only. This is the async get on the future, broken out as a separate
+step.</p>
+</li>
+<li>
+<p>alias.result-success - A timer that records rate and histograms of the
+time it takes from submitting a query to completely reading the result
+set that it returns, across all pages. This metric is only counted for
+non-exceptional results, while the result metric above includes
+all operations.</p>
+</li>
+<li>
+<p>alias.bind - A timer which tracks the performance of the statement
+binding logic, including the generation of data immediately prior</p>
+</li>
+<li>
+<p>alias.execute - A timer which tracks the performance of op submission
+only. This is the async execution call, broken out as a separate step.</p>
+</li>
+<li>
+<p>alias.tries - A histogram of how many tries were required to get a
+completed operation</p>
+</li>
+<li>
+<p>alias.pages - A timer which tracks the performance of paging, specific
+to more than 1-page query results. i.e., if all reads return within 1
+page, this metric will not have any data.</p>
+</li>
+<li>
+<p>alias.strides - A timer around each stride of operations within a thread</p>
+</li>
+<li>
+<p>alias.skipped-tokens - A histogram that records the count and cycle values
+of skipped tokens.</p>
+</li>
+</ul>
+<h2 id="yaml-examples">YAML Examples</h2>
+<p>Please see the bundled activities with nosqlbench for examples.</p>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

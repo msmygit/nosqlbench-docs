@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>pulsar driver | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/drivers/pulsar/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Drivers",
+            "item": "https://docs.nosqlbench.io/docs/drivers/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Pulsar",
+            "item": "https://docs.nosqlbench.io/docs/drivers/pulsar/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+    
+  
+
+<body class="page single">
+  
+    
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+  
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <article>
+          <div class="page-header">
+            <h1>pulsar driver</h1>
+          </div>
+          
+          <ul>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#1-overview">1. Overview</a>
+<ul>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#11-issues-tracker">1.1. Issues Tracker</a></li>
+</ul>
+</li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#2-nb-pulsar-driver-workload-definition-yaml-file---high-level-structure">2. NB Pulsar Driver Workload Definition Yaml File - High Level Structure</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#3-nb-pulsar-workload-configuration-parameters">3. NB Pulsar Workload Configuration Parameters</a>
+<ul>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#31-global-level-parameters">3.1. Global Level Parameters</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#32-document-level-parameters">3.2. Document Level Parameters</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#33-statement-level-parameters">3.3. Statement Level Parameters</a></li>
+</ul>
+</li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#4-global-level-pulsar-configuration-parameters">4. Global Level Pulsar Configuration Parameters</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#5-nb-pulsar-driver-yaml-file---statement-blocks">5. NB Pulsar Driver Yaml File - Statement Blocks</a>
+<ul>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#51-pulsar-admin-api-statement-block---createdelete-tenants">5.1. Pulsar Admin API Statement Block - Create/Delete Tenants</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#52-pulsar-admin-api-command-block---createdelete-namespaces">5.2. Pulsar Admin API Command Block - Create/Delete Namespaces</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#53-pulsar-admin-api-command-block---createdelete-topics-partitioned-or-not">5.3. Pulsar Admin API Command Block - Create/Delete Topics, Partitioned or Not</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#54-batch-producer-command-block-only-applicable-with-pulsar-synchronous-api">5.4. Batch Producer Command Block (Only Applicable with Pulsar Synchronous API)</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#55-producer-statement-block">5.5. Producer Statement Block</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#56-consumer-statement-block">5.6. Consumer Statement Block</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#57-reader-statement-block">5.7. Reader Statement Block</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#58-multi-topic-consumer-statement-block">5.8. Multi-topic Consumer Statement Block</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#59-end-to-end-message-latency-statement-block">5.9. End-to-end Message Latency Statement Block</a></li>
+</ul>
+</li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#6-generate-message-content">6. Generate Message Content</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#7-message-schema-support">7. Message Schema Support</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#8-measure-end-to-end-message-processing-latency">8. Measure End-to-end Message Processing Latency</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#9-detect-message-out-of-order-message-loss-and-message-duplication">9. Detect Message Out-of-order, Message Loss, and Message Duplication</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#10-nb-activity-execution-parameters">10. NB Activity Execution Parameters</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#11-nb-pulsar-driver-execution-example">11. NB Pulsar Driver Execution Example</a></li>
+<li><a href="https://docs.nosqlbench.io/docs/drivers/pulsar/#12-appendix-a-template-global-setting-file-configproperties">12. Appendix A. Template Global Setting File (config.properties)</a></li>
+</ul>
+<h1 id="1-overview">1. Overview</h1>
+<p>This driver allows you to simulate and run different types of workloads (as below) against a Pulsar cluster through NoSQLBench (NB).</p>
+<ul>
+<li>Admin API - create/delete tenants</li>
+<li>Admin API - create/delete namespaces</li>
+<li>Admin API - create/delete topics, partitioned or not</li>
+<li>Producer - publish messages with Avro schema support</li>
+<li>Consumer - consume messages with all subscription types</li>
+<li>Reader</li>
+<li>(Future) WebSocket Producer</li>
+<li>(Future) Managed Ledger</li>
+</ul>
+<h2 id="11-issues-tracker">1.1. Issues Tracker</h2>
+<p>If you have issues or new requirements for this driver, please add them at the <a rel="noopener nofollow noreferrer" target="_blank" href="https://github.com/nosqlbench/nosqlbench/issues/new?labels=pulsar">pulsar issues tracker</a>.</p>
+<h1 id="2-nb-pulsar-driver-workload-definition-yaml-file---high-level-structure">2. NB Pulsar Driver Workload Definition Yaml File - High Level Structure</h1>
+<p>Just like other NB driver types, the actual Pulsar workload generation is determined by the statement blocks in an NB driver Yaml file. Depending on the Pulsar workload type, the corresponding statement block may have different contents.</p>
+<p>At high level, Pulsar driver yaml file has the following structure:</p>
+<ul>
+<li><strong>description</strong>: (optional) general description of the yaml file</li>
+<li><strong>bindings</strong>: defines NB bindings</li>
+<li><strong>params</strong>: document level Pulsar driver parameters that apply to all statement blocks.</li>
+<li><strong>statement blocks</strong>: includes a series of statement blocks. Each statement block represents one Pulsar workload type such as <em>producer</em>, <em>consumer</em>, etc. Right now, the following workload types are supported. We'll go through each of them with more details in later sections.
+<ul>
+<li>(Pulsar Admin API)  <strong>create-tenant-block</strong>: create/delete tenants</li>
+<li>(Pulsar Admin API)  <strong>create-namespace-block</strong>: create/delete namespaces</li>
+<li>(Pulsar Admin API)  <strong>create-topic-block</strong>: create/delete topics</li>
+<li>(Pulsar Client API) <strong>batch-producer-block</strong>: batch producer</li>
+<li>(Pulsar Client API) <strong>producer-block</strong>: producer</li>
+<li>(Pulsar Client API) <strong>consumer-block</strong>: consumer (single topic)</li>
+<li>(Pulsar Client API) <strong>reader-block</strong>: reader</li>
+<li>(Pulsar Client API) <strong>e2e-msg-proc-block</strong>: keep track of end-to-end
+message latency (histogram)</li>
+<li>(Pulsar Client API) <strong>multi-topic-consumer-block</strong>: consumer (multi-
+topic)</li>
+</ul>
+</li>
+</ul>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#8fbcbb;">description</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">  ... ...
+</span><span style="color:#a3be8c;">
+</span><span style="color:#8fbcbb;">bindings</span><span style="color:#eceff4;">:
+</span><span>  </span><span style="color:#a3be8c;">... ...
+</span><span>
+</span><span style="color:#8fbcbb;">params</span><span style="color:#eceff4;">:
+</span><span>  </span><span style="color:#8fbcbb;">topic_uri</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;&lt;pulsar_topic_name&gt;&quot;
+</span><span>  </span><span style="color:#8fbcbb;">async_api</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>  </span><span style="color:#8fbcbb;">use_transaction</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>  </span><span style="color:#8fbcbb;">admin_delop</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>  </span><span style="color:#8fbcbb;">seq_transaction</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>  </span><span style="color:#8fbcbb;">msg_dedup_broker</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>
+</span><span style="color:#8fbcbb;">blocks</span><span style="color:#eceff4;">:
+</span><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;statement_block_1&gt;
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;statement_block_identifier&gt;
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;statement_name_1&gt;
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;statement_identifier&gt;
+</span><span>        </span><span style="color:#a3be8c;">... &lt;statement_specific_parameters&gt; ...
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;statement_name_2&gt;
+</span><span>        </span><span style="color:#a3be8c;">... ...
+</span><span>
+</span><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&lt;command_block_2&gt;
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#eceff4;">.</span><span style="color:#b48ead;">..
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#eceff4;">.</span><span style="color:#b48ead;">..
+</span></code></pre>
+<p>When running a NoSQLBench Pulsar workload, we can select a particular
+Pulsar workload type to run by filtering against statement blocks'
+identifier as defined in the <strong>phase</strong> tag, as below:</p>
+<pre data-lang="bash" style="background-color:#2e3440;color:#d8dee9;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> driver=pulsar tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:</span><span style="color:#81a1c1;">&lt;</span><span>command_bock_filtering_identifier</span><span style="color:#81a1c1;">&gt;</span><span> yaml=</span><span style="color:#81a1c1;">&lt;</span><span>pulsar_workload.yaml</span><span style="color:#81a1c1;">&gt;</span><span>...
+</span></code></pre>
+<p>An example of executing Pulsar producer/consumer API using NB is like
+this:</p>
+<pre data-lang="bash" style="background-color:#2e3440;color:#d8dee9;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#616e88;"># producer
+</span><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> driver=pulsar tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:producer </span><span>yaml</span><span style="color:#81a1c1;">=&lt;</span><span>pulsar_workload.yaml</span><span style="color:#81a1c1;">&gt;</span><span> ...
+</span><span>
+</span><span style="color:#616e88;"># consumer
+</span><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> driver=pulsar tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:consumer </span><span>yaml</span><span style="color:#81a1c1;">=&lt;</span><span>pulsar_workload.yaml</span><span style="color:#81a1c1;">&gt;</span><span> ...
+</span></code></pre>
+<h1 id="3-nb-pulsar-workload-configuration-parameters">3. NB Pulsar Workload Configuration Parameters</h1>
+<p>The NB Pulsar driver configuration parameters can be set at 3 different levels:</p>
+<ul>
+<li>Global level</li>
+<li>Document  level</li>
+<li>Statement level</li>
+</ul>
+<p><strong>NOTE</strong>: If one configuration parameters shows up in multiple levels (e.g. Pulsar topic name), the parameter at lower level will take precedence.</p>
+<h2 id="31-global-level-parameters">3.1. Global Level Parameters</h2>
+<p><strong>Global Level</strong> parameters are set in an external property file (e.g. <em><strong>config.properties</strong></em> file). When running a NB Pulsar workload, we need to specify the path of this file.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>&lt;nb_cmd&gt; driver=pulsar config=&lt;/path/to/config.properties&gt; yaml=&lt;pulsar_workload.yaml&gt;...
+</span></code></pre>
+<p>The global level parameters are most related with fine-tuning the behaviors of a Pulsar client connection and/or an object (producer, consumer, etc.). They will impact all the Pulsar workloads types as supported in the NB Pulsar Driver. We'll cover the details of these parameters in section 4.</p>
+<h2 id="32-document-level-parameters">3.2. Document Level Parameters</h2>
+<p><strong>Document Level</strong> parameters are set within NB yaml file and under the <em><strong>params</strong></em> section. These settings will impact multiple workload types as supported in the NB Pulsar Driver.</p>
+<p>Currently, the following configuration parameters are available at this level:</p>
+<ul>
+<li><strong>topic_url</strong>: Pulsar topic uri ([persistent|non-persistent//<tenant>/<namespace>/<topic>). This can be either statically or dynamically bound by NB data bindings.</li>
+<li><strong>async_api</strong>: Whether to use asynchronous Pulsar client API. This can only be statically bound.</li>
+<li><strong>use_transaction</strong>: Whether to simulate Pulsar transaction. This can only be statically bound.</li>
+<li><strong>admin_delop</strong>: For Admin tasks, whether to execute delete operation instead of the default create operation. This can only be statically bound.</li>
+<li><strong>seq_tracking</strong>: Whether to do message sequence tracking. This is used for abnormal message processing error detection such as message loss, message duplication, or message out-of-order. This can only be statically bound.</li>
+</ul>
+<h2 id="33-statement-level-parameters">3.3. Statement Level Parameters</h2>
+<p><strong>Statement Level</strong> parameters are set within the NB yaml file under different statement blocks. Each workload type/statement block has its own set of statement level configuration parameters. We'll cover these parameters in section 5.</p>
+<h1 id="4-global-level-pulsar-configuration-parameters">4. Global Level Pulsar Configuration Parameters</h1>
+<p>The NB Pulsar driver relies on Pulsar's <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.apache.org/docs/en/client-libraries-java/">Java Client API</a> to publish messages to and consume messages from a Pulsar cluster. In order to do so, a <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.incubator.apache.org/api/client/2.8.0-SNAPSHOT/org/apache/pulsar/client/api/PulsarClient">PulsarClient</a> object needs to be created first in order to establish the connection to the Pulsar cluster; then a workload-specific object (e.g. <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.incubator.apache.org/api/client/2.8.0-SNAPSHOT/org/apache/pulsar/client/api/Producer">Producer</a> or <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.incubator.apache.org/api/client/2.8.0-SNAPSHOT/org/apache/pulsar/client/api/Consumer">Consumer</a>) is required in order to execute workload related actions (e.g. publishing or consuming messages).</p>
+<p>When creating these objects (e.g. PulsarClient, Producer), there are different configuration parameters that can be used. For example, <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.apache.org/docs/en/client-libraries-java/#configure-producer">this document</a> lists all possible configuration parameters for a Pulsar producer object.</p>
+<p>The NB pulsar driver supports these configuration parameters via a global properties file (e.g. <strong>config.properties</strong>). An example of this file is as below:</p>
+<pre data-lang="properties" style="background-color:#2e3440;color:#d8dee9;" class="language-properties "><code class="language-properties" data-lang="properties"><span style="color:#616e88;">### Schema related configurations - schema.xxx
+</span><span>schema.type </span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">avro
+</span><span>schema.definition </span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">file:///&lt;path/to/avro/schema/definition/file&gt;
+</span><span>
+</span><span style="color:#616e88;">### Pulsar client related configurations - client.xxx
+</span><span>client.connectionTimeoutMs </span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">5000
+</span><span>
+</span><span style="color:#616e88;">### Producer related configurations (global) - producer.xxx
+</span><span>producer.topicName </span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">persistent://public/default/mynbtest
+</span><span>producer.producerName </span><span style="color:#eceff4;">=
+</span><span>producer.sendTimeoutMs </span><span style="color:#eceff4;">=
+</span></code></pre>
+<p>There are multiple sections in this file that correspond to different groups of configuration parameters:</p>
+<ul>
+<li><strong>Schema related settings</strong>:
+<ul>
+<li>All settings under this section starts with <strong>schema.</strong> prefix.</li>
+<li>The NB Pulsar driver supports schema-based message publishing and consuming. This section defines configuration parameters that are schema related.</li>
+<li>There are 2 valid options under this section.
+<ul>
+<li><em>schema.type</em>: Pulsar message schema type. When unset or set as an empty string, Pulsar messages will be handled in raw <em>byte[]</em> format. The other valid option is <strong>avro</strong> which the Pulsar message will follow Avro schema format.</li>
+<li><em>schema.definition</em>: This only applies when an Avro schema type is specified. The value of this configuration is the (full) file path that contains the Avro schema definition.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pulsar Client related settings</strong>:
+<ul>
+<li>All settings under this section starts with <strong>client.</strong> prefix.</li>
+<li>This section defines all configuration parameters that are related with defining a PulsarClient object.
+<ul>
+<li>See <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.apache.org/docs/en/client-libraries-java/#default-broker-urls-for-standalone-clusters">Pulsar Doc Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pulsar Producer related settings</strong>:
+<ul>
+<li>All settings under this section starts with <strong>producer</strong> prefix.</li>
+<li>This section defines all configuration parameters that are related with defining a Pulsar Producer object.
+<ul>
+<li>See <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.apache.org/docs/en/client-libraries-java/#configure-producer">Pulsar Doc Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pulsar Consumer related settings</strong>:
+<ul>
+<li>All settings under this section starts with <strong>consumer</strong> prefix.</li>
+<li>This section defines all configuration parameters that are related with defining a Pulsar Consumer object.
+<ul>
+<li>See <a rel="noopener nofollow noreferrer" target="_blank" href="http://pulsar.apache.org/docs/en/client-libraries-java/#configure-consumer">Pulsar Doc Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Pulsar Reader related settings</strong>:
+<ul>
+<li>All settings under this section starts with <strong>reader</strong> prefix.</li>
+<li>This section defines all configuration parameters that are related with defining a Pulsar Reader object.
+<ul>
+<li>See <a rel="noopener nofollow noreferrer" target="_blank" href="https://pulsar.apache.org/docs/en/client-libraries-java/#reader">Pulsar Doc Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="5-nb-pulsar-driver-yaml-file---statement-blocks">5. NB Pulsar Driver Yaml File - Statement Blocks</h1>
+<h2 id="51-pulsar-admin-api-statement-block---createdelete-tenants">5.1. Pulsar Admin API Statement Block - Create/Delete Tenants</h2>
+<p>This workload type is used to create or delete Pulsar tenants. It has the following format.</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">create-tenant-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-tenant
+</span><span>        </span><span style="color:#8fbcbb;">admin_task</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">true
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-tenant
+</span><span>          </span><span style="color:#8fbcbb;">admin_roles</span><span style="color:#eceff4;">:
+</span><span>          </span><span style="color:#8fbcbb;">allowed_clusters</span><span style="color:#eceff4;">:
+</span><span>          </span><span style="color:#8fbcbb;">tenant</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;{tenant}&quot;
+</span></code></pre>
+<p>In this statement block, there is only one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used for creating a Pulsar tenant
+<ul>
+<li>(Mandatory) <strong>optype (admin-tenant)</strong> is the statement identifier for this statement</li>
+<li>(Optional) <strong>allowed_clusters</strong> must be statically bound, and it specifies the cluster list that is allowed for a tenant.</li>
+<li>(Optional) <strong>admin_roles</strong> must be statically bound, and it specifies the superuser role that is associated with a tenant.</li>
+<li>(Mandatory) <strong>tenant</strong> is the Pulsar tenant name to be created/deleted. It can either be dynamically or statically bound.</li>
+</ul>
+</li>
+</ul>
+<p>Please note that when document level parameter <strong>admin_delop</strong> is set to be true, then this statement block will delete Pulsar tenants instead. Similarly, this applies to other Admin API blocks for namespace and topic management.</p>
+<h2 id="52-pulsar-admin-api-command-block---createdelete-namespaces">5.2. Pulsar Admin API Command Block - Create/Delete Namespaces</h2>
+<p>This Pulsar Admin API Block is used to create Pulsar namespaces. It has the following format:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">create-namespace-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-namespace
+</span><span>        </span><span style="color:#8fbcbb;">admin_task</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">true
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-namespace
+</span><span>          </span><span style="color:#8fbcbb;">namespace</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;{tenant}/{namespace}&quot;
+</span></code></pre>
+<p>In this statement block, there is only one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used for creating a Pulsar namespace in format &quot;<tenant>/<namespace>&quot;
+<ul>
+<li>(Mandatory) <strong>optype (admin-namespace)</strong> is the statement identifier
+for this statement</li>
+<li>(Mandatory) <strong>namespace</strong> is the Pulsar namespace name to be created/deleted under a tenant. It can be either statically or dynamically bound.</li>
+</ul>
+</li>
+</ul>
+<h2 id="53-pulsar-admin-api-command-block---createdelete-topics-partitioned-or-not">5.3. Pulsar Admin API Command Block - Create/Delete Topics, Partitioned or Not</h2>
+<p>This Pulsar Admin API Block is used to create Pulsar topics. It has the following format:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">create-topic-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-topic
+</span><span>        </span><span style="color:#8fbcbb;">admin_task</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">true
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">admin-topic
+</span><span>          </span><span style="color:#8fbcbb;">enable_partition</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;false&quot;
+</span><span>          </span><span style="color:#8fbcbb;">partition_num</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;5&quot;
+</span></code></pre>
+<p>In this statement block, there is only one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used for creating a Pulsar tenant and a namespace
+<ul>
+<li>(Mandatory) <strong>optype (admin-crt-top)</strong> is the statement identifier for this statement</li>
+<li>(Mandatory) <strong>enable_partition</strong> specifies whether to create/delete a partitioned topic. It can either be dynamically or statically bound.</li>
+<li>(Mandatory) <strong>partition_num</strong> specifies the number of partitions if a partitioned topic is to be created. It also can be dynamically or statically bound.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: The topic name is bound by the document level parameter &quot;topic_uri&quot;.</p>
+<h2 id="54-batch-producer-command-block-only-applicable-with-pulsar-synchronous-api">5.4. Batch Producer Command Block (Only Applicable with Pulsar Synchronous API)</h2>
+<p><strong>NOTE</strong>: This statement block is only applicable when Pulsar Synchronous API is used as defined by the document level setting <em><strong>async_api</strong></em>.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>params:
+</span><span>   async_api: &quot;false&quot;
+</span></code></pre>
+<p>Batch producer statement block is used to send(produce) a batch of messages all at once to the Pulsar cluster. It has a typical format as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">batch-producer-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">batch-producer
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">batch-msg-send-start
+</span><span>        </span><span style="color:#616e88;"># For batch producer, &quot;producer_name&quot; should be associated with batch start
+</span><span>        </span><span style="color:#616e88;"># batch_producer_name: {batch_producer_name}
+</span><span>        </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">1
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s2
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">batch-msg-send
+</span><span>        </span><span style="color:#8fbcbb;">msg_key</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;{mykey}&quot;
+</span><span>        </span><span style="color:#8fbcbb;">msg_property</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          {
+</span><span style="color:#a3be8c;">            &quot;prop1&quot;: &quot;{myprop1}&quot;,
+</span><span style="color:#a3be8c;">            &quot;prop2&quot;: &quot;{myprop2}&quot;
+</span><span style="color:#a3be8c;">          }
+</span><span>        </span><span style="color:#8fbcbb;">msg_value</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          {
+</span><span style="color:#a3be8c;">              &quot;SensorID&quot;: &quot;{sensor_id}&quot;,
+</span><span style="color:#a3be8c;">              &quot;SensorType&quot;: &quot;Temperature&quot;,
+</span><span style="color:#a3be8c;">              &quot;ReadingTime&quot;: &quot;{reading_time}&quot;,
+</span><span style="color:#a3be8c;">              &quot;ReadingValue&quot;: {reading_value}
+</span><span style="color:#a3be8c;">          }
+</span><span>        </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">100
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s3
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">batch-msg-send-end
+</span><span>        </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">1
+</span></code></pre>
+<p>This statement block has three statements (s1, s2, and s3) with the following ratios: 1, &lt;batch_num&gt;, 1.</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to mark the start of a message batch
+<ul>
+<li>(Mandatory) <strong>optype (batch-msg-send-start)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>batch_producer_name</strong>, when provided, specifies the Pulsar producer name that is associated with the batch production of the messages.</li>
+<li>(Optional)  <strong>ratio</strong>, when provided, MUST be 1. If not provided, it is default to 1.</li>
+</ul>
+</li>
+<li>Statement <strong>s2</strong> is the core statement that generates each message that needs to be put in a batch.
+<ul>
+<li>(Mandatory) <strong>optype (batch-msg-send)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>msg_key</strong>, when provided, specifies the key of the generated message</li>
+<li>(Optional)  <strong>msg_property</strong>, when provided, specifies the properties of the generated message. It must be a JSON string that contains a series of key-value pairs.</li>
+<li>(Mandatory) <strong>msg_payload</strong> specifies the payload of the generated message</li>
+<li>(Optional)  <strong>ratio</strong>, when provided, specifies the batch size (how many messages to be put in one batch). If not provided, it is default to 1.</li>
+</ul>
+</li>
+<li>Statement <strong>s3</strong> is used to mark the end of a batch
+<ul>
+<li>(Mandatory) <strong>optype (batch-msg-send-end)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>ratio</strong>, when provided, MUST be 1. If not provided, it is default to 1.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: the topic that the producer needs to publish messages to is specified by the document level parameter <em><strong>topic_uri</strong></em>.</p>
+<h2 id="55-producer-statement-block">5.5. Producer Statement Block</h2>
+<p>This is the regular Pulsar producer statement block that produces one Pulsar message per NB execution cycle. A typical format of this statement block is as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">producer-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">producer
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">msg-send
+</span><span>          </span><span style="color:#616e88;"># producer_name: {producer_name}
+</span><span>          </span><span style="color:#8fbcbb;">msg_key</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;{mykey}&quot;
+</span><span>          </span><span style="color:#8fbcbb;">msg_property</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          {
+</span><span style="color:#a3be8c;">            &quot;prop1&quot;: &quot;{myprop1}&quot;,
+</span><span style="color:#a3be8c;">            &quot;prop2&quot;: &quot;{myprop2}&quot;
+</span><span style="color:#a3be8c;">          }
+</span><span style="color:#a3be8c;">          msg_value: |
+</span><span style="color:#a3be8c;">              {
+</span><span style="color:#a3be8c;">                  &quot;SensorID&quot;: &quot;{sensor_id}&quot;,
+</span><span style="color:#a3be8c;">                  &quot;SensorType&quot;: &quot;Temperature&quot;,
+</span><span style="color:#a3be8c;">                  &quot;ReadingTime&quot;: &quot;{reading_time}&quot;,
+</span><span style="color:#a3be8c;">                  &quot;ReadingValue&quot;: {reading_value}
+</span><span style="color:#a3be8c;">              }
+</span></code></pre>
+<p>This statement block only has one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to generate one message and publish to the Pulsar cluster.
+<ul>
+<li>(Mandatory) <strong>optype (msg-send)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>producer_name</strong>, when provided, specifies the Pulsar producer name that is associated with the message production.</li>
+<li>(Optional)  <strong>msg_key</strong>, when provided, specifies the key of the generated message</li>
+<li>(Optional)  <strong>msg_property</strong>, when provided, specifies the properties of the generated message. It must be a JSON string that contains a series of key-value pairs.</li>
+<li>(Mandatory) <strong>msg_payload</strong> specifies the payload of the generated message. If the message schema type is specified as Avro schema type, then the message value format must be in proper Avro format.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: the topic that the producer needs to publish messages to is specified by the document level parameter <em><strong>topic_uri</strong></em>.</p>
+<h2 id="56-consumer-statement-block">5.6. Consumer Statement Block</h2>
+<p>This is the regular Pulsar consumer statement block that consumes one message per NB execution cycle. A typical format of this statement block is as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">consumer-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">consumer
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">msg-consume
+</span><span>          </span><span style="color:#8fbcbb;">subscription_name</span><span style="color:#eceff4;">:
+</span><span>          </span><span style="color:#8fbcbb;">subscription_type</span><span style="color:#eceff4;">:
+</span><span>          </span><span style="color:#8fbcbb;">consumer_name</span><span style="color:#eceff4;">:
+</span></code></pre>
+<p>This statement block only has one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to consume one message from the Pulsar cluster and acknowledge it.
+<ul>
+<li>(Mandatory) <strong>optype (msg-consume)</strong> is the statement identifier for this statement</li>
+<li>(Mandatory) <strong>subscription_name</strong> specifies subscription name.</li>
+<li>(Optional)  <strong>subscription_type</strong>, when provided, specifies subscription type. Default to <strong>Exclusive</strong> subscription type. Other valid types are <strong>Failover</strong>, <strong>Shared</strong>, and <strong>Key_Shared</strong>.</li>
+<li>(Optional)  <strong>consumer_name</strong>, when provided, specifies the associated consumer name.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: the topic that the consumer receives messages from is specified by the document level parameter <em><strong>topic_uri</strong></em>.</p>
+<h2 id="57-reader-statement-block">5.7. Reader Statement Block</h2>
+<p>This is the regular Pulsar reader statement block that reads one message per NB cycle execution. It has  a typical format as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">reader-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">reader
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>        - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>          </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">msg-read
+</span><span>          </span><span style="color:#8fbcbb;">reader_name</span><span style="color:#eceff4;">:
+</span><span>          </span><span style="color:#8fbcbb;">start_msg_position</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;earliest&quot;
+</span></code></pre>
+<p>This statement block only has one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to read one message from the Pulsar cluster.
+<ul>
+<li>(Mandatory) <strong>optype (msg-consume)</strong> is the statement identifier for
+this statement</li>
+<li>(Optional)  <strong>reader_name</strong>, when provided, specifies the associated
+consumer name.</li>
+<li>(Optional) <strong>start_msg_position</strong>, the position for the reader to read a message from. Valid values are: &quot;earliest&quot; or &quot;latest&quot;
+<ul>
+<li><strong>NOTE</strong>: at the moment, the NB Pulsar driver Reader API only supports reading from the following positions: <strong>MessageId.earliest</strong> and <strong>MessageId.latest</strong> (default)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: the topic that the reader needs to read messages from is specified by the document level parameter <em><strong>topic_uri</strong></em>.</p>
+<h2 id="58-multi-topic-consumer-statement-block">5.8. Multi-topic Consumer Statement Block</h2>
+<p>This is the Pulsar consumer statement block that consumes messages from multiple Pulsar topics per NB execution. It has a typical format as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">multi-topic-consumer-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">multi-topic-consumer
+</span><span>      </span><span style="color:#8fbcbb;">admin_task</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">false
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">msg-mt-consume
+</span><span>        </span><span style="color:#8fbcbb;">topic_names</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">topics_pattern</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">subscription_name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;mysub&quot;
+</span><span>        </span><span style="color:#8fbcbb;">subscription_type</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">consumer_name</span><span style="color:#eceff4;">:
+</span></code></pre>
+<p>This statement block only has one statement (s1):</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to consume one message from the Pulsar cluster and acknowledge it.
+<ul>
+<li>(Mandatory) <strong>optype (msg-consume)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>topic_names</strong>, when provided, specifies a list of topic names from which to consume messages.</li>
+<li>(Optional)  <strong>topics_pattern</strong>, when provided, specifies Pulsar topic regex pattern for multi-topic message consumption</li>
+<li>(Mandatory) <strong>subscription_name</strong> specifies subscription name.</li>
+<li>(Optional)  <strong>subscription_type</strong>, when provided, specifies subscription type. Default to <strong>Exclusive</strong> subscription type.</li>
+<li>(Optional)  <strong>consumer_name</strong>, when provided, specifies the associated consumer name.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE 1</strong>: if neither <strong>topic_names</strong> and <strong>topics_pattern</strong> is provided, consumer topic name is default to the document level parameter <strong>topic_uri</strong>. Otherwise, the document level parameter  <strong>topic_uri</strong> is ignored.</p>
+<p><strong>NOTE 2</strong>: when both <strong>topic_names</strong> and <strong>topics_pattern</strong> are provided, <strong>topic_names</strong> takes precedence over <strong>topics_pattern</strong>.</p>
+<h2 id="59-end-to-end-message-latency-statement-block">5.9. End-to-end Message Latency Statement Block</h2>
+<p>End-to-end message latency statement block is used to simplify the task of measuring the end-to-end message processing (from being published to being consumed)latency. It has a typical format as below:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>  - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">e2e-msg-proc-block
+</span><span>    </span><span style="color:#8fbcbb;">tags</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#8fbcbb;">phase</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">e2e-msg-proc
+</span><span>      </span><span style="color:#8fbcbb;">admin_task</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">false
+</span><span>    </span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s1
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">ec2-msg-proc-send
+</span><span>        </span><span style="color:#8fbcbb;">msg_key</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">msg_property</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          {
+</span><span style="color:#a3be8c;">            &quot;prop1&quot;: &quot;{myprop1}&quot;
+</span><span style="color:#a3be8c;">          }
+</span><span>        </span><span style="color:#8fbcbb;">msg_value</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;{myvalue}&quot;
+</span><span>        </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">1
+</span><span>      - </span><span style="color:#8fbcbb;">name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">s2
+</span><span>        </span><span style="color:#8fbcbb;">optype</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">ec2-msg-proc-consume
+</span><span>        </span><span style="color:#8fbcbb;">subscription_name</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;mysub&quot;
+</span><span>        </span><span style="color:#8fbcbb;">subscription_type</span><span style="color:#eceff4;">:
+</span><span>        </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">1
+</span></code></pre>
+<p>This statement block has two statements (s1 and s2) with the following ratios: 1, 1.</p>
+<ul>
+<li>Statement <strong>s1</strong> is used to publish a message to a topic
+<ul>
+<li>(Mandatory) <strong>optype (ec2-msg-proc-send)</strong> is the statement identifier for this statement</li>
+<li>(Optional)  <strong>msg_key</strong>, when provided, specifies the key of the generated message</li>
+<li>(Optional)  <strong>msg_property</strong>, when provided, specifies the properties of the generated message. It must be a JSON string that contains a series of key-value pairs.</li>
+<li>(Mandatory) <strong>msg_payload</strong> specifies the payload of the generated message</li>
+<li>(Optional)  <strong>ratio</strong>, must be 1 when provided. Otherwise, default to 1.</li>
+</ul>
+</li>
+<li>Statement <strong>s2</strong> is used to consume the message that just got published
+from the same topic
+<ul>
+<li>(Mandatory) <strong>optype (ec2-msg-proc-consume)</strong> is the statement identifier for this statement</li>
+<li>(Mandatory) <strong>subscription_name</strong> specifies subscription name.</li>
+<li>(Optional)  <strong>subscription_type</strong>, when provided, specifies subscription type. Default to <strong>Exclusive</strong> subscription type.</li>
+<li>(Optional)  <strong>ratio</strong>, must be 1 when provided. Otherwise, default to 1.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: the topic that the producer/consumer needs to publish messages to/consume messages from is specified by the document level parameter <em><strong>topic_uri</strong></em>.</p>
+<h1 id="6-generate-message-content">6. Generate Message Content</h1>
+<p>A Pulsar message has three main components: message key, message properties, and message payload. The former two are optional and the last one is mandatory for each message.</p>
+<p>In the producer statement block, the contents of these components can be generated via the following statement level parameters respectively:</p>
+<ul>
+<li>msg_key: defines message key value</li>
+<li>msg_property: defines message property values</li>
+<li>msg_value: defines message payload value</li>
+</ul>
+<p>For <strong>msg_key</strong>, when specified, its value is a text string by a NB data binding rule.</p>
+<p>For <strong>msg_property</strong>, when specified, its value must be a valid JSON string that contains a list of key-value pairs. The value of each key-value pair is a text string by a NB data binding rule.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>    statements:
+</span><span>      - name: s1
+</span><span>        msg_property: |
+</span><span>          {
+</span><span>            &quot;prop1&quot;: &quot;{myprop1}&quot;,
+</span><span>            &quot;prop2&quot;: &quot;{myprop2}&quot;
+</span><span>          }
+</span></code></pre>
+<p>NOTE that If the <strong>msg_property</strong> value is not a valid JSON string, NB Pulsar driver will ignore it and treat the message as having no properties.</p>
+<p>For <strong>msg_value</strong>, its value could be a plain simple text or a valid JSON string, depending on whether message schema (Avro type) will be used. The message schema is defined as global level configuration parameters (see the next section).</p>
+<h1 id="7-message-schema-support">7. Message Schema Support</h1>
+<p>Pulsar has built-in schema support. Other than primitive types, Pulsar also supports complex types like <strong>Avro</strong>, etc. At the moment, the NB Pulsar driver supports two schema types:</p>
+<ul>
+<li>(Default) binary type</li>
+<li>Avro schema type</li>
+</ul>
+<p>The schema type and definition are determined by  the following global level configuration parameters:</p>
+<pre data-lang="properties" style="background-color:#2e3440;color:#d8dee9;" class="language-properties "><code class="language-properties" data-lang="properties"><span style="color:#616e88;">  # for Avro schema
+</span><span>  schema.type</span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">avro
+</span><span>  schema.definition</span><span style="color:#eceff4;">= </span><span style="color:#a3be8c;">file:///&lt;file/path/to/the/definition/file&gt;
+</span><span>
+</span><span style="color:#616e88;">  # for default binary schema
+</span><span style="color:#616e88;">  #schema.type=
+</span><span style="color:#616e88;">  #schema.definition=
+</span></code></pre>
+<p>If the message schema type is specified as Avro, then the schema definition needs to be provided in an external file that has the right Avro schema definition JSON string. An example is as below:</p>
+<pre data-lang="json" style="background-color:#2e3440;color:#d8dee9;" class="language-json "><code class="language-json" data-lang="json"><span>{
+</span><span>  </span><span style="color:#a3be8c;">&quot;type&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;record&quot;</span><span style="color:#eceff4;">,
+</span><span>  </span><span style="color:#a3be8c;">&quot;name&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;IotSensor&quot;</span><span style="color:#eceff4;">,
+</span><span>  </span><span style="color:#a3be8c;">&quot;namespace&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;TestNS&quot;</span><span style="color:#eceff4;">,
+</span><span>  </span><span style="color:#a3be8c;">&quot;fields&quot; </span><span style="color:#eceff4;">: </span><span>[
+</span><span>    {</span><span style="color:#a3be8c;">&quot;name&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;SensorID&quot;</span><span style="color:#eceff4;">, </span><span style="color:#a3be8c;">&quot;type&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;string&quot;</span><span>}</span><span style="color:#eceff4;">,
+</span><span>    {</span><span style="color:#a3be8c;">&quot;name&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;SensorType&quot;</span><span style="color:#eceff4;">, </span><span style="color:#a3be8c;">&quot;type&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;string&quot;</span><span>}</span><span style="color:#eceff4;">,
+</span><span>    {</span><span style="color:#a3be8c;">&quot;name&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;ReadingTime&quot;</span><span style="color:#eceff4;">, </span><span style="color:#a3be8c;">&quot;type&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;string&quot;</span><span>}</span><span style="color:#eceff4;">,
+</span><span>    {</span><span style="color:#a3be8c;">&quot;name&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;ReadingValue&quot;</span><span style="color:#eceff4;">, </span><span style="color:#a3be8c;">&quot;type&quot;</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;float&quot;</span><span>}
+</span><span>  ]
+</span><span>}
+</span></code></pre>
+<h1 id="8-measure-end-to-end-message-processing-latency">8. Measure End-to-end Message Processing Latency</h1>
+<p>The built-in <strong>e2e-msg-proc-block</strong> measures the end-to-end message latency metrics. It contains one message producing statement and one message consuming statement. When the message that is published by the producer is received by the consumer, the consumer calculates the time difference between when the time is received and when the time is published.</p>
+<p>The measured end-to-end message processing latency is captured as a histogram metrics  &quot;<strong>e2e_msg_latency</strong>&quot;.</p>
+<p>This built-in command block uses one single machine to act as both a producer and a consumer. We do so just for convenience purposes. In reality, we can use<strong>producer-block</strong> and <strong>consumer-block</strong> command blocks on separate machines to achieve the same goal, which is probably closer to the actual use case and probably more accurate measurement (to avoid the situation of always reading messages from the managed ledger cache).</p>
+<p>One thing to remember though if we're using multiple machines to measure the end-to-end message processing latency, we need to make sure:</p>
+<ol>
+<li>The time of the two machines are synced up with each other, e.g. through the NTP protocol.</li>
+<li>If there is some time lag of starting the consumer, we need to count that into consideration when interpreting the end-to-end message processing latency.</li>
+</ol>
+<h1 id="9-detect-message-out-of-order-message-loss-and-message-duplication">9. Detect Message Out-of-order, Message Loss, and Message Duplication</h1>
+<p>In order to detect abnormal message processing errors like message loss, message duplication, or message out-of-order, we need to set the following document level parameter to be true.</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>params:
+</span><span>  # Only applicable to producer and consumer
+</span><span>  # - used for message ordering and message loss check
+</span><span>  seq_tracking: &quot;true&quot;
+</span></code></pre>
+<p>When this parameter is set true, the NB Pulsar consumer workload, when executed, will check the received messages that were published by an NB Pulsar producer workload and count the corresponding errors into the following metrics:</p>
+<ul>
+<li><strong>msgErrOutOfSeqCounter</strong></li>
+<li><strong>msgErrLossCounter</strong></li>
+<li><strong>msgErrDuplicateCounter</strong></li>
+</ul>
+<h1 id="10-nb-activity-execution-parameters">10. NB Activity Execution Parameters</h1>
+<p>At the moment, the following Pulsar driver specific** NB activity parameters are supported:</p>
+<ul>
+<li>service_url=&lt;pulsar_driver_url&gt;</li>
+<li>config=&lt;file/path/to/global/configuration/properties/file&gt;</li>
+</ul>
+<p>Some other common NB activity parameters are listed as below. Please refer to NB documentation for more information.</p>
+<ul>
+<li>driver=pulsar</li>
+<li>seq=concat (needed for <strong>batch</strong> producer)</li>
+<li>tags=phase:&lt;command_block_identifier&gt;</li>
+<li>threads=&lt;NB_execution_thread_number&gt;</li>
+<li>cycles=&lt;total_NB_cycle_execution_number&gt;</li>
+<li>--report-csv-to &lt;metrics_output_dir_name&gt;</li>
+</ul>
+<h1 id="11-nb-pulsar-driver-execution-example">11. NB Pulsar Driver Execution Example</h1>
+<ol>
+<li>Run Pulsar producer API to produce 100K messages using 100 NB threads</li>
+</ol>
+<pre data-lang="bash" style="background-color:#2e3440;color:#d8dee9;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> run driver</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar </span><span>tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:producer </span><span>threads</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">100 </span><span>cycles</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">100K </span><span>web_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">http://localhost:8080 </span><span>service_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar://localhost:6650 </span><span>config</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/config.properties yaml</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/pulsar.yaml
+</span></code></pre>
+<ol start="2">
+<li>Run Pulsar producer batch API to produce 1M messages with 2 NB threads.
+<strong>NOTE</strong>: <em>seq=</em> must have <strong>concat</strong> value in order to make the batch API working properly!</li>
+</ol>
+<pre data-lang="bash" style="background-color:#2e3440;color:#d8dee9;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> run driver</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar </span><span>seq</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">concat </span><span>tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:batch-producer </span><span>threads</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">2 </span><span>cycles</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">1M </span><span>web_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">http://localhost:8080 </span><span>service_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar://localhost:6650 </span><span>config</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/config.properties yaml</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/pulsar.yaml </span><span style="color:#88c0d0;">--report-csv-to </span><span style="color:#81a1c1;">&lt;</span><span>metrics_folder_path</span><span style="color:#81a1c1;">&gt;
+</span></code></pre>
+<ol start="3">
+<li>Run Pulsar consumer API to consume (and acknowledge) 100 messages using
+one single NB thread.</li>
+</ol>
+<pre data-lang="bash" style="background-color:#2e3440;color:#d8dee9;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#81a1c1;">&lt;</span><span>nb_cmd</span><span style="color:#81a1c1;">&gt;</span><span> run driver</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar </span><span>tags</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">phase:consumer </span><span>cycles</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">100 </span><span>web_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">http://localhost:8080 </span><span>service_url</span><span style="color:#81a1c1;">=</span><span style="color:#a3be8c;">pulsar://localhost:6650 </span><span>config</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/config.properties yaml</span><span style="color:#81a1c1;">=&lt;</span><span>dir</span><span style="color:#81a1c1;">&gt;</span><span>/pulsar.yaml
+</span></code></pre>
+<h1 id="12-appendix-a-template-global-setting-file-configproperties">12. Appendix A. Template Global Setting File (config.properties)</h1>
+<pre data-lang="properties" style="background-color:#2e3440;color:#d8dee9;" class="language-properties "><code class="language-properties" data-lang="properties"><span>schema.type </span><span style="color:#eceff4;">=
+</span><span>schema.definition </span><span style="color:#eceff4;">=
+</span><span>
+</span><span>
+</span><span style="color:#616e88;">### Pulsar client related configurations - client.xxx
+</span><span>client.connectionTimeoutMs </span><span style="color:#eceff4;">=
+</span><span>
+</span><span>
+</span><span style="color:#616e88;">### Producer related configurations (global) - producer.xxx
+</span><span>producer.producerName </span><span style="color:#eceff4;">=
+</span><span>producer.topicName </span><span style="color:#eceff4;">=
+</span><span>producer.sendTimeoutMs </span><span style="color:#eceff4;">=
+</span><span>
+</span><span>
+</span><span style="color:#616e88;">### Consumer related configurations (global) - consumer.xxx
+</span><span>consumer.topicNames </span><span style="color:#eceff4;">=
+</span><span>consumer.topicsPattern </span><span style="color:#eceff4;">=
+</span><span>consumer.subscriptionName </span><span style="color:#eceff4;">=
+</span><span>consumer.subscriptionType </span><span style="color:#eceff4;">=
+</span><span>consumer.consumerName </span><span style="color:#eceff4;">=
+</span><span>consumer.receiverQueueSize </span><span style="color:#eceff4;">=
+</span><span>
+</span><span>
+</span><span style="color:#616e88;">### Reader related configurations (global) - reader.xxx
+</span><span>reader.topicName </span><span style="color:#eceff4;">=
+</span><span>reader.receiverQueueSize </span><span style="color:#eceff4;">=
+</span><span>reader.readerName </span><span style="color:#eceff4;">=
+</span><span>reader.startMessagePos </span><span style="color:#eceff4;">=
+</span></code></pre>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

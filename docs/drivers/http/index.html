@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>http driver | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/drivers/http/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Drivers",
+            "item": "https://docs.nosqlbench.io/docs/drivers/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Http",
+            "item": "https://docs.nosqlbench.io/docs/drivers/http/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+    
+  
+
+<body class="page single">
+  
+    
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+  
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <article>
+          <div class="page-header">
+            <h1>http driver</h1>
+          </div>
+          
+          <p>This driver allows you to make http requests using the native HTTP client
+that is bundled with the JVM. It supports free-form construction of
+requests.</p>
+<p>You specify what a request looks like by providing a set of request
+parameters. They can be in either literal (static) form with no dynamic
+data binding, or they can each be in a string template form that draws
+from data bindings. Each cycle, a request is assembled from these
+parameters and executed.</p>
+<h2 id="example-statements">Example Statements</h2>
+<p>The simplest possible statement form looks like this:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#8fbcbb;">statement</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">http://google.com/
+</span></code></pre>
+<p>Or, you can have a list:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#616e88;"># A list of statements
+</span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#a3be8c;">http://google.com/
+</span><span>    - </span><span style="color:#a3be8c;">http://amazon.com/
+</span></code></pre>
+<p>Or you can template the values used in the URI, and even add ratios:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#616e88;"># A list of named statements with variable fields and specific ratios:
+</span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#8fbcbb;">s1</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">http://google.com/search?query={query}
+</span><span>      </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">3
+</span><span>    - </span><span style="color:#8fbcbb;">s2</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">https://www.amazon.com/s?k={query}
+</span><span>      </span><span style="color:#8fbcbb;">ratio</span><span style="color:#eceff4;">: </span><span style="color:#b48ead;">2
+</span><span style="color:#8fbcbb;">bindings</span><span style="color:#eceff4;">:
+</span><span>    </span><span style="color:#8fbcbb;">query</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">&gt;
+</span><span style="color:#a3be8c;">        WeightedStrings(&#39;function generator;backup generator;static generator&#39;);
+</span><span style="color:#a3be8c;">        UrlEncode();
+</span></code></pre>
+<p>You can even make a detailed request with custom headers and result
+verification conditions:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#616e88;"># Require that the result be status code 200-299 match regex &quot;OK, account id is .*&quot; in the body
+</span><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#8fbcbb;">get-from-google</span><span style="color:#eceff4;">:
+</span><span>      </span><span style="color:#8fbcbb;">method</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">GET
+</span><span>      </span><span style="color:#8fbcbb;">uri</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;https://google.com/&quot;
+</span><span>      </span><span style="color:#8fbcbb;">version</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;HTTP/1.1&quot;
+</span><span>      </span><span style="color:#8fbcbb;">Content-Type</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;application/json&quot;
+</span><span>      </span><span style="color:#8fbcbb;">ok-status</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;2[0-9][0-9]&quot;
+</span><span>      </span><span style="color:#8fbcbb;">ok-body</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">&quot;^(OK, account id is .*)$&quot;
+</span></code></pre>
+<p>For those familiar with what an HTTP request looks like on the wire, the
+format below may be familiar. This isn't actually the content that is
+submitted, but it is recognized as a valid way to express the request
+parameters in a familiar and condensed form. A custom config parser makes
+this form available fo rhose who want to emulate a well-known pattern:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#8fbcbb;">s1</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          GET https://google.com/ HTTP/1.1
+</span><span style="color:#a3be8c;">          Content-Type: application/json
+</span><span>      </span><span style="color:#8fbcbb;">ok-status</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">2[0-9][0-9]
+</span><span>      </span><span style="color:#8fbcbb;">ok-body</span><span style="color:#eceff4;">: </span><span style="color:#a3be8c;">^(OK, account id is.*)$
+</span></code></pre>
+<p>Of course, in the above form, the response validators are still separate
+parameters.</p>
+<h2 id="bindings">Bindings</h2>
+<p>All request fields can be made dynamic with binding functions. To make a
+request that has all dynamic fields, you can do something like this:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#8fbcbb;">s1</span><span style="color:#eceff4;">: </span><span style="color:#81a1c1;">|
+</span><span style="color:#a3be8c;">          {method} {scheme}://{host}:{port}/{path}?{query} {version}
+</span><span style="color:#a3be8c;">          Content-Type: {content_type}
+</span><span style="color:#a3be8c;">          Token: {mybearertoken}
+</span><span style="color:#a3be8c;">
+</span><span style="color:#a3be8c;">          {body}
+</span></code></pre>
+<p>The above example is in the inline request form. It is parsed and
+interpreted internally as if you had configured your op template like
+this:</p>
+<pre data-lang="yaml" style="background-color:#2e3440;color:#d8dee9;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span style="color:#8fbcbb;">statements</span><span style="color:#eceff4;">:
+</span><span>    - </span><span style="color:#8fbcbb;">method</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">method </span><span>}
+</span><span>      </span><span style="color:#8fbcbb;">uri</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">scheme </span><span>}</span><span style="color:#a3be8c;">://{host}:{port}/{path}?{query}
+</span><span>      </span><span style="color:#8fbcbb;">version</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">version </span><span>}
+</span><span>      </span><span style="color:#a3be8c;">&quot;Content-Type&quot;</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">content_type </span><span>}
+</span><span>      </span><span style="color:#a3be8c;">&quot;Token&quot;</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">mybearertoken </span><span>}
+</span><span>      </span><span style="color:#8fbcbb;">body</span><span style="color:#eceff4;">: </span><span>{ </span><span style="color:#a3be8c;">body </span><span>}
+</span></code></pre>
+<p>The above two examples are semantically identical, only the format is
+different. Notice that the expansion of the URI is still captured in a
+field called uri, with all the dynamic pieces stitched together in the
+value. You can't use arbitrary request fields. Every request field must
+from (method, uri, version, body, ok-status, ok-body) or otherwise be
+capitalized to signify an HTTP header.</p>
+<p>The HTTP RFCs do not require headers to be capitalized, but they are
+capitalized ubiquitously in practice, so we follow that convention here
+for clarity. Headers are in-fact case-insensitive, so any issues created
+by this indicate a non-conformant server/application implementation.</p>
+<p>For URIs which are fully static (There are no dynamic fields, request
+generation will be much faster, since the request is fully built and
+cached at startup.</p>
+<h2 id="request-fields">Request Fields</h2>
+<p>At a minimum, a <strong>URI</strong> must be provided. This is enough to build a
+request with. All other request fields are optional and have reasonable
+defaults:</p>
+<ul>
+<li>
+<p><strong>uri</strong> - This is the URI that you might put into the URL bar of your
+browser. There is no default.
+Example: <code>https://en.wikipedia.org/wiki/Leonhard_Euler</code></p>
+<p>If the uri contains a question mark '?' as a query delimiter, then all
+embedded sections which are contained within <code>URLENCODE[[</code> ... <code>]]</code>
+sections are preprocessed by the HTTP driver. This allows you to keep
+your test data in a recognizable form. This is done at startup, so there
+is no cost during the test run. As an added convenience, binding points
+which are within the encoded block will be preserved, so
+both <code>https://en.wikipedia.org/URLENCODE[[wiki/]]{topic}</code> and
+<code>https://en.wikipedia.org/URLENCODE[[wiki/{topic}]]</code> will yield the same
+configuration. For a terser form, you can use <code>E[[...]]</code>. You must also
+ensure that the values that are inserted at binding points are produced
+in a valid form for a URI. You can use the <code>URLEncode()</code>
+binding function where needed to achieve this.</p>
+</li>
+<li>
+<p><strong>method</strong> - An optional request method. If not provided, &quot;GET&quot; is
+assumed. Any method name will work here, even custom ones that are
+specific to a given target system. No validation is done for standard
+method names, as there is no way to know what method names may be valid.</p>
+</li>
+<li>
+<p><strong>version</strong> - The HTTP version to use. If this value is not provided,
+the default version for the Java HttpClient is used. If it is provided,
+it must be one of 'HTTP/1.1' or 'HTTP/2.0'.</p>
+</li>
+<li>
+<p><strong>body</strong> - The content of the request body, for methods which support
+it.</p>
+</li>
+<li>
+<p><strong>ok-status</strong> - An optional set of rules to verify that a response is
+valid. This is a simple comma or space separated list of integer status
+codes or a pattern which is used as a regex against the string form of a
+status code. If any characters other than digits spaces and commas are
+found in this value, then it is taken as a regex. If this is not
+provided, then any status code which is &gt;=200 and &lt;300 is considered
+valid.</p>
+</li>
+<li>
+<p><strong>ok-body</strong> - An optional regex pattern which will be applied to the
+body to verify that it is a valid response. If this is not provided,
+then content bodies are read, but any content is considered valid.</p>
+</li>
+</ul>
+<p>Any other statement parameter which is capitalized is taken as a request
+header. If additional fields are provided which are not included in the
+above list, or which are not capitalized, then an error is thrown.</p>
+<h2 id="error-handling-retries">Error Handling &amp; Retries</h2>
+<p>By default, a request which encounters an exception is retried up to 10
+times. If you want to change this, set another value to the
+<code>retries=</code> activity parameters.</p>
+<p>Presently, no determination is made about whether an errored
+response <em>should</em> be retryable, but it is possible to configure this if
+you have a specific exception type that indicates a retryable operation.</p>
+<p>The HTTP driver is the first NB driver to include a completely
+configurable error handler chain. This is explained in the
+<code>error-handlers</code> topic. By default, the HTTP activity's error handler is
+wired to stop the activity for any error encountered.</p>
+<h2 id="ssl-support">SSL Support</h2>
+<p>SSL should work for any basic client request that doesn't need custom SSL
+configuration. If needed, more configurable SSL support will be added.</p>
+<h2 id="client-behavior">Client Behavior</h2>
+<h3 id="tcp-sessions">TCP Sessions</h3>
+<p>The HTTP clients are allocated one to each thread. The TCP connection
+caching is entirely left to the defaults for the current HttpClient
+library that is bundled within the JVM.</p>
+<h3 id="chunked-encoding-and-web-sockets">Chunked encoding and web sockets</h3>
+<p>Presently, this driver only does basic request-response style requests.
+Thus, adding headers which take TCP socket control away from the
+HttpClient will likely yield inconsistent (or undefined)
+results. Support may be added for long-lived connections in a future
+release. However, chunked encoding responses are supported, although they
+will be received fully before being processed further. Connecting to a long-lived
+connection that streams chunked encoding responses indefinitely will have
+undefined results.</p>
+<h2 id="http-activity-parameters">HTTP Activity Parameters</h2>
+<ul>
+<li>
+<p><strong>client_scope</strong> - default: activity - One of activity, or thread. This
+controls how many clients instances you use with an HTTP activity. By
+default, all threads will use the same client instance.</p>
+</li>
+<li>
+<p><strong>follow_redirects</strong> - default: normal - One of never, always, or
+normal. Normal redirects are those which do not redirect from HTTPS to
+HTTP.</p>
+</li>
+<li>
+<p><strong>diagnostics</strong> - default: none - synonym: <strong>diag</strong>
+example: <code>diag=brief,1000</code> - print diagnostics for every 1000th cycle,
+including only brief details as explained below.</p>
+<p>This setting is a selector for what level of verbosity you will get on
+the console. If you set this to <code>diag=all</code>, you'll get every request and
+response logged to console. This is only for verifying that a test is
+configured and to spot check services before running higher scale tests.</p>
+<p>All the data shown in diagnostics is post-hoc, directly from the
+response provided by the internal HTTP client in the Java runtime.</p>
+<p>If you want finer control over how much information diagnostics
+provides, you can specify a comma separated list of the below.</p>
+<ul>
+<li>headers - show headers</li>
+<li>stats - show basic stats of each request</li>
+<li>data - show all of each response body this setting</li>
+<li>data10 - show only the first 10 characters of each response body
+this setting supersedes <code>data</code></li>
+<li>data100 - show only the first 100 characters of each response body
+this setting supersedes <code>data10</code></li>
+<li>data1000 - show only the first 1000 characters of each response body
+this setting supersedes <code>data100</code></li>
+<li>redirects - show details for interstitial request which are made
+when the client follows a redirect directive like a <code>location</code>
+header</li>
+<li>requests - show details for requests</li>
+<li>responses - show details for responses</li>
+<li>codes - shows explanatory details (high-level) of http response status codes</li>
+<li>brief - Show headers, stats, requests, responses, and 10 characters</li>
+<li>all - Show everything, including full payloads and redirects</li>
+<li>a modulo - any number, like 3000 - causes the diagnostics to be
+reported only on this cycle modulo. If you set <code>diag=300,brief</code>
+then you will get the brief diagnostic output for every 300th
+response.</li>
+</ul>
+<p>The requests, responses, and redirects settings work in combination.
+For example, if you specify responses, and redirect, but not requests,
+then you will only see the response portion of all calls made by the
+client. All available filters layer together in this way.</p>
+</li>
+<li>
+<p><strong>timeout</strong> - default: forever - Sets the timeout of each request in
+milliseconds.</p>
+</li>
+</ul>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>state functions | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/bindings/funcref-state/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Bindings",
+            "item": "https://docs.nosqlbench.io/docs/bindings/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Funcref State",
+            "item": "https://docs.nosqlbench.io/docs/bindings/funcref-state/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="docs single">
+  
+  
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row flex-xl-nowrap">
+	  
+<div class="col-lg-5 col-xl-4 docs-sidebar">
+	<nav class="docs-links" aria-label="Main navigation">
+			
+			
+			
+			
+					
+					
+					
+							<h3>Introduction</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/introduction/">NoSQLBench</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/core-concepts/">Core Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/showcase/">Showcase</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/community/">Community</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/principles/">Design Principles</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Getting Started</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/00-get-nosqlbench/">00 Install</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/01-example-commands/">01 Commands</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/02-example-results/">02 Results</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/03-reading-metrics/">03 Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/04-next-steps/">Next Steps</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Workloads 101</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/00-designing-workloads/">00 Designing Workloads</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/01-op-templates/">01 Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/">02 YAML Organization</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/03-data-bindings/">03 Data Bindings</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/04-op-params/">04 Op Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/05-op-tags/">05 Op Tags</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/06-op-blocks/">06 Op Blocks</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/07-more-op-templates/">07 More Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/08-multi-docs/">08 Multi-Docs</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/09-template-params/">09 Template Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/10-stmt-naming/">10 Op Naming</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/11-named-scenarios/">11 Named Scenarios</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/99-yaml-diagnostics/">YAML Diagnostics</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Reference</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/command-line/">CLI Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/cli-scripting/">CLI Scripting</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/parameter-types/">Parameter Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-activity-parameters/">Core Activity Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-op-params/">Core Op Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/timing-terms/">Timing Terms Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/standard-metrics/">Standard Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/advanced-metrics/">Advanced Metrics Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/grafana-metrics/">Built-In Grafana Dashboard</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/workloads-intro/">Built-In Workloads</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Scenario Scripting</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-intro/">Scripting Intro</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-parameters/">Scripting Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-environment/">Scripting Environment</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-extensions/">Scripting Extensions</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Advanced Topics</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/random-data/">Randomness, Determinism, Variation</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/vantage-points/">Vantage Points</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/multiple-clients/">Multiple Clients</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Drivers</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/driver-types-intro/">Driver Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cockroachdb/">cockroachdb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cql/">cql driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqld3/">cqld3 driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqlverify/">cqlverify driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/diag/">diag driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/dsegraph/">dsegraph driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/http/">http driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jms/">jms driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jmx/">jmx driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/kafkaproducer/">kafkaproducer driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/mongodb/">mongodb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/pulsar/">pulsar driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/ssl/">cql driver ssl</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/stdout/">stdout driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpclient/">tcpclient driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpserver/">tcpserver driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/webdriver/">webdriver driver</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Binding Functions</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-concepts/">Binding Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-functions/">Binding Functions Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-datetime/">datetime functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-general/">general functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-premade/">pre-made functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-conversion/">conversion functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-distributions/">distribution functions</a></li>
+							                           
+									<li><a class="docs-link active" href="https://docs.nosqlbench.io/docs/bindings/funcref-state/">state functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/">collection functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-diagnostics/">diagnostic functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-experimental/">Experimental functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-functional/">flow functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-nulls/">null functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-objects/">Object functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-statistics/">Statistics functions</a></li>
+							
+					</ul>
+					
+					
+			
+	</nav>
+</div>
+
+	  
+  
+  <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+  	<div class="page-links">
+  			<h3>On this page</h3>
+  			<nav id="TableOfContents">
+  					<ul>
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#clear">Clear</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#load">Load</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#loaddouble">LoadDouble</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#loadfloat">LoadFloat</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#loadinteger">LoadInteger</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#loadlong">LoadLong</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#loadstring">LoadString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#nullorload">NullOrLoad</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#nullorpass">NullOrPass</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#save">Save</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#savedouble">SaveDouble</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#savefloat">SaveFloat</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#saveinteger">SaveInteger</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#savelong">SaveLong</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#savestring">SaveString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#show">Show</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#swap">Swap</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#threadnum">ThreadNum</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#unsetorload">UnsetOrLoad</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-state/#unsetorpass">UnsetOrPass</a></li>
+  							
+  							
+  					</ul>
+  			</nav>
+  	</div>
+  </nav>
+  
+
+      <main class="docs-content col-lg-11 col-xl-9">
+        <h1>state functions</h1>
+        
+        <p>Functions in the state category allow you to do things with side-effects in the function flow. Specifically, they allow
+you to save or load values of named variables to thread-local registers. These work best when used with non-async
+activities, since the normal statement grouping allows you to share data between statements in the sequence. It is not
+advised to use these with async activities.</p>
+<p>When using these functions, be careful that you call them when needed. For example, if you have a named binding which
+will save a value, that action only occurs if some statement with this named binding is used.</p>
+<p>For example, if you have an account records and transaction records, where you want to save the account identifier to
+use within the transaction inserts, you must ensure that each account binding is used within the thread first.</p>
+<h2 id="clear">Clear<a class="zola-anchor" href="#clear" aria-label="Anchor link for: clear">🔗</a></h2>
+<p>Clears the per-thread map which is used by the Expr function.</p>
+<ul>
+<li>
+<p>Object -&gt; Clear() -&gt; Object</p>
+<ul>
+<li>
+<p><em>notes:</em> Clear all named entries from the per-thread map.</p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear()</code></p>
+</li>
+<li>
+<p><em>clear all thread-local variables</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Clear(String[]...: names) -&gt; Object</p>
+<ul>
+<li>
+<p><em>notes:</em> Clear the specified names from the per-thread map.
+@param names The names to be removed from the map.</p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear('foo')</code></p>
+</li>
+<li>
+<p><em>clear the thread-local variable 'foo'</em></p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear('foo','bar')</code></p>
+</li>
+<li>
+<p><em>clear the thread-local variables 'foo' and 'bar'</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Clear() -&gt; long</p>
+<ul>
+<li>
+<p><em>notes:</em> Clear all named entries from the per-thread map.</p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear()</code></p>
+</li>
+<li>
+<p><em>clear all thread-local variables</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Clear(String[]...: names) -&gt; long</p>
+<ul>
+<li>
+<p><em>notes:</em> Clear the specified names from the per-thread map.
+@param names The names to be removed from the map.</p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear('foo')</code></p>
+</li>
+<li>
+<p><em>clear the thread-local variable 'foo'</em></p>
+</li>
+<li>
+<p><em>example:</em> <code>Clear('foo','bar')</code></p>
+</li>
+<li>
+<p><em>clear the thread-local variables 'foo' and 'bar'</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="load">Load<a class="zola-anchor" href="#load" aria-label="Anchor link for: load">🔗</a></h2>
+<p>Load a named value from the per-thread state map. The previous input value will be forgotten, and the named value will replace it before the next function in the chain.</p>
+<ul>
+<li>
+<p>String -&gt; Load(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load a String value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; Load(String: name, String: defaultvalue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Load('foo','track05')</code></li>
+<li><em>for the current thread, load a String value from the named variable, or teh default value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load a String value from the named variable, where the variable name is provided by a function</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc, String: defaultValue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),'track05')</code></li>
+<li><em>for the current thread, load a String value from the named variable, where the variable name is provided by a function, or the default value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Load(String: name) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load an int value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Load(String: name, int: defaultValue) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Load('foo',42)</code></li>
+<li><em>for the current thread, load an int value from the named variable, or return the default value if it is undefined.</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load an int value from the named variable, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc, int: defaultValue) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),42)</code></li>
+<li><em>for the current thread, load an int value from the named variable, where the variable name is provided by a function, or the default value if the named variable is undefined.</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Load(String: name) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load a double value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Load(String: name, double: defaultValue) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Load('foo',432.0D)</code></li>
+<li><em>for the current thread, load a double value from the named variable, or the defaultvalue if it is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load a double value from the named variable, where the variablename is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc, double: defaultValue) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),1234.5D)</code></li>
+<li><em>for the current thread, load a double value from the named variable, where the variablename is provided by a function, or the default value if the named value is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load a long value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(String: name, long: defaultValue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Load('foo', 423L)</code></li>
+<li><em>for the current thread, load a long value from the named variable, or the default value if the variable is not yet defined</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load a long value from the named variable, where the variable name is provided by the provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc, long: defaultvalue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),22L)</code></li>
+<li><em>for the current thread, load a long value from the named variable, where the variable name is provided by the provided by a function, or the default value if the variable is not yet defined</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(String: name) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load an Object value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load an Object value from the named variable, where the variable name is returned by the provided function</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(String: name, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load('foo','testvalue')</code></li>
+<li><em>for the current thread, load an Object value from the named variable, or the default value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Load(function.LongFunction&lt;Object&gt;: nameFunc, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),'testvalue')</code></li>
+<li><em>for the current thread, load an Object value from the named variable, where the variable name is returned by the provided function, or thedefault value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Load(String: name) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load('foo')</code></li>
+<li><em>for the current thread, load an Object value from the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString())</code></li>
+<li><em>for the current thread, load an Object value from the named variable, where the variable name is returned by the provided function</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Load(String: name, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load('foo','testvalue')</code></li>
+<li><em>for the current thread, load an Object value from the named variable, or the default value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Load(function.Function&lt;Object,Object&gt;: nameFunc, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Load(NumberNameToString(),'testvalue')</code></li>
+<li><em>for the current thread, load an Object value from the named variable, where the variable name is returned by the provided function, or thedefault value if the variable is not yet defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loaddouble">LoadDouble<a class="zola-anchor" href="#loaddouble" aria-label="Anchor link for: loaddouble">🔗</a></h2>
+<p>Load a value from a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. If the named variable is not defined, then the default value is returned.</p>
+<ul>
+<li>
+<p>long -&gt; LoadDouble(String: name) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble('foo')</code></li>
+<li><em>for the current thread, load a double value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadDouble(String: name, double: defaultValue) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble('foo',23D)</code></li>
+<li><em>for the current thread, load a double value from the named variable,or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadDouble(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble(NumberNameToString())</code></li>
+<li><em>for the current thread, load a double value from the named variable, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadDouble(function.LongFunction&lt;Object&gt;: nameFunc, double: defaultValue) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble(NumberNameToString(),23D)</code></li>
+<li><em>for the current thread, load a double value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadDouble(String: name) -&gt; Double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble('foo')</code></li>
+<li><em>for the current thread, load a double value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadDouble(String: name, double: defaultValue) -&gt; Double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble('foo',23D)</code></li>
+<li><em>for the current thread, load a double value from the named variable,or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadDouble(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble(NumberNameToString())</code></li>
+<li><em>for the current thread, load a double value from the named variable, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadDouble(function.Function&lt;Object,Object&gt;: nameFunc, double: defaultValue) -&gt; Double</p>
+<ul>
+<li><em>example:</em> <code>LoadDouble(NumberNameToString(),23D)</code></li>
+<li><em>for the current thread, load a double value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loadfloat">LoadFloat<a class="zola-anchor" href="#loadfloat" aria-label="Anchor link for: loadfloat">🔗</a></h2>
+<p>Load a value from a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. If the named variable is not defined, then the default value is returned.</p>
+<ul>
+<li>
+<p>Object -&gt; LoadFloat(String: name) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat('foo')</code></li>
+<li><em>for the current thread, load a float value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadFloat(String: name, float: defaultValue) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat('foo',23F)</code></li>
+<li><em>for the current thread, load a float value from the named variable,or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadFloat(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat(NumberNameToString())</code></li>
+<li><em>for the current thread, load a float value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadFloat(function.Function&lt;Object,Object&gt;: nameFunc, float: defaultValue) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat(NumberNameToString(),23F)</code></li>
+<li><em>for the current thread, load a float value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadFloat(String: name) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat('foo')</code></li>
+<li><em>for the current thread, load a float value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadFloat(String: name, float: defaultValue) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat('foo',23F)</code></li>
+<li><em>for the current thread, load a float value from the named variable,or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadFloat(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat(NumberNameToString())</code></li>
+<li><em>for the current thread, load a float value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadFloat(function.LongFunction&lt;Object&gt;: nameFunc, float: defaultValue) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>LoadFloat(NumberNameToString(),23F)</code></li>
+<li><em>for the current thread, load a float value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loadinteger">LoadInteger<a class="zola-anchor" href="#loadinteger" aria-label="Anchor link for: loadinteger">🔗</a></h2>
+<p>Load a value from a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. If the named variable is not defined, then the default value is returned.</p>
+<ul>
+<li>
+<p>Object -&gt; LoadInteger(String: name) -&gt; Integer</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger('foo')</code></li>
+<li><em>for the current thread, load an integer value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadInteger(String: name, int: defaultValue) -&gt; Integer</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger('foo',42)</code></li>
+<li><em>for the current thread, load an integer value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadInteger(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Integer</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger(NumberNameToString())</code></li>
+<li><em>for the current thread, load an integer value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadInteger(function.Function&lt;Object,Object&gt;: nameFunc, int: defaultValue) -&gt; Integer</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger(NumberNameToString(),42)</code></li>
+<li><em>for the current thread, load an integer value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadInteger(String: name) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger('foo')</code></li>
+<li><em>for the current thread, load an integer value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadInteger(String: name, int: defaultValue) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger('foo',42)</code></li>
+<li><em>for the current thread, load an integer value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadInteger(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger(NumberNameToString())</code></li>
+<li><em>for the current thread, load an integer value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadInteger(function.LongFunction&lt;Object&gt;: nameFunc, int: defaultValue) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>LoadInteger(NumberNameToString(),42)</code></li>
+<li><em>for the current thread, load an integer value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loadlong">LoadLong<a class="zola-anchor" href="#loadlong" aria-label="Anchor link for: loadlong">🔗</a></h2>
+<p>Load a value from a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. If the named variable is not defined, then the default value is returned.</p>
+<ul>
+<li>
+<p>long -&gt; LoadLong(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong('foo',42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadLong(String: name, long: defaultValue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong('foo',42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadLong(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong(NumberNameToString(),42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadLong(function.LongFunction&lt;Object&gt;: nameFunc, long: defaultValue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong(NumberNameToString(),42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadLong(String: name) -&gt; Long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong('foo',42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadLong(String: name, long: defaultValue) -&gt; Long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong('foo',42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadLong(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong(NumberNameToString(),42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadLong(function.Function&lt;Object,Object&gt;: nameFunc, long: defaultValue) -&gt; Long</p>
+<ul>
+<li><em>example:</em> <code>LoadLong(NumberNameToString(),42L)</code></li>
+<li><em>for the current thread, load a long value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loadstring">LoadString<a class="zola-anchor" href="#loadstring" aria-label="Anchor link for: loadstring">🔗</a></h2>
+<p>Load a value from a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. If the named variable is not defined, then the default value is returned.</p>
+<ul>
+<li>
+<p>Object -&gt; LoadString(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString('foo','examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadString(String: name, String: defaultValue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString('foo','examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadString(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; LoadString(function.Function&lt;Object,Object&gt;: nameFunc, String: defaultValue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadString(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString('foo','examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadString(String: name, String: defaultValue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString('foo','examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadString(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; LoadString(function.LongFunction&lt;Object&gt;: nameFunc, String: defaultValue) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>LoadString(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, load a String value from the named variable,where the variable name is provided by a function, or the default value if the namedvariable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="nullorload">NullOrLoad<a class="zola-anchor" href="#nullorload" aria-label="Anchor link for: nullorload">🔗</a></h2>
+<p>Reads a long variable from the input, hashes and scales it to the unit interval 0.0d - 1.0d, then uses the result to determine whether to return null object or a loaded value.</p>
+<ul>
+<li>long -&gt; NullOrLoad(double: ratio, String: varname) -&gt; Object</li>
+</ul>
+<h2 id="nullorpass">NullOrPass<a class="zola-anchor" href="#nullorpass" aria-label="Anchor link for: nullorpass">🔗</a></h2>
+<p>Reads a long variable from the thread local variable map, hashes and scales it to the unit interval 0.0d - 1.0d, then uses the result to determine whether to return a null object or the input value.</p>
+<ul>
+<li>Object -&gt; NullOrPass(double: ratio, String: varname) -&gt; Object</li>
+</ul>
+<h2 id="save">Save<a class="zola-anchor" href="#save" aria-label="Anchor link for: save">🔗</a></h2>
+<p>Save the current input value at this point in the function chain to a thread-local variable name. The input value is unchanged, and available for the next function in the chain to use as-is.</p>
+<ul>
+<li>
+<p>long -&gt; Save(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>for the current thread, save the input object value to the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Save(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>for the current thread, save the current input object value to the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Save(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>save the current long value to the name 'foo' in this thread</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Save(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>save the current long value to the name generated by the function given.</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; Save(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>save the current String value to the name 'foo' in this thread</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; Save(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>save the current String value to a named variable in this thread, where the variable name is provided by a function</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Save(String: name) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>for the current thread, save the input object value to the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Save(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>for the current thread, save the current input object value to the named variable,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Save(String: name) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>for the current thread, save the current double value to the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; Save(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>for the current thread, save the current double value to the name 'foo' in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Save(String: name) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>save the current int value to the name 'foo' in this thread</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Save(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>save the current int value to a named variable in this thread,where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="savedouble">SaveDouble<a class="zola-anchor" href="#savedouble" aria-label="Anchor link for: savedouble">🔗</a></h2>
+<p>Save a value to a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. Note that the input type is not that suitable for constructing names, so this is more likely to be used in an indirect naming pattern like SaveDouble(Load('id'))</p>
+<ul>
+<li>
+<p>double -&gt; SaveDouble(String: name) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>save the current double value to the name 'foo' in this thread</em></li>
+</ul>
+</li>
+<li>
+<p>double -&gt; SaveDouble(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>save a double value to a named variable in the current thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveDouble(String: name) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save('foo')</code></li>
+<li><em>save the current double value to the name 'foo' in this thread</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveDouble(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Save(NumberNameToString())</code></li>
+<li><em>save a double value to a named variable in the current thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="savefloat">SaveFloat<a class="zola-anchor" href="#savefloat" aria-label="Anchor link for: savefloat">🔗</a></h2>
+<p>Save a value to a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. Note that the input type is not that suitable for constructing names, so this is more likely to be used in an indirect naming pattern like SaveFloat(Load('id'))</p>
+<ul>
+<li>
+<p>long -&gt; SaveFloat(String: name) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>SaveFloat('foo')</code></li>
+<li><em>save the current float value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveFloat(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>SaveFloat(NumberNameToString())</code></li>
+<li><em>save the current float value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>Float -&gt; SaveFloat(String: name) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>SaveFloat('foo')</code></li>
+<li><em>save the current float value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>Float -&gt; SaveFloat(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Float</p>
+<ul>
+<li><em>example:</em> <code>SaveFloat(NumberNameToString())</code></li>
+<li><em>save the current float value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="saveinteger">SaveInteger<a class="zola-anchor" href="#saveinteger" aria-label="Anchor link for: saveinteger">🔗</a></h2>
+<p>Save a value to a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. Note that the input type is not that suitable for constructing names, so this is more likely to be used in an indirect naming pattern like SaveInteger(Load('id'))</p>
+<ul>
+<li>
+<p>int -&gt; SaveInteger(String: name) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>SaveInteger('foo')</code></li>
+<li><em>save the current integer value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; SaveInteger(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>SaveInteger(NumberNameToString())</code></li>
+<li><em>save the current integer value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveInteger(String: name) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>SaveInteger('foo')</code></li>
+<li><em>save the current integer value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveInteger(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>SaveInteger(NumberNameToString())</code></li>
+<li><em>save the current integer value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="savelong">SaveLong<a class="zola-anchor" href="#savelong" aria-label="Anchor link for: savelong">🔗</a></h2>
+<p>Save a value to a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. Note that the input type is not that suitable for constructing names, so this is more likely to be used in an indirect naming pattern like SaveLong(Load('id'))</p>
+<ul>
+<li>
+<p>long -&gt; SaveLong(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>SaveLong('foo')</code></li>
+<li><em>save the current long value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveLong(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>SaveLong(NumberNameToString())</code></li>
+<li><em>save the current long value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveLong(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>SaveLong('foo')</code></li>
+<li><em>save the current long value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveLong(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>SaveLong(NumberNameToString())</code></li>
+<li><em>save the current long value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="savestring">SaveString<a class="zola-anchor" href="#savestring" aria-label="Anchor link for: savestring">🔗</a></h2>
+<p>Save a value to a named thread-local variable, where the variable name is fixed or a generated variable name from a provided function. Note that the input type is not that suitable for constructing names, so this is more likely to be used in an indirect naming pattern like SaveString(Load('id'))</p>
+<ul>
+<li>
+<p>long -&gt; SaveString(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>SaveString('foo')</code></li>
+<li><em>save the current String value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; SaveString(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>SaveString(NumberNameToString())</code></li>
+<li><em>save the current String value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; SaveString(String: name) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>SaveString('foo')</code></li>
+<li><em>save the current String value to a named variable in this thread.</em></li>
+</ul>
+</li>
+<li>
+<p>String -&gt; SaveString(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>SaveString(NumberNameToString())</code></li>
+<li><em>save the current String value to a named variable in this thread, where the variable name is provided by a function.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="show">Show<a class="zola-anchor" href="#show" aria-label="Anchor link for: show">🔗</a></h2>
+<p>Show diagnostic values for the thread-local variable map.</p>
+<ul>
+<li>
+<p>long -&gt; Show() -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Show()</code></li>
+<li><em>Show all values in a json-like format</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Show(String[]...: names) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Show('foo')</code></li>
+<li><em>Show only the 'foo' value in a json-like format</em></li>
+<li><em>example:</em> <code>Show('foo','bar')</code></li>
+<li><em>Show the 'foo' and 'bar' values in a json-like format</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Show() -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Show()</code></li>
+<li><em>Show all values in a json-like format</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Show(String[]...: names) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Show('foo')</code></li>
+<li><em>Show only the 'foo' value in a json-like format</em></li>
+<li><em>example:</em> <code>Show('foo','bar')</code></li>
+<li><em>Show the 'foo' and 'bar' values in a json-like format</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="swap">Swap<a class="zola-anchor" href="#swap" aria-label="Anchor link for: swap">🔗</a></h2>
+<p>Load a named value from the per-thread state map. The previous input value will be stored in the named value, and the previously stored value will be returned. A default value to return may be provided in case there was no previously stored value under the given name.</p>
+<ul>
+<li>
+<p>Object -&gt; Swap(String: name) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Swap(String: name, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo','examplevalue')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, or return the default value if the named value is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Swap(function.Function&lt;Object,Object&gt;: nameFunc) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString())</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function.</em></li>
+</ul>
+</li>
+<li>
+<p>Object -&gt; Swap(function.Function&lt;Object,Object&gt;: nameFunc, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function, or the default value if the named value is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(String: name) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(String: name, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo','examplevalue')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, or return the default value if the named value is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(function.LongFunction&lt;Object&gt;: nameFunc) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString())</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(function.LongFunction&lt;Object&gt;: nameFunc, Object: defaultValue) -&gt; Object</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString(),'examplevalue')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function, or the default value if the named value is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(String: name) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo')</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(String: name, long: defaultValue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Swap('foo',234L)</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable,or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(function.LongFunction<String>: nameFunc) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString())</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function.</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Swap(function.LongFunction<String>: nameFunc, long: defaultValue) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Swap(NumberNameToString(), 234L)</code></li>
+<li><em>for the current thread, swap the input value with the named variable and returned the named variable, where the variable name is generated by the provided function, or the default value if the named variable is not defined.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="threadnum">ThreadNum<a class="zola-anchor" href="#threadnum" aria-label="Anchor link for: threadnum">🔗</a></h2>
+<p>Matches a digit sequence in the current thread name and caches it in a thread local. This allows you to use any intentionally indexed thread factories to provide an analogue for concurrency. Note that once the thread number is cached, it will not be refreshed. This means you can't change the thread name and get an updated value.</p>
+<ul>
+<li>
+<p>long -&gt; ThreadNum() -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; ThreadNum() -&gt; long</p>
+</li>
+</ul>
+<h2 id="unsetorload">UnsetOrLoad<a class="zola-anchor" href="#unsetorload" aria-label="Anchor link for: unsetorload">🔗</a></h2>
+<p>Reads a long variable from the input, hashes and scales it to the unit interval 0.0d - 1.0d, then uses the result to determine whether to return UNSET.value or a loaded value.</p>
+<ul>
+<li>long -&gt; UnsetOrLoad(double: ratio, String: varname) -&gt; Object</li>
+</ul>
+<h2 id="unsetorpass">UnsetOrPass<a class="zola-anchor" href="#unsetorpass" aria-label="Anchor link for: unsetorpass">🔗</a></h2>
+<p>Reads a long variable from the thread local variable map, hashes and scales it to the unit interval 0.0d - 1.0d, then uses the result to determine whether to return UNSET.value or the input value.</p>
+<ul>
+<li>Object -&gt; UnsetOrPass(double: ratio, String: varname) -&gt; Object</li>
+</ul>
+
+        
+        
+<div class="docs-navigation d-flex justify-content-between">
+  
+  
+  
+  
+  
+  <a href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-distributions&#x2F;">
+    <div class="card my-1">
+      <div class="card-body py-2">
+        &larr; distribution functions
+      </div>
+    </div>
+  </a>
+  
+
+  
+  
+  
+  
+  
+    <a class="ms-auto" href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-collections&#x2F;">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          collection functions &rarr;
+        </div>
+      </div>
+    </a>
+  
+</div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

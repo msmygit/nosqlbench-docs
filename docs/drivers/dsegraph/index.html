@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>dsegraph driver | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/drivers/dsegraph/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Drivers",
+            "item": "https://docs.nosqlbench.io/docs/drivers/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Dsegraph",
+            "item": "https://docs.nosqlbench.io/docs/drivers/dsegraph/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+    
+  
+
+<body class="page single">
+  
+    
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+  
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10 col-xl-8">
+        <article>
+          <div class="page-header">
+            <h1>dsegraph driver</h1>
+          </div>
+          
+          <p><strong>warning; These docs are a work in progress</strong></p>
+<p>This is an activity type which allows for the execution of workloads
+using DSE Graph and the DSE Java Driver.</p>
+<p>This activity type is wired synchronously within each client 
+thread, however the async API is used in order to expose fine-grain 
+metrics about op binding, op submission, and waiting for a result.</p>
+<h2 id="example-activity-definitions">Example activity definitions</h2>
+<p>Run a dsegraph activity named 'a1', with definitions from activities/graphs.yaml</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... type=dsegraph alias=a1 yaml=graphs
+</span></code></pre>
+<p>Run a dsegraph activity defined by graphs.yaml, but with shortcut naming</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... type=dsegraph yaml=graphs
+</span></code></pre>
+<p>Only run statement groups which match a tag regex</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... type=dsegraph yaml=graphs tags=group:&#39;ddl.*&#39;
+</span></code></pre>
+<p>Run the matching 'dml' statements, with 100 cycles, from [1000..1100)</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>... type=dsegraph yaml=graphs tags=group:&#39;dml.*&#39; cycles=1000..11000
+</span></code></pre>
+<p>This last example shows that the cycle range is [inclusive..exclusive),
+to allow for stacking test intervals. This is standard across all
+activity types.</p>
+<h2 id="dsegraph-activitytype-parameters">dsegraph ActivityType Parameters</h2>
+<ul>
+<li><strong>yaml</strong> - The file which holds the schema and statement defs. 
+(no default, required)</li>
+</ul>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>DOCS TBD FOR THIS SECTION
+</span><span>- **cl** - An override to consistency levels for the activity. If
+</span><span>    this option is used, then all consistency levels will be replaced
+</span><span>    by this one for the current activity, and a log line explaining
+</span><span>    the difference with respect to the yaml will be emitted.
+</span><span>    This is not a dynamic parameter. It will only be applied at
+</span><span>    activity start.
+</span></code></pre>
+<ul>
+<li><strong>cbopts</strong> - this is how you customize the cluster settings for
+the client, including policies, compression, etc. This is
+a string of <em>Java</em>-like method calls just as you would use them
+in the Cluster.Builder fluent API. They are evaluated inline
+with the default Cluster.Builder options not covered below.
+Example: cbopts=&quot;.withCompression(ProtocolOptions.Compression.NONE)&quot;</li>
+<li><strong>maxtries</strong> - how many times an operation may be attempted</li>
+</ul>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>DOCS TBD FOR THIS SECTION
+</span><span>- **diagnose** - if this is set to true, then any exception for an 
+</span><span>    operation are thrown instead of handled internally. This can 
+</span><span>    be useful for diagnosing exceptions during scenario development.
+</span><span>    In this version of ebdse, this is a shortcut for setting all the
+</span><span>    exception handlers to **stop**.
+</span></code></pre>
+<ul>
+<li><strong>cycles</strong> - standard, however the cql activity type will default 
+this to however many statements are included in the current 
+activity, after tag filtering, etc.</li>
+<li><strong>username</strong> - the user to authenticate as. This option requires 
+that one of <strong>password</strong> or <strong>passfile</strong> also be defined.</li>
+<li><strong>password</strong> - the password to authenticate with. This will be 
+ignored if passfile is also present.</li>
+<li><strong>passfile</strong> - the file to read the password from. The first 
+line of this file is used as the password.</li>
+<li><strong>alias</strong> - this is a standard engineblock parameter, however 
+the cql type will use the yaml value also as the alias value 
+when not specified.</li>
+<li><strong>graphson</strong> - the version of the graphson protocol to use:
+default: 2</li>
+</ul>
+<h2 id="statement-parameters">Statement Parameters</h2>
+<ul>
+<li><strong>repeat</strong> - if specified, causes the statement blocks to be
+lexically repeated before being evaluated as statements,
+including enumerated bindings.</li>
+</ul>
+<h2 id="error-handling">Error Handling</h2>
+<h4 id="error-handlers">Error Handlers</h4>
+<p>When an error occurs, you can control how it is handled. </p>
+<p>This is the error handler stack:</p>
+<ul>
+<li><strong>stop</strong> - causes the exception to be thrown to the runtime, forcing a shutdown.</li>
+<li><strong>warn</strong> - log a warning in the log, with details about the error and associated statement.</li>
+<li><strong>count</strong> - keep a count in metrics for the exception, under the name 
+exceptions.classname, using the simple class name, of course.</li>
+<li><strong>retry</strong> - Retry the operation if the number of retries hasn't been 
+used up.</li>
+<li><strong>ignore</strong> - do nothing, do not even retry or count</li>
+</ul>
+<p>They are ordered from the most extreme to the most oblivious starting
+at the top.  With the exception of the <strong>stop</strong> handler, the rest of 
+them will be applied to an error all the way to the bottom. One way 
+to choose the right handler is to say &quot;How serious is this to the test
+run or the results of the test if it happens?&quot; In general, it is best 
+to be more conservative and choose a more aggressive setting unless you 
+are specifically wanting to measure how often a given error happens, 
+for example.</p>
+<h4 id="error-types">Error Types</h4>
+<p>The errors that can be detected are sorted into three categories:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>DOCS TBD FOR THIS SECTION
+</span><span>
+</span><span>- **unapplied** - This was a LWT that did not get applied. All operations
+</span><span>    are checked, and a ChangeUnapplied exception is thrown.
+</span><span>    (This is a local exception to make error handling consistent)
+</span><span>    This is a separate category from retryable, because you have to
+</span><span>    have reactive logic to properly submit a valid request when it occurs.
+</span></code></pre>
+<ul>
+<li><strong>retryable</strong> - NoHostAvailable, Overloaded, WriteTimeout, and 
+ReadTimeout exceptions. These are all exceptions that might
+succeed if tried again with the same payload.</li>
+<li><strong>realerrors</strong> -  ReadFailure, WriteFailure, SyntaxError, InvalidQuery.
+These represent errors that are likely a persistent issue, and
+will not likely succeed if tried again.</li>
+</ul>
+<p>To set the error handling behavior, simply pair these categories up with 
+an entry point in the error handler stack. Here is an example, showing
+also the defaults that are used if you do not specify otherwise:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>retryable=retry realerror=stop 
+</span></code></pre>
+<h2 id="generic-parameters">Generic Parameters</h2>
+<p><em>provided by the runtime</em></p>
+<ul>
+<li><strong>targetrate</strong> - The target rate in ops/s</li>
+<li><strong>linkinput</strong> - if the name of another activity is specified, this activity
+will only go as fast as that one.</li>
+<li><strong>tags</strong> - optional filter for matching tags in yaml sections (detailed help
+link needed)</li>
+<li><strong>threads</strong> - the number of client threads driving this activity</li>
+</ul>
+<h2 id="metrics">Metrics</h2>
+<ul>
+<li>&lt;alias&gt;.cycles - (provided by core input) A timer around the whole cycle</li>
+<li>&lt;alias&gt;.bind - A timer which tracks the performance of the statement
+binding logic, including the generation of data immediately prior</li>
+<li>&lt;alias&gt;.execute - A timer which tracks the performance of op submission
+only. This is the async execution call, broken out as a separate step.</li>
+<li>&lt;alias&gt;.result - A timer which tracks the performance of an op result only.
+This is the async get on the future, broken out as a separate step.</li>
+<li>&lt;alias&gt;.tries - A histogram of how many tries were required to get a
+completed operation</li>
+</ul>
+<h2 id="yaml-format">YAML Format</h2>
+<p>The YAML file for a DSE Graph activity has one or more logical yaml documents,
+each separted by tree dashes: --- the standard yaml document separator. Each
+yaml document may contain a tags section for the purpose of including or 
+excluding statements for a given activity: </p>
+<pre data-lang="(optional)" style="background-color:#2e3440;color:#d8dee9;" class="language-(optional) "><code class="language-(optional)" data-lang="(optional)"><span>tags:
+</span><span>  tagname: value
+</span><span>  ...
+</span></code></pre>
+<p>If no tags are provided in a document section, then it will be matched by 
+all possible tag filters. Conversely, if no tag filter is applied in 
+the activity definition, all tagged documents will match.</p>
+<p>Statements can be specified at the top level or within named blocks. When
+you have simple needs to just put a few statements into the yaml, the top-level
+style will suffice:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>name: statement-top-level-example
+</span><span>statements:
+</span><span>- statement 1
+</span><span>- statement 2
+</span></code></pre>
+<p>If you need to represent multiple blocks of statements in the same activity,
+you might want to group them into blocks:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>blocks:
+</span><span>- name: statement-block-1
+</span><span>  statements:
+</span><span>  - statement 1
+</span><span>  - statement 2
+</span></code></pre>
+<p>At any level that you can specify statements, you can also specify data bindings:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>statements:
+</span><span>- statement 1
+</span><span>- statement 2
+</span><span>bindings:
+</span><span> bindto1: foo
+</span><span> bindto2: bar
+</span><span>
+</span><span>blocks:
+</span><span>- name: statement-block-1
+</span><span>  statements:
+</span><span>  - statement 1
+</span><span>  bindings:
+</span><span>    bindto1: foo
+</span></code></pre>
+<p>Data bindings specify how values are generated to plug into each operation. More
+details on data bindings are available in the activity usage guide.</p>
+<h3 id="parameter-templating">Parameter Templating</h3>
+<p>Double angle brackets may be used to drop parameters into the YAML 
+arbitrarily. When the YAML file is loaded, and only then, these parameters
+are interpolated from activity parameters like those above. This allows you
+to create activity templates that can be customized simply by providing
+additional parameters to the activity. There are two forms, 
+&lt;&lt;some_var_name:default_value&gt;&gt; and &lt;&lt;some_var_name&gt;&gt;. The first
+form contains a default value. In any case, if one of these parameters is
+encountered and a qualifying value is not found, an error will be thrown.</p>
+<h3 id="yaml-location">YAML Location</h3>
+<p>The YAML file referenced in the yaml= parameter will be searched for in the following places, in this order:</p>
+<ol>
+<li>A URL, if it starts with 'http:' or 'https:'</li>
+<li>The local filesystem, if it exists there</li>
+<li>The internal classpath and assets in the ebdse jar.</li>
+</ol>
+<p>The '.yaml' suffix is not required in the yaml= parameter, however it is
+required on the actual file. As well, the logical search path &quot;activities/&quot;
+will be used if necessary to locate the file, both on the filesystem and in
+the classpath.</p>
+<p>This is a basic example below that can be copied as a starting template.</p>
+<h2 id="yaml-example">YAML Example</h2>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>---
+</span><span>CONTENT TBD
+</span></code></pre>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

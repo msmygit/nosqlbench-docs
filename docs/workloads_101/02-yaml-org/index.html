@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>02 YAML Organization | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Workloads_101",
+            "item": "https://docs.nosqlbench.io/docs/workloads_101/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "02 Yaml Org",
+            "item": "https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="docs single">
+  
+  
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row flex-xl-nowrap">
+	  
+<div class="col-lg-5 col-xl-4 docs-sidebar">
+	<nav class="docs-links" aria-label="Main navigation">
+			
+			
+			
+			
+					
+					
+					
+							<h3>Introduction</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/introduction/">NoSQLBench</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/core-concepts/">Core Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/showcase/">Showcase</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/community/">Community</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/principles/">Design Principles</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Getting Started</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/00-get-nosqlbench/">00 Install</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/01-example-commands/">01 Commands</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/02-example-results/">02 Results</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/03-reading-metrics/">03 Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/04-next-steps/">Next Steps</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Workloads 101</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/00-designing-workloads/">00 Designing Workloads</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/01-op-templates/">01 Op Templates</a></li>
+							                           
+									<li><a class="docs-link active" href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/">02 YAML Organization</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/03-data-bindings/">03 Data Bindings</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/04-op-params/">04 Op Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/05-op-tags/">05 Op Tags</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/06-op-blocks/">06 Op Blocks</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/07-more-op-templates/">07 More Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/08-multi-docs/">08 Multi-Docs</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/09-template-params/">09 Template Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/10-stmt-naming/">10 Op Naming</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/11-named-scenarios/">11 Named Scenarios</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/99-yaml-diagnostics/">YAML Diagnostics</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Reference</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/command-line/">CLI Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/cli-scripting/">CLI Scripting</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/parameter-types/">Parameter Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-activity-parameters/">Core Activity Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-op-params/">Core Op Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/timing-terms/">Timing Terms Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/standard-metrics/">Standard Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/advanced-metrics/">Advanced Metrics Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/grafana-metrics/">Built-In Grafana Dashboard</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/workloads-intro/">Built-In Workloads</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Scenario Scripting</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-intro/">Scripting Intro</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-parameters/">Scripting Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-environment/">Scripting Environment</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-extensions/">Scripting Extensions</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Advanced Topics</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/random-data/">Randomness, Determinism, Variation</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/vantage-points/">Vantage Points</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/multiple-clients/">Multiple Clients</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Drivers</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/driver-types-intro/">Driver Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cockroachdb/">cockroachdb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cql/">cql driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqld3/">cqld3 driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqlverify/">cqlverify driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/diag/">diag driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/dsegraph/">dsegraph driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/http/">http driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jms/">jms driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jmx/">jmx driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/kafkaproducer/">kafkaproducer driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/mongodb/">mongodb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/pulsar/">pulsar driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/ssl/">cql driver ssl</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/stdout/">stdout driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpclient/">tcpclient driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpserver/">tcpserver driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/webdriver/">webdriver driver</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Binding Functions</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-concepts/">Binding Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-functions/">Binding Functions Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-datetime/">datetime functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-general/">general functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-premade/">pre-made functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-conversion/">conversion functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-distributions/">distribution functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-state/">state functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/">collection functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-diagnostics/">diagnostic functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-experimental/">Experimental functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-functional/">flow functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-nulls/">null functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-objects/">Object functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-statistics/">Statistics functions</a></li>
+							
+					</ul>
+					
+					
+			
+	</nav>
+</div>
+
+	  
+  
+  <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+  	<div class="page-links">
+  			<h3>On this page</h3>
+  			<nav id="TableOfContents">
+  					<ul>
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/#schema-phase">Schema phase</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/#rampup-phase">Rampup phase</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/#main-phase">Main phase</a></li>
+  							
+  							
+  					</ul>
+  			</nav>
+  	</div>
+  </nav>
+  
+
+      <main class="docs-content col-lg-11 col-xl-9">
+        <h1>02 YAML Organization</h1>
+        
+        <p>It is best to keep every workload self-contained within a single YAML file, including schema, data
+rampup, and the main phase of testing. The phases of testing are controlled by tags as described
+below.</p>
+<p><strong>NOTE:</strong>
+The phase names described below have been adopted as a convention within the built-in workloads. It
+is strongly advised that new workload YAMLs use the same tagging scheme so that workload are more
+plugable across YAMLs.</p>
+<h2 id="schema-phase">Schema phase</h2>
+<p>The schema phase is simply a phase of your test which creates the necessary schema on your target
+system. For CQL, this generally consists of a keyspace and one ore more table statements. There is
+no special schema layer in nosqlbench. All statements executed are simply statements. This provides
+the greatest flexibility in testing since every activity type is allowed to control its DDL and DML
+using the same machinery.</p>
+<p>The schema phase is normally executed with defaults for most parameters. This means that statements
+will execute in the order specified in the YAML, in serialized form, exactly once. This is a welcome
+side-effect of how the initial parameters like <em>cycles</em> is set from the statements which are
+activated by tagging.</p>
+<p>You can mark operations for the schema phase by adding this set of tags to the op templates, either
+directly, or by block:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>tags:
+</span><span>  phase: schema
+</span></code></pre>
+<h2 id="rampup-phase">Rampup phase</h2>
+<p>When you run a performance test, it is very important to be aware of how much data is present.
+Higher density tests are more realistic for systems which accumulate data over time, or which have a
+large working set of data. The amount of data on the system you are testing should recreate a
+realistic amount of data that you would run in production, ideally. In general, there is a
+triangular trade-off between service time, op rate, and data density.</p>
+<p>It is the purpose of the <em>rampup</em> phase to create the backdrop data on a target system that makes a
+test meaningful for some level of data density. Data density is normally discussed as average per
+node, but it is also important to consider distribution of data as it varies from the least dense to
+the most dense nodes.</p>
+<p>Because it is useful to be able to add data to a target cluster in an incremental way, the bindings
+which are used with a <em>rampup</em> phase may actually be different from the ones used for a <em>main</em>
+phase. In most cases, you want the rampup phase to create data in a way that incrementally adds to
+the population of data in the cluster. This allows you to add some data to a cluster
+with <code>cycles=0..1M</code> and then decide whether to continue adding data using the next contiguous range
+of cycles, with <code>cycles=1M..2M</code> and so on.</p>
+<p>You can mark operations for the rampup phase by adding this set of tags to the op templates, either
+directly, or by block:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>tags:
+</span><span>  phase: rampup
+</span></code></pre>
+<h2 id="main-phase">Main phase</h2>
+<p>The main phase of a NoSQLBench scenario is the one during which you really care about recording the
+metrics. This is the actual test that everything else has prepared your system for.</p>
+<p>You can mark operations for the main phase by adding this set of tags to the op templates, either
+directly, or by block:</p>
+<pre style="background-color:#2e3440;color:#d8dee9;"><code><span>tags:
+</span><span>  phase: main
+</span></code></pre>
+
+        
+        
+<div class="docs-navigation d-flex justify-content-between">
+  
+  
+  
+  
+  
+  <a href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;workloads_101&#x2F;01-op-templates&#x2F;">
+    <div class="card my-1">
+      <div class="card-body py-2">
+        &larr; 01 Op Templates
+      </div>
+    </div>
+  </a>
+  
+
+  
+  
+  
+  
+  
+    <a class="ms-auto" href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;workloads_101&#x2F;03-data-bindings&#x2F;">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          03 Data Bindings &rarr;
+        </div>
+      </div>
+    </a>
+  
+</div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>

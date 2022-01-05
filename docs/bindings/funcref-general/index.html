@@ -1,0 +1,1750 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="https://docs.nosqlbench.io/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+
+
+<link rel="stylesheet" href="https://docs.nosqlbench.io/main.css">
+
+
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+  
+  
+  
+    
+  
+  
+  
+  
+    
+  
+  
+  
+
+
+  <meta name="robots" content="index, follow">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+
+	
+
+
+	
+
+<title>general functions | NoSQLBench</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://docs.nosqlbench.io/docs/bindings/funcref-general/">
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    
+      
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          {
+            "@type": "ListItem",
+            "position":  1 ,
+            "name": "Home",
+            "item": "https://docs.nosqlbench.io/"
+          },
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  2 ,
+            "name": "Docs",
+            "item": "https://docs.nosqlbench.io/docs/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  3 ,
+            "name": "Bindings",
+            "item": "https://docs.nosqlbench.io/docs/bindings/"
+          },
+        
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          
+          
+          {
+            "@type": "ListItem",
+            "position":  4 ,
+            "name": "Funcref General",
+            "item": "https://docs.nosqlbench.io/docs/bindings/funcref-general/"
+          },
+        
+      
+    
+  }
+</script>
+
+
+
+
+  <meta name="theme-color" content="#fff">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://docs.nosqlbench.io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://docs.nosqlbench.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://docs.nosqlbench.io/favicon-16x16.png">
+  
+    <link rel="manifest" href="https://docs.nosqlbench.io/site.webmanifest">
+  
+
+
+  
+
+</head>
+
+  
+
+<body class="docs single">
+  
+  
+  
+  
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+	<div class="container">
+		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
+		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
+		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://docs.nosqlbench.io/">NoSQLBench</a>
+		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
+			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+		</button>
+		<ul class="navbar-nav fork-me order-3 order-md-5">
+			
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>-->
+<!--				</li>-->
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench-docs" title="NoSQLBench docs repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://github.com/nosqlbench/nosqlbench" title="NoSQLBench main project repo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+			</li>
+			
+		</ul>
+		<div class="collapse navbar-collapse order-4 order-md-1">
+			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
+				
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/docs/">Docs</a>-->
+<!--				</li>-->
+<!--				<li class="nav-item">-->
+<!--					<a class="nav-link" href="https://docs.nosqlbench.io/blog/">Blog</a>-->
+<!--				</li>-->
+				
+			</ul>
+			<div class="break order-6 d-md-none"></div>
+			
+				<form class="navbar-form flex-grow-1 order-7 order-md-3">
+					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
+						aria-label="Search docs..." autocomplete="off">
+					<div id="suggestions" class="shadow bg-white rounded"></div>
+				</form>
+			
+		</div>
+	</div>
+</header>
+
+
+
+  
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row flex-xl-nowrap">
+	  
+<div class="col-lg-5 col-xl-4 docs-sidebar">
+	<nav class="docs-links" aria-label="Main navigation">
+			
+			
+			
+			
+					
+					
+					
+							<h3>Introduction</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/introduction/">NoSQLBench</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/core-concepts/">Core Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/showcase/">Showcase</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/community/">Community</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/nosqlbench/principles/">Design Principles</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Getting Started</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/00-get-nosqlbench/">00 Install</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/01-example-commands/">01 Commands</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/02-example-results/">02 Results</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/03-reading-metrics/">03 Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/getting_started/04-next-steps/">Next Steps</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Workloads 101</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/00-designing-workloads/">00 Designing Workloads</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/01-op-templates/">01 Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/02-yaml-org/">02 YAML Organization</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/03-data-bindings/">03 Data Bindings</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/04-op-params/">04 Op Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/05-op-tags/">05 Op Tags</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/06-op-blocks/">06 Op Blocks</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/07-more-op-templates/">07 More Op Templates</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/08-multi-docs/">08 Multi-Docs</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/09-template-params/">09 Template Params</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/10-stmt-naming/">10 Op Naming</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/11-named-scenarios/">11 Named Scenarios</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/workloads_101/99-yaml-diagnostics/">YAML Diagnostics</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Reference</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/command-line/">CLI Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/cli-scripting/">CLI Scripting</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/parameter-types/">Parameter Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-activity-parameters/">Core Activity Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/core-op-params/">Core Op Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/timing-terms/">Timing Terms Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/standard-metrics/">Standard Metrics</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/advanced-metrics/">Advanced Metrics Options</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/grafana-metrics/">Built-In Grafana Dashboard</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/reference/workloads-intro/">Built-In Workloads</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Scenario Scripting</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-intro/">Scripting Intro</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-parameters/">Scripting Parameters</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-environment/">Scripting Environment</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/scripting/scripting-extensions/">Scripting Extensions</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Advanced Topics</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/random-data/">Randomness, Determinism, Variation</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/vantage-points/">Vantage Points</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/advanced_topics/multiple-clients/">Multiple Clients</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Drivers</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/driver-types-intro/">Driver Types</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cockroachdb/">cockroachdb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cql/">cql driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqld3/">cqld3 driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/cqlverify/">cqlverify driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/diag/">diag driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/dsegraph/">dsegraph driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/http/">http driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jms/">jms driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/jmx/">jmx driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/kafkaproducer/">kafkaproducer driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/mongodb/">mongodb driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/pulsar/">pulsar driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/ssl/">cql driver ssl</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/stdout/">stdout driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpclient/">tcpclient driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/tcpserver/">tcpserver driver</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/drivers/webdriver/">webdriver driver</a></li>
+							
+					</ul>
+					
+					
+					
+					
+							<h3>Binding Functions</h3>
+							<ul class="list-unstyled">
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-concepts/">Binding Concepts</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/binding-functions/">Binding Functions Explained</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-datetime/">datetime functions</a></li>
+							                           
+									<li><a class="docs-link active" href="https://docs.nosqlbench.io/docs/bindings/funcref-general/">general functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-premade/">pre-made functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-conversion/">conversion functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-distributions/">distribution functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-state/">state functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-collections/">collection functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-diagnostics/">diagnostic functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-experimental/">Experimental functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-functional/">flow functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-nulls/">null functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-objects/">Object functions</a></li>
+							                           
+									<li><a class="docs-link" href="https://docs.nosqlbench.io/docs/bindings/funcref-statistics/">Statistics functions</a></li>
+							
+					</ul>
+					
+					
+			
+	</nav>
+</div>
+
+	  
+  
+  <nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+  	<div class="page-links">
+  			<h3>On this page</h3>
+  			<nav id="TableOfContents">
+  					<ul>
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#add">Add</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#addcyclerange">AddCycleRange</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#addhashrange">AddHashRange</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#alphanumericstring">AlphaNumericString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#bytebuffersizedhashed">ByteBufferSizedHashed</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#csvfrequencysampler">CSVFrequencySampler</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#csvsampler">CSVSampler</a></li>
+  							
+  									<ul>
+  											
+  											<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#combining-duplicate-labels">Combining duplicate labels</a></li>
+  											
+  											<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#map-vs-hash-mode">Map vs Hash mode</a></li>
+  											
+  									</ul>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#charbufimage">CharBufImage</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#charbufferextract">CharBufferExtract</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#clamp">Clamp</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#combinations">Combinations</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#cyclerange">CycleRange</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#delimfrequencysampler">DelimFrequencySampler</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#directorylines">DirectoryLines</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#div">Div</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#dividetolongtostring">DivideToLongToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#elapsednanotime">ElapsedNanoTime</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#fieldextractor">FieldExtractor</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#fixedvalue">FixedValue</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#fixedvalues">FixedValues</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#fullhash">FullHash</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hash">Hash</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashinterval">HashInterval</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashrange">HashRange</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashrangescaled">HashRangeScaled</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedbytebufferextract">HashedByteBufferExtract</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hasheddoublerange">HashedDoubleRange</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedfileextracttostring">HashedFileExtractToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedlinetoint">HashedLineToInt</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedlinetostring">HashedLineToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedlinestokeyvaluestring">HashedLinesToKeyValueString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedloremextracttostring">HashedLoremExtractToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedrangedtononuniformdouble">HashedRangedToNonuniformDouble</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#hashedtobytebuffer">HashedToByteBuffer</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#identity">Identity</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#interpolate">Interpolate</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#jointemplate">JoinTemplate</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#listtemplate">ListTemplate</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#loadelement">LoadElement</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#longtostring">LongToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#matchfunc">MatchFunc</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#matchregex">MatchRegex</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#max">Max</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#min">Min</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#mod">Mod</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#modulocsvlinetostring">ModuloCSVLineToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#modulocsvlinetouuid">ModuloCSVLineToUUID</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#modulolinetostring">ModuloLineToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#modulotointeger">ModuloToInteger</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#modulotolong">ModuloToLong</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#mul">Mul</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#murmur3divtolong">Murmur3DivToLong</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#murmur3divtostring">Murmur3DivToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#numbernametostring">NumberNameToString</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#partitionlongs">PartitionLongs</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#prefix">Prefix</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#replaceall">ReplaceAll</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#replaceregex">ReplaceRegex</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#scale">Scale</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#shuffle">Shuffle</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#signedhash">SignedHash</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#staticstringmapper">StaticStringMapper</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#suffix">Suffix</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#template">Template</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#threadnumtointeger">ThreadNumToInteger</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#threadnumtolong">ThreadNumToLong</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#tohasheduuid">ToHashedUUID</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#trim">Trim</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#weightedlongs">WeightedLongs</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#weightedstrings">WeightedStrings</a></li>
+  							
+  							
+  							<li><a href="https://docs.nosqlbench.io/docs/bindings/funcref-general/#weightedstringsfromcsv">WeightedStringsFromCSV</a></li>
+  							
+  							
+  					</ul>
+  			</nav>
+  	</div>
+  </nav>
+  
+
+      <main class="docs-content col-lg-11 col-xl-9">
+        <h1>general functions</h1>
+        
+        <p>These functions have no particular category, so they ended up here by default.</p>
+<h2 id="add">Add<a class="zola-anchor" href="#add" aria-label="Anchor link for: add">🔗</a></h2>
+<p>Adds a value to the input.</p>
+<ul>
+<li>
+<p>double -&gt; Add(double: addend) -&gt; double</p>
+</li>
+<li>
+<p>long -&gt; Add(int: addend) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; Add(long: addend) -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; Add(int: addend) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Add(23)</code></li>
+<li><em>adds integer 23 to the input integer value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="addcyclerange">AddCycleRange<a class="zola-anchor" href="#addcyclerange" aria-label="Anchor link for: addcyclerange">🔗</a></h2>
+<p>Adds a cycle range to the input, producing an increasing sawtooth-like output.</p>
+<ul>
+<li>
+<p>long -&gt; AddCycleRange(int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; AddCycleRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; AddCycleRange(long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; AddCycleRange(long: minValue, long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; AddCycleRange(int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; AddCycleRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+</ul>
+<h2 id="addhashrange">AddHashRange<a class="zola-anchor" href="#addhashrange" aria-label="Anchor link for: addhashrange">🔗</a></h2>
+<p>Adds a pseudo-random value within the specified range to the input.</p>
+<ul>
+<li>
+<p>long -&gt; AddHashRange(long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; AddHashRange(long: minValue, long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; AddHashRange(int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; AddHashRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; AddHashRange(int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; AddHashRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+</ul>
+<h2 id="alphanumericstring">AlphaNumericString<a class="zola-anchor" href="#alphanumericstring" aria-label="Anchor link for: alphanumericstring">🔗</a></h2>
+<p>Create an alpha-numeric string of the specified length, character-by-character.</p>
+<ul>
+<li>long -&gt; AlphaNumericString(int: length) -&gt; String</li>
+</ul>
+<h2 id="bytebuffersizedhashed">ByteBufferSizedHashed<a class="zola-anchor" href="#bytebuffersizedhashed" aria-label="Anchor link for: bytebuffersizedhashed">🔗</a></h2>
+<p>Create a ByteBuffer from a long input based on a provided size function. As a 'Sized' function, the first argument is a function which determines the size of the resulting ByteBuffer. As a 'Hashed' function, the input value is hashed again before being used as value.</p>
+<ul>
+<li>
+<p>long -&gt; ByteBufferSizedHashed(int: size) -&gt; java.nio.ByteBuffer</p>
+<ul>
+<li><em>example:</em> <code>ByteBufferSizedHashed(16)</code></li>
+<li><em>Functionally identical to HashedtoByteBuffer(16) but using dynamic sizing implementation</em></li>
+<li><em>example:</em> <code>ByteBufferSizedHashed(HashRange(10, 14))</code></li>
+<li><em>Create a ByteBuffer with variable limit (10 to 14)</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; ByteBufferSizedHashed(Object: sizeFunc) -&gt; java.nio.ByteBuffer</p>
+</li>
+</ul>
+<h2 id="csvfrequencysampler">CSVFrequencySampler<a class="zola-anchor" href="#csvfrequencysampler" aria-label="Anchor link for: csvfrequencysampler">🔗</a></h2>
+<p>Takes a CSV with sample data and generates random values based on the relative frequencies of the values in the file. The CSV file must have headers which can be used to find the named columns. I.E. take the following imaginary `animals.csv` file: animal,count,country puppy,1,usa puppy,2,colombia puppy,3,senegal kitten,2,colombia `CSVFrequencySampler('animals.csv', animal)` will return `puppy` or `kitten` randomly. `puppy` will be 3x more frequent than `kitten`. `CSVFrequencySampler('animals.csv', country)` will return `usa`, `colombia`, or `senegal` randomly. `colombia` will be 2x more frequent than `usa` or `senegal`. Use this function to infer frequencies of categorical values from CSVs.</p>
+<ul>
+<li>long -&gt; CSVFrequencySampler(String: filename, String: columnName) -&gt; String
+<ul>
+<li>
+<p><em>notes:</em> Create a sampler of strings from the given CSV file. The CSV file must have plain CSV headers
+as its first line.
+@param filename The name of the file to be read into the sampler buffer
+@param columnName The name of the column to be sampled</p>
+</li>
+<li>
+<p><em>example:</em> <code>CSVFrequencySampler('values.csv','modelno')</code></p>
+</li>
+<li>
+<p><em>Read values.csv, count the frequency of values in 'modelno' column, and sample from this column proportionally</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="csvsampler">CSVSampler<a class="zola-anchor" href="#csvsampler" aria-label="Anchor link for: csvsampler">🔗</a></h2>
+<p>This function is a toolkit version of the {@link WeightedStringsFromCSV} function. It is more capable and should be the preferred function for alias sampling over any CSV data. This sampler uses a named column in the CSV data as the value. This is also referred to as the <em>labelColumn</em> . The frequency of this label depends on the weight assigned to it in another named CSV column, known as the <em>weightColumn</em> .</p>
+<h3 id="combining-duplicate-labels">Combining duplicate labels<a class="zola-anchor" href="#combining-duplicate-labels" aria-label="Anchor link for: combining-duplicate-labels">🔗</a></h3>
+<p>When you have CSV data which is not organized around the specific identifier that you want to sample by, you can use some combining functions to tabulate these prior to sampling. In that case, you can use any of &quot;sum&quot;, &quot;avg&quot;, &quot;count&quot;, &quot;min&quot;, or &quot;max&quot; as the reducing function on the value in the weight column. If none are specified, then &quot;sum&quot; is used by default. All modes except &quot;count&quot; and &quot;name&quot; require a valid weight column to be specified.</p>
+<ul>
+<li>sum, avg, min, max - takes the given stat for the weight of each distinct label</li>
+<li>count - takes the number of occurrences of a given label as the weight</li>
+<li>name - sets the weight of all distinct labels to 1.0d</li>
+</ul>
+<h3 id="map-vs-hash-mode">Map vs Hash mode<a class="zola-anchor" href="#map-vs-hash-mode" aria-label="Anchor link for: map-vs-hash-mode">🔗</a></h3>
+<p>As with some of the other statistical functions, you can use this one to pick through the sample values by using the <em>map</em> mode. This is distinct from the default <em>hash</em> mode. When map mode is used, the values will appear monotonically as you scan through the unit interval of all long values. Specifically, 0L represents 0.0d in the unit interval on input, and Long.MAX_VALUE represents 1.0 on the unit interval.) This mode is only recommended for advanced scenarios and should otherwise be avoided. You will know if you need this mode.</p>
+<ul>
+<li>long -&gt; CSVSampler(String: labelColumn, String: weightColumn, String[]...: data) -&gt; String
+<ul>
+<li><em>notes:</em> Build an efficient O(1) sampler for the given column values with respect to the weights,
+combining equal values by summing the weights.</li>
+</ul>
+</li>
+</ul>
+<p>@param labelColumn   The CSV column name containing the value
+@param weightColumn  The CSV column name containing a double weight
+@param data Sampling modes or file names. Any of map, hash, sum, avg, count are taken
+as configuration modes, and all others are taken as CSV filenames.</p>
+<ul>
+<li><em>example:</em> <code>CSVSampler('USPS','n/a','name','census_state_abbrev')</code></li>
+<li>**</li>
+</ul>
+<h2 id="charbufimage">CharBufImage<a class="zola-anchor" href="#charbufimage" aria-label="Anchor link for: charbufimage">🔗</a></h2>
+<p>Builds a shared text image in memory and samples from it pseudo-randomly with hashing. The characters provided can be listed like a string (abc123), or can include range specifiers like a hyphen (a-zA-Z0-9). These characters are used to build an image of the specified size in memory that is sampled from according to the size function. The extracted value is sized according to either a provided function, a size range, or otherwise the whole image. The image can be varied between tests if you want by specifying a seed value. If no seed value is specified, then the image length is used also as a seed.</p>
+<ul>
+<li>
+<p>long -&gt; CharBufImage(int: size) -&gt; java.nio.CharBuffer</p>
+<ul>
+<li><em>notes:</em> Shortcut constructor for building a simple text image
+from A-Z, a-z, 0-9 and a space, of the specified size.
+When this function is used, it always returns the full image
+if constructed in this way.
+@param size length in characters of the image.</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; CharBufImage(Object: charsFunc, int: imgsize) -&gt; java.nio.CharBuffer</p>
+<ul>
+<li><em>notes:</em> This is the same as {@link CharBufImage(Object,int,Object)} except that the
+extracted sample length is fixed to the buffer size, thus the function will
+always return the full buffer.
+@param charsFunc The function which produces objects, which toString() is used to collect their input
+@param imgsize The size of the CharBuffer to build at startup</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; CharBufImage(Object: charsFunc, int: imgsize, Object: sizespec) -&gt; java.nio.CharBuffer</p>
+<ul>
+<li><em>notes:</em> This is the same as {@link CharBufImage(Object, int, Object, long)} excep that
+the seed is defaulted to 0L
+@param charsFunc The function which produces objects, which toString() is used to collect their input
+@param imgsize The size of the CharBuffer to build at startup
+@param sizespec The specifier for how long samples should be. If this is a number, then it is static. If
+it is a function, then the size is determined for each call.</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; CharBufImage(Object: charsFunc, int: imgsize, Object: sizespec, long: seed) -&gt; java.nio.CharBuffer</p>
+<ul>
+<li><em>notes:</em> Create a CharBuffer full of the contents of the results of calling a source
+function until it is full. Then allow it to be sampled with random extracts
+as determined by the sizespec.
+@param charsFunc The function which produces objects, which toString() is used to collect their input
+@param imgsize The size of the CharBuffer to build at startup
+@param sizespec The specifier for how long samples should be. If this is a number, then it is static. If
+it is a function, then the size is determined for each call.
+@param seed      A seed that can be used to change up the rendered content.</li>
+</ul>
+</li>
+</ul>
+<h2 id="charbufferextract">CharBufferExtract<a class="zola-anchor" href="#charbufferextract" aria-label="Anchor link for: charbufferextract">🔗</a></h2>
+<p>Create a CharBuffer from the first function, and then sample data from that buffer according to the size function. The initFunction can be given as simply a size, in which case ByteBufferSizedHash is used with Hex String conversion. If the size function yields a size larger than the available buffer size, then it is lowered to that size automatically. If it is lower, then a random offset is used within the buffer image. This function behaves slightly differently than most in that it creates and caches as source byte buffer during initialization.</p>
+<ul>
+<li>long -&gt; CharBufferExtract(Object: initFunc, Object: sizeFunc) -&gt; java.nio.CharBuffer</li>
+</ul>
+<h2 id="clamp">Clamp<a class="zola-anchor" href="#clamp" aria-label="Anchor link for: clamp">🔗</a></h2>
+<p>Clamp the output values to be at least the minimum value and at most the maximum value.</p>
+<ul>
+<li>
+<p>double -&gt; Clamp(double: min, double: max) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Clamp(1.0D,9.0D)</code></li>
+<li><em>clamp output values between the range [1.0D, 9.0D], inclusive</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Clamp(long: min, long: max) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Clamp(4L,400L)</code></li>
+<li><em>clamp the output values in the range [4L,400L], inclusive</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Clamp(int: min, int: max) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>Clamp(1,100)</code></li>
+<li><em>clamp the output values in the range [1,100], inclusive</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="combinations">Combinations<a class="zola-anchor" href="#combinations" aria-label="Anchor link for: combinations">🔗</a></h2>
+<p>Convert a numeric value into a code according to ASCII printable characters. This is useful for creating various encodings using different character ranges, etc. This mapper can map over the sequences of character ranges providing every unique combination and then wrapping around to the beginning again. It can convert between character bases with independent radix in each position. Each position in the final string takes its values from a position-specific character set, described by the shorthand in the examples below. The constructor will throw an error if the number of combinations exceeds that which can be represented in a long value. (This is a very high number).</p>
+<ul>
+<li>long -&gt; Combinations(String: spec) -&gt; String
+<ul>
+<li><em>example:</em> <code>Combinations('A-Z;A-Z')</code></li>
+<li><em>a two digit alphanumeric code. Wraps at 26^2</em></li>
+<li><em>example:</em> <code>Combinations('0-9A-F')</code></li>
+<li><em>a single hexadecimal digit</em></li>
+<li><em>example:</em> <code>Combinations('0123456789ABCDEF')</code></li>
+<li><em>a single hexadecimal digit</em></li>
+<li><em>example:</em> <code>Combinations('0-9A-F;0-9A-F;0-9A-F;0-9A-F;')</code></li>
+<li><em>two bytes of hexadecimal</em></li>
+<li><em>example:</em> <code>Combinations('A-9')</code></li>
+<li><em>upper case alphanumeric</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="cyclerange">CycleRange<a class="zola-anchor" href="#cyclerange" aria-label="Anchor link for: cyclerange">🔗</a></h2>
+<p>Yields a value within a specified range, which rolls over continuously.</p>
+<ul>
+<li>
+<p>long -&gt; CycleRange(long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; CycleRange(long: minValue, long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; CycleRange(int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; CycleRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; CycleRange(int: maxValue) -&gt; int</p>
+<ul>
+<li>
+<p><em>notes:</em> Sets the maximum value of the cycle range. The minimum is default to 0.
+@param maxValue The maximum value in the cycle to be added.</p>
+</li>
+<li>
+<p><em>example:</em> <code>CycleRange(34)</code></p>
+</li>
+<li>
+<p><em>add a rotating value between 0 and 34 to the input</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>int -&gt; CycleRange(int: minValue, int: maxValue) -&gt; int</p>
+<ul>
+<li><em>notes:</em> Sets the minimum and maximum value of the cycle range.
+@param minValue minimum value of the cycle to be added.
+@param maxValue maximum value of the cycle to be added.</li>
+</ul>
+</li>
+</ul>
+<h2 id="delimfrequencysampler">DelimFrequencySampler<a class="zola-anchor" href="#delimfrequencysampler" aria-label="Anchor link for: delimfrequencysampler">🔗</a></h2>
+<p>Takes a CSV with sample data and generates random values based on the relative frequencies of the values in the file. The CSV file must have headers which can be used to find the named columns. I.E. take the following imaginary `animals.csv` file: animal,count,country puppy,1,usa puppy,2,colombia puppy,3,senegal kitten,2,colombia `CSVFrequencySampler('animals.csv', animal)` will return `puppy` or `kitten` randomly. `puppy` will be 3x more frequent than `kitten`. `CSVFrequencySampler('animals.csv', country)` will return `usa`, `colombia`, or `senegal` randomly. `colombia` will be 2x more frequent than `usa` or `senegal`. Use this function to infer frequencies of categorical values from CSVs.</p>
+<ul>
+<li>long -&gt; DelimFrequencySampler(String: filename, String: columnName, char: delimiter) -&gt; String
+<ul>
+<li>
+<p><em>notes:</em> Create a sampler of strings from the given delimited file. The delimited file must have plain headers
+as its first line.
+@param filename The name of the file to be read into the sampler buffer
+@param columnName The name of the column to be sampled
+@param delimiter delimmiter</p>
+</li>
+<li>
+<p><em>example:</em> <code>DelimFrequencySampler('values.csv','modelno', '|')</code></p>
+</li>
+<li>
+<p><em>Read values.csv, count the frequency of values in 'modelno' column, and sample from this column proportionally</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="directorylines">DirectoryLines<a class="zola-anchor" href="#directorylines" aria-label="Anchor link for: directorylines">🔗</a></h2>
+<p>Read each line in each matching file in a directory structure, providing one line for each time this function is called. The files are sorted at the time the function is initialized, and each line is read in order. This function does not produce the same result per cycle value. It is possible that different cycle inputs will return different inputs if the cycles are not applied in strict order. Still, this function is useful for consuming input from a set of files as input to a test or simulation.</p>
+<ul>
+<li>long -&gt; DirectoryLines(String: basepath, String: namePattern) -&gt; String
+<ul>
+<li><em>example:</em> <code>DirectoryLines('/var/tmp/bardata', '.*')</code></li>
+<li><em>load every line from every file in /var/tmp/bardata</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="div">Div<a class="zola-anchor" href="#div" aria-label="Anchor link for: div">🔗</a></h2>
+<p>Divide the operand by a fixed value and return the result.</p>
+<ul>
+<li>
+<p>double -&gt; Div(double: divisor) -&gt; double</p>
+</li>
+<li>
+<p>long -&gt; Div(int: divisor) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; Div(long: divisor) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Div(42L)</code></li>
+<li><em>divide all inputs by 42L</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Div(int: divisor) -&gt; int</p>
+</li>
+</ul>
+<h2 id="dividetolongtostring">DivideToLongToString<a class="zola-anchor" href="#dividetolongtostring" aria-label="Anchor link for: dividetolongtostring">🔗</a></h2>
+<p>This is equivalent to <code>Div(...)</code>, but returns the result after String.valueOf(...). This function is also deprecated, as it is easily replaced by other functions.</p>
+<ul>
+<li>long -&gt; DivideToLongToString(long: divisor) -&gt; String</li>
+</ul>
+<h2 id="elapsednanotime">ElapsedNanoTime<a class="zola-anchor" href="#elapsednanotime" aria-label="Anchor link for: elapsednanotime">🔗</a></h2>
+<p>Provide the elapsed nano time since the process started. CAUTION: This does not produce deterministic test data.</p>
+<ul>
+<li>long -&gt; ElapsedNanoTime() -&gt; long</li>
+</ul>
+<h2 id="fieldextractor">FieldExtractor<a class="zola-anchor" href="#fieldextractor" aria-label="Anchor link for: fieldextractor">🔗</a></h2>
+<p>Extracts out a set of fields from a delimited string, returning a string with the same delimiter containing only the specified fields.</p>
+<ul>
+<li>String -&gt; FieldExtractor(String: fields) -&gt; String
+<ul>
+<li><em>example:</em> <code>FieldExtractor('|,2,16')</code></li>
+<li><em>extract fields 2 and 16 from the input data with '|' as the delimiter</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="fixedvalue">FixedValue<a class="zola-anchor" href="#fixedvalue" aria-label="Anchor link for: fixedvalue">🔗</a></h2>
+<p>Yield a fixed value.</p>
+<ul>
+<li>
+<p>long -&gt; FixedValue(String: value) -&gt; String</p>
+</li>
+<li>
+<p>long -&gt; FixedValue(int: value) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>FixedValue(42)</code></li>
+<li><em>always return 42</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; FixedValue(long: fixedValue) -&gt; long</p>
+</li>
+</ul>
+<h2 id="fixedvalues">FixedValues<a class="zola-anchor" href="#fixedvalues" aria-label="Anchor link for: fixedvalues">🔗</a></h2>
+<p>Yield one of the specified values, rotating through them as the input value increases.</p>
+<ul>
+<li>
+<p>long -&gt; FixedValues(int[]...: values) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; FixedValues(long[]...: values) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>FixedValues(3D,53D,73d)</code></li>
+<li><em>Yield 3D, 53D, 73D, 3D, 53D, 73D, 3D, ...</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; FixedValues(long[]...: values) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>FixedValues(3L,53L,73L)</code></li>
+<li><em>Yield 3L, 53L, 73L, 3L, 53L, 73L, 3L, ...</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="fullhash">FullHash<a class="zola-anchor" href="#fullhash" aria-label="Anchor link for: fullhash">🔗</a></h2>
+<p>This uses the Murmur3F (64-bit optimized) version of Murmur3, not as a checksum, but as a simple hash. It doesn't bother pushing the high-64 bits of input, since it only uses the lower 64 bits of output. This version returns the value regardless of this sign bit. It does not return the absolute value, as {@link Hash} does.</p>
+<ul>
+<li>long -&gt; FullHash() -&gt; long</li>
+</ul>
+<h2 id="hash">Hash<a class="zola-anchor" href="#hash" aria-label="Anchor link for: hash">🔗</a></h2>
+<p>This uses the Murmur3F (64-bit optimized) version of Murmur3, not as a checksum, but as a simple hash. It doesn't bother pushing the high-64 bits of input, since it only uses the lower 64 bits of output. It does, however, return the absolute value. This is to make it play nice with users and other libraries.</p>
+<ul>
+<li>
+<p>long -&gt; Hash() -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; Hash() -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; Hash() -&gt; int</p>
+</li>
+</ul>
+<h2 id="hashinterval">HashInterval<a class="zola-anchor" href="#hashinterval" aria-label="Anchor link for: hashinterval">🔗</a></h2>
+<p>Return a value within a range, pseudo-randomly, using interval semantics, where the range of values return does not include the last value. This function behaves exactly like HashRange except for the exclusion of the last value. This allows you to stack intervals using known reference points without duplicating or skipping any given value. You can specify hash intervals as small as a single-element range, like (5,6), or as wide as the relevant data type allows.</p>
+<ul>
+<li>
+<p>int -&gt; HashInterval(int: width) -&gt; int</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval based on a minimum value of 0 and a specified width.
+@param width The maximum value, which is excluded.</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(4)</code></p>
+</li>
+<li>
+<p><em>return values which could include 0, 1, 2, 3, but not 4</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>int -&gt; HashInterval(int: minIncl, int: maxExcl) -&gt; int</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval
+@param minIncl The minimum value, which is included
+@param maxExcl The maximum value, which is excluded</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(2,5)</code></p>
+</li>
+<li>
+<p><em>return values which could include 2, 3, 4, but not 5</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashInterval(int: width) -&gt; int</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval based on a minimum value of 0 and a specified width.
+@param width The maximum value, which is excluded.</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(4)</code></p>
+</li>
+<li>
+<p><em>return values which could include 0, 1, 2, 3, but not 4</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashInterval(int: minIncl, int: maxExcl) -&gt; int</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval
+@param minIncl The minimum value, which is included
+@param maxExcl The maximum value, which is excluded</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(2,5)</code></p>
+</li>
+<li>
+<p><em>return values which could include 2, 3, 4, but not 5</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashInterval(long: width) -&gt; long</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval based on a minimum value of 0 and a specified width.
+@param width The maximum value, which is excluded.</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(4L)</code></p>
+</li>
+<li>
+<p><em>return values which could include 0L, 1L, 2L, 3L, but not 4L</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashInterval(long: minIncl, long: maxExcl) -&gt; long</p>
+<ul>
+<li>
+<p><em>notes:</em> Create a hash interval
+@param minIncl The minimum value, which is included
+@param maxExcl The maximum value, which is excluded</p>
+</li>
+<li>
+<p><em>example:</em> <code>HashInterval(2L,5L)</code></p>
+</li>
+<li>
+<p><em>return values which could include 2L, 3L, 4L, but not 5L</em></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="hashrange">HashRange<a class="zola-anchor" href="#hashrange" aria-label="Anchor link for: hashrange">🔗</a></h2>
+<p>Return a value within a range, pseudo-randomly. This is equivalent to returning a value with in range between 0 and some maximum value, but with a minimum value added. You can specify hash ranges as small as a single-element range, like (5,5), or as wide as the relevant data type allows.</p>
+<ul>
+<li>
+<p>int -&gt; HashRange(int: width) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; HashRange(int: minValue, int: maxValue) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; HashRange(long: width) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; HashRange(long: minValue, long: maxValue) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; HashRange(int: width) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>HashRange(32L)</code></li>
+<li><em>map the input to a number in the range 0-31, inclusive, of type int</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashRange(int: minValue, int: maxValue) -&gt; int</p>
+<ul>
+<li><em>example:</em> <code>HashRange(35L,39L)</code></li>
+<li><em>map the input to a number in the range 35-38, inclusive, of type int</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="hashrangescaled">HashRangeScaled<a class="zola-anchor" href="#hashrangescaled" aria-label="Anchor link for: hashrangescaled">🔗</a></h2>
+<p>Return a pseudo-random value which can only be as large as the input times a scale factor, with a default scale factor of 1.0d</p>
+<ul>
+<li>
+<p>int -&gt; HashRangeScaled(double: scalefactor) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; HashRangeScaled() -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; HashRangeScaled(double: scalefactor) -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; HashRangeScaled() -&gt; long</p>
+</li>
+<li>
+<p>long -&gt; HashRangeScaled(double: scalefactor) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; HashRangeScaled() -&gt; int</p>
+</li>
+</ul>
+<h2 id="hashedbytebufferextract">HashedByteBufferExtract<a class="zola-anchor" href="#hashedbytebufferextract" aria-label="Anchor link for: hashedbytebufferextract">🔗</a></h2>
+<p>Create a ByteBuffer from the first function, and then sample data from that bytebuffer according to the size function. The initFunction can be given as simply a size, in which case ByteBufferSizedHash is used. If the size function yields a size larger than the available buffer size, then it is lowered to that size automatically. If it is lower, then a random offset is used within the buffer image. This function behaves slightly differently than most in that it creates and caches as source byte buffer during initialization.</p>
+<ul>
+<li>long -&gt; HashedByteBufferExtract(Object: initFunc, Object: sizeFunc) -&gt; java.nio.ByteBuffer</li>
+</ul>
+<h2 id="hasheddoublerange">HashedDoubleRange<a class="zola-anchor" href="#hasheddoublerange" aria-label="Anchor link for: hasheddoublerange">🔗</a></h2>
+<p>Return a double value within the specified range. This function uses an intermediate long to arrive at the sampled value before conversion to double, thus providing a more linear sample at the expense of some precision at extremely large values.</p>
+<ul>
+<li>long -&gt; HashedDoubleRange(double: min, double: max) -&gt; double</li>
+</ul>
+<h2 id="hashedfileextracttostring">HashedFileExtractToString<a class="zola-anchor" href="#hashedfileextracttostring" aria-label="Anchor link for: hashedfileextracttostring">🔗</a></h2>
+<p>Pseudo-randomly extract a section of a text file and return it according to some minimum and maximum extract size. The file is loaded into memory as a shared text image. It is then indexed into as a character buffer to find a pseudo-randomly sized fragment.</p>
+<ul>
+<li>
+<p>long -&gt; HashedFileExtractToString(String: filename, int: minsize, int: maxsize) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>HashedFileExtractToString('data/adventures.txt',100,200)</code></li>
+<li><em>return a fragment from adventures.txt between 100 and 200 characters long</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; HashedFileExtractToString(String: filename, Object: sizefunc) -&gt; String</p>
+<ul>
+<li><em>notes:</em> Provide a size function for the fragment to be extracted. In this form, if the size function specifies a string
+size which is larger than the text image, it is truncated via modulo to fall within the text image size.</li>
+</ul>
+</li>
+</ul>
+<p>@param filename The file name to be loaded
+@param sizefunc A function which determines the size of the data to be loaded.</p>
+<ul>
+<li><em>example:</em> <code>HashedFileExtractToString('data/adventures.txt',Uniform())</code></li>
+<li><em>return a fragment from adventures.txt from a random offset, based on the size function provided.</em></li>
+</ul>
+<h2 id="hashedlinetoint">HashedLineToInt<a class="zola-anchor" href="#hashedlinetoint" aria-label="Anchor link for: hashedlinetoint">🔗</a></h2>
+<p>Return a pseudo-randomly selected integer value from a file of numeric values. Each line in the file must contain one parsable integer value.</p>
+<ul>
+<li>long -&gt; HashedLineToInt(String: filename) -&gt; int</li>
+</ul>
+<h2 id="hashedlinetostring">HashedLineToString<a class="zola-anchor" href="#hashedlinetostring" aria-label="Anchor link for: hashedlinetostring">🔗</a></h2>
+<p>Return a pseudo-randomly selected String value from a single line of the specified file.</p>
+<ul>
+<li>long -&gt; HashedLineToString(String: filename) -&gt; String</li>
+</ul>
+<h2 id="hashedlinestokeyvaluestring">HashedLinesToKeyValueString<a class="zola-anchor" href="#hashedlinestokeyvaluestring" aria-label="Anchor link for: hashedlinestokeyvaluestring">🔗</a></h2>
+<p>Generate a string in the format key1:value1;key2:value2;... from the words in the specified file, ranging in size between zero and the specified maximum.</p>
+<ul>
+<li>long -&gt; HashedLinesToKeyValueString(String: paramFile, int: maxsize) -&gt; String</li>
+</ul>
+<h2 id="hashedloremextracttostring">HashedLoremExtractToString<a class="zola-anchor" href="#hashedloremextracttostring" aria-label="Anchor link for: hashedloremextracttostring">🔗</a></h2>
+<p>Provide a text extract from the full lorem ipsum text, between the specified minimum and maximum size.</p>
+<ul>
+<li>long -&gt; HashedLoremExtractToString(int: minsize, int: maxsize) -&gt; String</li>
+</ul>
+<h2 id="hashedrangedtononuniformdouble">HashedRangedToNonuniformDouble<a class="zola-anchor" href="#hashedrangedtononuniformdouble" aria-label="Anchor link for: hashedrangedtononuniformdouble">🔗</a></h2>
+<p>This provides a random sample of a double in a range, without accounting for the non-uniform distribution of IEEE double representation. This means that values closer to high-precision areas of the IEEE spec will be weighted higher in the output. However, NaN and positive and negative infinity are filtered out via oversampling. Results are still stable for a given input value.</p>
+<ul>
+<li>long -&gt; HashedRangedToNonuniformDouble(long: min, long: max) -&gt; double</li>
+</ul>
+<h2 id="hashedtobytebuffer">HashedToByteBuffer<a class="zola-anchor" href="#hashedtobytebuffer" aria-label="Anchor link for: hashedtobytebuffer">🔗</a></h2>
+<p>Hash a long input value into a byte buffer, at least length bytes long, but aligned on 8-byte boundary;</p>
+<ul>
+<li>long -&gt; HashedToByteBuffer(int: lengthInBytes) -&gt; java.nio.ByteBuffer</li>
+</ul>
+<h2 id="identity">Identity<a class="zola-anchor" href="#identity" aria-label="Anchor link for: identity">🔗</a></h2>
+<p>Simply returns the input value. This function intentionally does nothing.</p>
+<ul>
+<li>long -&gt; Identity() -&gt; long</li>
+</ul>
+<h2 id="interpolate">Interpolate<a class="zola-anchor" href="#interpolate" aria-label="Anchor link for: interpolate">🔗</a></h2>
+<p>Return a value along an interpolation curve. This allows you to sketch a basic density curve and describe it simply with just a few values. The number of values provided determines the resolution of the internal lookup table that is used for interpolation. The first value is always the 0.0 anchoring point on the unit interval. The last value is always the 1.0 anchoring point on the unit interval. This means that in order to subdivide the density curve in an interesting way, you need to provide a few more values in between them. Providing two values simply provides a uniform sample between a minimum and maximum value. The input range of this function is, as many of the other functions in this library, based on the valid range of positive long values, between 0L and Long.MAX_VALUE inclusive. This means that if you want to combine interpolation on this curve with the effect of pseudo-random sampling, you need to put a hash function ahead of it in the flow. Developer Note: This is the canonical implementation of LERPing in NoSQLBench, so is heavily documented. Any other LERP implementations should borrow directly from this, embedding by default.</p>
+<ul>
+<li>
+<p>long -&gt; Interpolate(double[]...: values) -&gt; double</p>
+<ul>
+<li><em>example:</em> <code>Interpolate(0.0d,100.0d)</code></li>
+<li><em>return a uniform double value between 0.0d and 100.0d</em></li>
+<li><em>example:</em> <code>Interpolate(0.0d,90.0d,95.0d,98.0d,100.0d)</code></li>
+<li><em>return a weighted double value where the first second and third quartiles are 90.0D, 95.0D, and 98.0D</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Interpolate(double[]...: values) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Interpolate(0.0d,100.0d)</code></li>
+<li><em>return a uniform long value between 0L and 100L</em></li>
+<li><em>example:</em> <code>Interpolate(0.0d,90.0d,95.0d,98.0d,100.0d)</code></li>
+<li><em>return a weighted long value where the first second and third quartiles are 90.0D, 95.0D, and 98.0D</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="jointemplate">JoinTemplate<a class="zola-anchor" href="#jointemplate" aria-label="Anchor link for: jointemplate">🔗</a></h2>
+<p>Combine the result of the specified functions together with the specified delimiter and optional prefix and suffix.</p>
+<ul>
+<li>
+<p>long -&gt; JoinTemplate(String: delimiter, function.LongFunction&lt;?&gt;[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>JoinTemplate('--',NumberNameToString(),NumberNameToString())</code></li>
+<li><em>create values like <code>one--one</code>, <code>two-two</code>, ...</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; JoinTemplate(String: prefix, String: delimiter, String: suffix, function.LongFunction&lt;?&gt;[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>JoinTemplate('{',',','}',NumberNameToString(),LastNames())</code></li>
+<li><em>create values like '{one,Farrel}', '{two,Haskell}', ...</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; JoinTemplate(function.LongUnaryOperator: iterop, String: prefix, String: delimiter, String: suffix, function.LongFunction&lt;?&gt;[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>JoinTemplate(Add(3),'&lt;',';','&gt;',NumberNameToString(),NumberNameToString(),NumberNameToString())</code></li>
+<li><em>create values like '&lt;zero;three,six&gt;', '&lt;one;four,seven&gt;', ...</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="listtemplate">ListTemplate<a class="zola-anchor" href="#listtemplate" aria-label="Anchor link for: listtemplate">🔗</a></h2>
+<p>Create a {@code List} based on two functions, the first to determine the list size, and the second to populate the list with string values. The input fed to the second function is incremented between elements.</p>
+<ul>
+<li>long -&gt; ListTemplate(function.LongToIntFunction: sizeFunc, function.LongFunction<String>: valueFunc) -&gt; List&lt;String&gt;
+<ul>
+<li><em>example:</em> <code>ListTemplate(HashRange(3,7),NumberNameToString())</code></li>
+<li><em>create a list between 3 and 7 elements, with number names as the values</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="loadelement">LoadElement<a class="zola-anchor" href="#loadelement" aria-label="Anchor link for: loadelement">🔗</a></h2>
+<p>Load a value from a map, based on the injected configuration. The map which is used must be named by the mapname. If the injected configuration contains a variable of this name which is also a Map, then this map is referenced and read by the provided variable name.</p>
+<ul>
+<li>Object -&gt; LoadElement(String: varname, String: mapname, Object: defaultValue) -&gt; Object
+<ul>
+<li><em>example:</em> <code>LoadElement('varname','vars','defaultvalue')</code></li>
+<li><em>Load the varable 'varname' from a map named 'vars', or provide 'defaultvalue' if neither is provided</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="longtostring">LongToString<a class="zola-anchor" href="#longtostring" aria-label="Anchor link for: longtostring">🔗</a></h2>
+<p>Return the string representation of the provided long. @deprecated use ToString() instead</p>
+<ul>
+<li>long -&gt; LongToString() -&gt; String</li>
+</ul>
+<h2 id="matchfunc">MatchFunc<a class="zola-anchor" href="#matchfunc" aria-label="Anchor link for: matchfunc">🔗</a></h2>
+<p>Match any input with a regular expression, and apply the associated function to it, yielding the value. If no matches occur, then the original value is passed through unchanged. Patterns and functions are passed as even,odd pairs indexed from the 0th position. Instead of a function, a String value may be provided as the associated output value.</p>
+<ul>
+<li>String -&gt; MatchFunc(Object[]...: funcs) -&gt; String
+<ul>
+<li><em>example:</em> <code>MatchFunc('.*','onevalue')</code></li>
+<li><em>Match all String inputs, simply returning 'onevalue' as the output value.</em></li>
+<li><em>example:</em> <code>MatchFunc('[0-9]+',Suffix('-is-a-number'))</code></li>
+<li><em>Append '-is-a-number' to every input which is a sequence of digits</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="matchregex">MatchRegex<a class="zola-anchor" href="#matchregex" aria-label="Anchor link for: matchregex">🔗</a></h2>
+<p>Match any input with a regular expression, and apply the associated regex replacement to it, yielding the value. If no matches occur, then the original value is passed through unchanged. Patterns and replacements are passed as even,odd pairs indexed from the 0th position. Back-references to matching groups are supported.</p>
+<ul>
+<li>String -&gt; MatchRegex(String[]...: specs) -&gt; String
+<ul>
+<li><em>example:</em> <code>MatchRegex('.*(25|6to4).*','$1')</code></li>
+<li><em>Match 25 or 6 to 4 and set the output to only that</em></li>
+<li><em>example:</em> <code>MatchRegex('([0-9]+)-([0-9]+)-([0-9]+)','$1 $2 $3'</code></li>
+<li><em>replaced dashes with spaces in a 10 digit US phone number.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="max">Max<a class="zola-anchor" href="#max" aria-label="Anchor link for: max">🔗</a></h2>
+<p>Return the maximum of either the input value or the specified max.</p>
+<ul>
+<li>
+<p>double -&gt; Max(double: max) -&gt; double</p>
+</li>
+<li>
+<p>long -&gt; Max(long: max) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Max(42L)</code></li>
+<li><em>take the value of 42L or the input, which ever is greater</em></li>
+<li><em>example:</em> <code>Max(-42L)</code></li>
+<li><em>take the value of -42L or the input, which ever is greater</em></li>
+</ul>
+</li>
+<li>
+<p>int -&gt; Max(int: max) -&gt; int</p>
+</li>
+</ul>
+<h2 id="min">Min<a class="zola-anchor" href="#min" aria-label="Anchor link for: min">🔗</a></h2>
+<p>Return the minimum of either the input value or the specified minimum.</p>
+<ul>
+<li>
+<p>double -&gt; Min(double: min) -&gt; double</p>
+</li>
+<li>
+<p>long -&gt; Min(long: min) -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; Min(int: min) -&gt; int</p>
+</li>
+</ul>
+<h2 id="mod">Mod<a class="zola-anchor" href="#mod" aria-label="Anchor link for: mod">🔗</a></h2>
+<p>Return the result of modulo division by the specified divisor.</p>
+<ul>
+<li>
+<p>long -&gt; Mod(long: modulo) -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; Mod(int: modulo) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; Mod(int: modulo) -&gt; int</p>
+</li>
+</ul>
+<h2 id="modulocsvlinetostring">ModuloCSVLineToString<a class="zola-anchor" href="#modulocsvlinetostring" aria-label="Anchor link for: modulocsvlinetostring">🔗</a></h2>
+<p>Select a value from a CSV file line by modulo division against the number of lines in the file. The second parameter is the field name, and this must be provided in the CSV header line as written.</p>
+<ul>
+<li>long -&gt; ModuloCSVLineToString(String: filename, String: fieldname) -&gt; String
+<ul>
+<li><em>example:</em> <code>ModuloCSVLineToString('data/myfile.csv','lat')</code></li>
+<li><em>load values for 'lat' from the CSV file myfile.csv.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="modulocsvlinetouuid">ModuloCSVLineToUUID<a class="zola-anchor" href="#modulocsvlinetouuid" aria-label="Anchor link for: modulocsvlinetouuid">🔗</a></h2>
+<p>Select a value from a CSV file line by modulo division against the number of lines in the file. The second parameter is the field name, and this must be provided in the CSV header line as written. This version of the function is a type-safe getter for UUID values. @deprecated Use ModuloCSVLineToString(); ToUUID() instead</p>
+<ul>
+<li>long -&gt; ModuloCSVLineToUUID(String: filename, String: fieldname) -&gt; UUID
+<ul>
+<li><em>example:</em> <code>ModuloCSVLineToUUID('data/myfile.csv','lat')</code></li>
+<li><em>load values for 'lat' from the CSV file myfile.csv.</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="modulolinetostring">ModuloLineToString<a class="zola-anchor" href="#modulolinetostring" aria-label="Anchor link for: modulolinetostring">🔗</a></h2>
+<p>Select a value from a text file line by modulo division against the number of lines in the file.</p>
+<ul>
+<li>long -&gt; ModuloLineToString(String: filename) -&gt; String</li>
+</ul>
+<h2 id="modulotointeger">ModuloToInteger<a class="zola-anchor" href="#modulotointeger" aria-label="Anchor link for: modulotointeger">🔗</a></h2>
+<p>Return an integer value as the result of modulo division with the specified divisor.</p>
+<ul>
+<li>long -&gt; ModuloToInteger(int: modulo) -&gt; Integer</li>
+</ul>
+<h2 id="modulotolong">ModuloToLong<a class="zola-anchor" href="#modulotolong" aria-label="Anchor link for: modulotolong">🔗</a></h2>
+<p>Return a long value as the result of modulo division with the specified divisor.</p>
+<ul>
+<li>long -&gt; ModuloToLong(long: modulo) -&gt; long</li>
+</ul>
+<h2 id="mul">Mul<a class="zola-anchor" href="#mul" aria-label="Anchor link for: mul">🔗</a></h2>
+<p>Return the result of multiplying the specified value with the input.</p>
+<ul>
+<li>
+<p>double -&gt; Mul(double: factor) -&gt; double</p>
+</li>
+<li>
+<p>long -&gt; Mul(long: multiplicand) -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; Mul(int: addend) -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; Mul(int: multiplicand) -&gt; int</p>
+</li>
+</ul>
+<h2 id="murmur3divtolong">Murmur3DivToLong<a class="zola-anchor" href="#murmur3divtolong" aria-label="Anchor link for: murmur3divtolong">🔗</a></h2>
+<p>Yield a long value which is the result of hashing and modulo division with the specified divisor.</p>
+<ul>
+<li>long -&gt; Murmur3DivToLong(long: divisor) -&gt; long</li>
+</ul>
+<h2 id="murmur3divtostring">Murmur3DivToString<a class="zola-anchor" href="#murmur3divtostring" aria-label="Anchor link for: murmur3divtostring">🔗</a></h2>
+<p>Yield a String value which is the result of hashing and modulo division with the specified divisor to long and then converting the value to String.</p>
+<ul>
+<li>long -&gt; Murmur3DivToString(long: divisor) -&gt; String</li>
+</ul>
+<h2 id="numbernametostring">NumberNameToString<a class="zola-anchor" href="#numbernametostring" aria-label="Anchor link for: numbernametostring">🔗</a></h2>
+<p>Provides the spelled-out name of a number. For example, an input of 7 would yield &quot;seven&quot;. An input of 4234 yields the value &quot;four thousand thirty four&quot;. The maximum value is limited at 999,999,999.</p>
+<ul>
+<li>long -&gt; NumberNameToString() -&gt; String</li>
+</ul>
+<h2 id="partitionlongs">PartitionLongs<a class="zola-anchor" href="#partitionlongs" aria-label="Anchor link for: partitionlongs">🔗</a></h2>
+<p>Split the value range of Java longs into a number of offsets, starting with Long.MIN_VALUE. This method makes it easy to construct a set of offsets for testing, or to limit the values used a subset. The outputs will range from Long.MIN_VALUE (-2^63) up. This is not an exactly emulation of token range splits in Apache Cassandra.</p>
+<ul>
+<li>long -&gt; PartitionLongs(int: partitions) -&gt; long</li>
+</ul>
+<h2 id="prefix">Prefix<a class="zola-anchor" href="#prefix" aria-label="Anchor link for: prefix">🔗</a></h2>
+<p>Add the specified prefix String to the input value and return the result.</p>
+<ul>
+<li>String -&gt; Prefix(String: prefix) -&gt; String
+<ul>
+<li><em>example:</em> <code>Prefix('PREFIX:')</code></li>
+<li><em>Prepend 'PREFIX:' to every input value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="replaceall">ReplaceAll<a class="zola-anchor" href="#replaceall" aria-label="Anchor link for: replaceall">🔗</a></h2>
+<p>Replace all occurrences of the extant string with the replacement string.</p>
+<ul>
+<li>String -&gt; ReplaceAll(String: extant, String: replacement) -&gt; String
+<ul>
+<li><em>example:</em> <code>ReplaceAll('one','two')</code></li>
+<li><em>Replace all occurrences of 'one' with 'two'</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="replaceregex">ReplaceRegex<a class="zola-anchor" href="#replaceregex" aria-label="Anchor link for: replaceregex">🔗</a></h2>
+<p>Replace all occurrences of the regular expression with the replacement string. Note, this is much less efficient than using the simple ReplaceAll for most cases.</p>
+<ul>
+<li>String -&gt; ReplaceRegex(String: regex, String: replacement) -&gt; String
+<ul>
+<li><em>example:</em> <code>ReplaceRegex('[one]','two')</code></li>
+<li><em>Replace all occurrences of 'o' or 'n' or 'e' with 'two'</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="scale">Scale<a class="zola-anchor" href="#scale" aria-label="Anchor link for: scale">🔗</a></h2>
+<p>Scale the input by the factor provided. @deprecated use Mul(...) instead</p>
+<ul>
+<li>
+<p>long -&gt; Scale(double: scaleFactor) -&gt; int</p>
+</li>
+<li>
+<p>int -&gt; Scale(double: scaleFactor) -&gt; int</p>
+</li>
+</ul>
+<h2 id="shuffle">Shuffle<a class="zola-anchor" href="#shuffle" aria-label="Anchor link for: shuffle">🔗</a></h2>
+<p>This function provides a low-overhead shuffling effect without loading elements into memory. It uses a bundled dataset of pre-computed Galois LFSR shift register configurations, along with a down-sampling method to provide amortized virtual shuffling with minimal memory usage. Essentially, this guarantees that every value in the specified range will be seen at least once before the cycle repeats. However, since the order of traversal of these values is dependent on the LFSR configuration, some orders will appear much more random than others depending on where you are in the traversal cycle. This function *does* yield values that are deterministic.</p>
+<ul>
+<li>
+<p>long -&gt; Shuffle(long: min, long: maxPlusOne) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Shuffle(11,99)</code></li>
+<li><em>Provide all values between 11 and 98 inclusive, in some order, then repeat</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Shuffle(long: min, long: maxPlusOne, int: bankSelector) -&gt; long</p>
+<ul>
+<li><em>example:</em> <code>Shuffle(11,99,3)</code></li>
+<li><em>Provide all values between 11 and 98 inclusive, in some different (and repeatable) order, then repeat</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="signedhash">SignedHash<a class="zola-anchor" href="#signedhash" aria-label="Anchor link for: signedhash">🔗</a></h2>
+<p>This uses the Murmur3F (64-bit optimized) version of Murmur3, not as a checksum, but as a simple hash. It doesn't bother pushing the high-64 bits of input, since it only uses the lower 64 bits of output. Unlike the other hash functions, this one may return positive as well as negative values.</p>
+<ul>
+<li>
+<p>long -&gt; SignedHash() -&gt; long</p>
+</li>
+<li>
+<p>int -&gt; SignedHash() -&gt; int</p>
+</li>
+<li>
+<p>long -&gt; SignedHash() -&gt; int</p>
+</li>
+</ul>
+<h2 id="staticstringmapper">StaticStringMapper<a class="zola-anchor" href="#staticstringmapper" aria-label="Anchor link for: staticstringmapper">🔗</a></h2>
+<p>Return a static String value.</p>
+<ul>
+<li>long -&gt; StaticStringMapper(String: string) -&gt; String</li>
+</ul>
+<h2 id="suffix">Suffix<a class="zola-anchor" href="#suffix" aria-label="Anchor link for: suffix">🔗</a></h2>
+<p>Add the specified prefix String to the input value and return the result.</p>
+<ul>
+<li>String -&gt; Suffix(String: suffix) -&gt; String
+<ul>
+<li><em>example:</em> <code>Suffix('--Fin')</code></li>
+<li><em>Append '--Fin' to every input value</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="template">Template<a class="zola-anchor" href="#template" aria-label="Anchor link for: template">🔗</a></h2>
+<p>Creates a template function which will yield a string which fits the template provided, with all occurrences of <code>{}</code> substituted pair-wise with the result of the provided functions. The number of <code>{}</code> entries in the template must strictly match the number of functions or an error will be thrown. If you need to include single quotes or other special characters, you may use a backslash &quot;\&quot; in your template. The objects passed must be functions of any of the following types:</p>
+<ul>
+<li>LongUnaryOperator</li>
+<li>IntUnaryOperator</li>
+<li>DoubleUnaryOperator</li>
+<li>LongFunction</li>
+<li>IntFunction</li>
+<li>DoubleFunction</li>
+<li>Function&lt;Long,?&gt;</li>
+</ul>
+<p>The result of applying the input value to any of these functions is converted to a String
+and then stitched together according to the template provided.</p>
+<ul>
+<li>
+<p>long -&gt; Template(String: template, Object[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Template('{}-{}',Add(10),Hash())</code></li>
+<li><em>concatenate input+10, '-', and a pseudo-random long</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Template(boolean: truncate, String: template, Object[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>example:</em> <code>Template(true, '{}-{}', Add(10),Hash())</code></li>
+<li><em>throws an error, as the Add(10) function causes a narrowing conversion for a long input</em></li>
+</ul>
+</li>
+<li>
+<p>long -&gt; Template(function.LongUnaryOperator: iterOp, String: template, function.LongFunction&lt;?&gt;[]...: funcs) -&gt; String</p>
+<ul>
+<li><em>notes:</em> If an operator is provided, it is used to change the function input value in an additional way before each function.</li>
+</ul>
+</li>
+</ul>
+<p>@param iterOp   A pre-generation value mapping function
+@param template A string template containing <pre>{}</pre> anchors
+@param funcs    A varargs length of LongFunctions of any output type</p>
+<h2 id="threadnumtointeger">ThreadNumToInteger<a class="zola-anchor" href="#threadnumtointeger" aria-label="Anchor link for: threadnumtointeger">🔗</a></h2>
+<p>Matches a digit sequence in the current thread name and caches it in a thread local. This allows you to use any intentionally indexed thread factories to provide an analogue for concurrency. Note that once the thread number is cached, it will not be refreshed. This means you can't change the thread name and get an updated value.</p>
+<ul>
+<li>long -&gt; ThreadNumToInteger() -&gt; Integer</li>
+</ul>
+<h2 id="threadnumtolong">ThreadNumToLong<a class="zola-anchor" href="#threadnumtolong" aria-label="Anchor link for: threadnumtolong">🔗</a></h2>
+<p>Matches a digit sequence in the current thread name and caches it in a thread local. This allows you to use any intentionally indexed thread factories to provide an analogue for concurrency. Note that once the thread number is cached, it will not be refreshed. This means you can't change the thread name and get an updated value.</p>
+<ul>
+<li>long -&gt; ThreadNumToLong() -&gt; long</li>
+</ul>
+<h2 id="tohasheduuid">ToHashedUUID<a class="zola-anchor" href="#tohasheduuid" aria-label="Anchor link for: tohasheduuid">🔗</a></h2>
+<p>This function provides a stable hashing of the input value to a version 4 (Random) UUID.</p>
+<ul>
+<li>long -&gt; ToHashedUUID() -&gt; UUID</li>
+</ul>
+<h2 id="trim">Trim<a class="zola-anchor" href="#trim" aria-label="Anchor link for: trim">🔗</a></h2>
+<p>Trim the input value and return the result.</p>
+<ul>
+<li>String -&gt; Trim() -&gt; String</li>
+</ul>
+<h2 id="weightedlongs">WeightedLongs<a class="zola-anchor" href="#weightedlongs" aria-label="Anchor link for: weightedlongs">🔗</a></h2>
+<p>Provides a long value from a list of weighted values. The total likelihood of any value to be produced is proportional to its relative weight in the total weight of all elements. This function automatically hashes the input, so the result is already pseudo-random.</p>
+<ul>
+<li>long -&gt; WeightedLongs(String: valuesAndWeights) -&gt; Long
+<ul>
+<li><em>example:</em> <code>WeightedLongs('1:10;3;5;12345;1</code></li>
+<li><em>Yield 1 62.5% of the time, 3 31.25% of the time, and 12345 6.2% of the time</em></li>
+<li><em>example:</em> <code>WeightedLongs('1,6,7</code></li>
+<li><em>Yield 1 33.3% of the time, 6 33.3% of the time, and 7 33.3% of the time</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="weightedstrings">WeightedStrings<a class="zola-anchor" href="#weightedstrings" aria-label="Anchor link for: weightedstrings">🔗</a></h2>
+<p>Allows for weighted elements to be used, such as <code>a:0.25;b:0.25;c:0.5</code> or <code>a:1;b:1.0;c:2.0</code> The unit weights are normalized to the cumulative sum internally, so it is not necessary for them to add up to any particular value.</p>
+<ul>
+<li>long -&gt; WeightedStrings(String: valuesAndWeights) -&gt; String</li>
+</ul>
+<h2 id="weightedstringsfromcsv">WeightedStringsFromCSV<a class="zola-anchor" href="#weightedstringsfromcsv" aria-label="Anchor link for: weightedstringsfromcsv">🔗</a></h2>
+<p>Provides sampling of a given field in a CSV file according to discrete probabilities. The CSV file must have headers which can be used to find the named columns for value and weight. The value column contains the string result to be returned by the function. The weight column contains the floating-point weight or mass associated with the value on the same line. All the weights are normalized automatically.</p>
+<p>If there are multiple file names containing the same format, then they
+will all be read in the same way.</p>
+<p>If the first word in the filenames list is 'map', then the values will not
+be pseudo-randomly selected. Instead, they will be mapped over in some
+other unsorted and stable order as input values vary from 0L to Long.MAX_VALUE.</p>
+<p>Generally, you want to leave out the 'map' directive to get &quot;random sampling&quot;
+of these values.</p>
+<p>This function works the same as the three-parametered form of WeightedStrings,
+which is deprecated in lieu of this one. Use this one instead.</p>
+<ul>
+<li>long -&gt; WeightedStringsFromCSV(String: valueColumn, String: weightColumn, String[]...: filenames) -&gt; String
+<ul>
+<li><em>notes:</em> Create a sampler of strings from the given CSV file. The CSV file must have plain CSV headers
+as its first line.
+@param valueColumn The name of the value column to be sampled
+@param weightColumn The name of the weight column, which must be parsable as a double
+@param filenames One or more file names which will be read in to the sampler buffer</li>
+</ul>
+</li>
+</ul>
+
+        
+        
+<div class="docs-navigation d-flex justify-content-between">
+  
+  
+  
+  
+  
+  <a href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-datetime&#x2F;">
+    <div class="card my-1">
+      <div class="card-body py-2">
+        &larr; datetime functions
+      </div>
+    </div>
+  </a>
+  
+
+  
+  
+  
+  
+  
+    <a class="ms-auto" href="https:&#x2F;&#x2F;docs.nosqlbench.io&#x2F;docs&#x2F;bindings&#x2F;funcref-premade&#x2F;">
+      <div class="card my-1">
+        <div class="card-body py-2">
+          pre-made functions &rarr;
+        </div>
+      </div>
+    </a>
+  
+</div>
+
+      </main>
+    </div>
+  </div>
+</div>
+
+
+  
+    
+<footer class="footer text-muted">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 order-last order-lg-first">
+				<ul class="list-inline">
+					
+						<li class="list-inline-item"> </li>
+					
+				</ul>
+			</div>
+			<div class="col-lg-8 order-first order-lg-last text-lg-end">
+				<ul class="list-inline">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+
+  
+
+  
+<script src="https://docs.nosqlbench.io/js/main.js" defer></script>
+
+  <script src="https://docs.nosqlbench.io/plugins/elasticlunr.min.js" defer></script>
+  <script src="https://docs.nosqlbench.io/search_index.en.js" defer></script>
+  <script src="https://docs.nosqlbench.io/js/search.js" defer></script>
+
+  
+</body>
+</html>
